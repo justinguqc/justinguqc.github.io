@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AITrace — Observation and Proposal</title>
+    <meta name="description" content="ECSE 424 proposal: six To-do List task observations, three review approaches, and a code-linked explanation interface.">
+    <style>
+      :root {
+        --ink:#26323a;
+        --muted:#58656d;
+        --line:#d8dfe3;
+        --paper:#f5f7f8;
+        --accent:#2e5b60
+      }
+      * {
+        box-sizing:border-box
+      }
+      html {
+        scroll-behavior:auto;
+        scroll-padding-top:82px
+      }
+      body {
+        margin:0;
+        font-family:Arial,Helvetica,sans-serif;
+        color:var(--ink);
+        font-size:17px;
+        line-height:1.72;
+        background:white
+      }
+      a {
+        color:var(--accent);
+        text-underline-offset:3px
+      }
+      .container {
+        width:min(1080px,calc(100% - 64px));
+        margin:auto
+      }
+      .topbar {
+        background:#101719;
+        color:white;
+        position:sticky;
+        top:0;
+        z-index:5
+      }
+      .topbar .container {
+        display:flex;
+        gap:32px;
+        align-items:center;
+        padding:15px 0
+      }
+      .brand {
+        font-size:22px;
+        font-weight:700;
+        color:white;
+        text-decoration:none;
+        white-space:nowrap
+      }
+      .navlinks {
+        display:flex;
+        gap:23px;
+        flex-wrap:wrap
+      }
+      .navlinks a {
+        color:#d6dfe1;
+        font-size:14px;
+        text-decoration:none
+      }
+      .navlinks a:hover,.navlinks a:focus-visible {
+        color:white;
+        text-decoration:underline
+      }
+      .hero {
+        background:#343d44;
+        color:white;
+        padding:54px 0 46px
+      }
+      .eyebrow {
+        font-size:13px;
+        letter-spacing:2px;
+        text-transform:uppercase;
+        color:#ccd7dc;
+        margin:0 0 18px
+      }
+      .hero h1 {
+        font-size:clamp(36px,4.5vw,52px);
+        line-height:1.14;
+        letter-spacing:-1.3px;
+        max-width:1000px;
+        margin:0 0 24px;
+        font-weight:800
+      }
+      .hero p {
+        max-width:850px;
+        font-size:19px;
+        color:#eef2f4
+      }
+      .hero .byline {
+        font-size:15px;
+        color:#d5dfe3;
+        margin:22px 0 0
+      }
+      .facts {
+        display:flex;
+        gap:38px;
+        flex-wrap:wrap;
+        margin-top:28px;
+        border-top:1px solid #667179;
+        padding-top:21px
+      }
+      .facts span {
+        font-size:14px;
+        color:#dbe3e6
+      }
+      .facts strong {
+        color:white;
+        font-size:22px;
+        margin-right:8px
+      }
+      .report-section {
+        padding:66px 0
+      }
+      .report-section:nth-of-type(odd) {
+        background:var(--paper)
+      }
+      h2 {
+        font-size:31px;
+        line-height:1.3;
+        text-align:center;
+        margin:0 0 36px;
+        font-weight:600
+      }
+      h3 {
+        font-size:22px;
+        line-height:1.4;
+        margin:35px 0 16px
+      }
+      p {
+        margin:0 0 21px
+      }
+      li {
+        margin-bottom:8px
+      }
+      ul,ol {
+        padding-left:26px;
+        margin:0 0 25px
+      }
+      .table-wrap {
+        overflow-x:auto;
+        margin:23px 0 0;
+        border:1px solid var(--line);
+        border-radius:5px;
+        background:white
+      }
+      table {
+        width:100%;
+        border-collapse:collapse;
+        font-size:15px;
+        line-height:1.55
+      }
+      th {
+        text-align:left;
+        background:#303b43;
+        color:white;
+        padding:15px 17px;
+        vertical-align:top;
+        font-weight:600
+      }
+      td {
+        padding:15px 17px;
+        border-top:1px solid var(--line);
+        vertical-align:top
+      }
+      td+td,th+th {
+        border-left:1px solid var(--line)
+      }
+      tbody tr:nth-child(even) {
+        background:#f7f9fa
+      }
+      td:first-child {
+        font-weight:600;
+        min-width:145px
+      }
+      .caption {
+        font-size:14px;
+        text-align:center;
+        color:var(--muted);
+        margin:13px 0 30px
+      }
+      .persona {
+        padding:24px 27px;
+        background:white;
+        border:1px solid var(--line);
+        border-left:4px solid #718990;
+        border-radius:5px
+      }
+      .persona strong {
+        display:block;
+        font-size:20px;
+        margin-bottom:8px
+      }
+      .design-question {
+        padding:24px 27px;
+        background:#eaf0f2;
+        border-left:4px solid #506d78;
+        font-size:19px;
+        margin:30px 0
+      }
+      .design-question strong {
+        font-weight:600
+      }
+      figure {
+        margin:30px 0
+      }
+      figure img {
+        width:100%;
+        height:auto;
+        display:block;
+        border:1px solid var(--line);
+        border-radius:7px
+      }
+      figcaption {
+        font-size:14px;
+        line-height:1.6;
+        color:var(--muted);
+        margin-top:12px;
+        text-align:center
+      }
+      code {
+        font-family:Consolas,monospace;
+        font-size:.92em;
+        background:#eaf0f2;
+        padding:2px 5px;
+        border-radius:3px
+      }
+      .completion {
+        background:#edf1f3!important;
+        border-top:1px solid var(--line)
+      }
+      .completion h2 {
+        font-size:24px
+      }
+      .completion p,.completion li {
+        font-size:15px
+      }
+      .footer {
+        background:#101719;
+        color:#bdcbd1;
+        text-align:center;
+        padding:23px;
+        font-size:13px
+      }
+      .intro-card {
+        background:white;
+        border:1px solid #e3e8eb;
+        box-shadow:0 9px 28px #27323a0b;
+        padding:35px;
+        border-radius:7px
+      }
+      #observation-and-proposal .container>p:first-of-type {
+        font-size:19px
+      }
+      @media(max-width:680px) {
+        body {
+          font-size:16px
+        }
+        .container {
+          width:calc(100% - 32px)
+        }
+        .topbar .container {
+          gap:16px;
+          align-items:flex-start
+        }
+        .navlinks {
+          gap:8px 17px
+        }
+        .navlinks a {
+          font-size:12px
+        }
+        .brand {
+          font-size:20px
+        }
+        .hero {
+          padding:48px 0
+        }
+        .hero h1 {
+          font-size:39px;
+          letter-spacing:-.7px
+        }
+        .hero p {
+          font-size:17px
+        }
+        .facts {
+          gap:12px 23px
+        }
+        .report-section {
+          padding:43px 0
+        }
+        h2 {
+          font-size:26px
+        }
+        h3 {
+          font-size:20px
+        }
+        table {
+          font-size:13px;
+          min-width:610px
+        }
+        th,td {
+          padding:12px
+        }
+        .persona,.design-question {
+          padding:20px
+        }
+        figcaption {
+          font-size:12px
+        }
+      }
+      @media print {
+        .topbar,.footer {
+          display:none
+        }
+        .hero {
+          background:white;
+          color:black;
+          padding:18px 0
+        }
+        .hero p,.hero .byline,.eyebrow,.facts span,.facts strong {
+          color:black
+        }
+        .hero h1 {
+          font-size:32px
+        }
+        .container {
+          width:100%
+        }
+        .report-section {
+          padding:18px 0;
+          background:white!important
+        }
+        h2 {
+          font-size:24px;
+          text-align:left;
+          margin-bottom:16px
+        }
+        h3 {
+          break-after:avoid
+        }
+        .table-wrap {
+          overflow:visible
+        }
+        table {
+          min-width:0!important;
+          font-size:11px
+        }
+        th {
+          background:#eceff1;
+          color:black
+        }
+        figure,tbody tr,.persona {
+          break-inside:avoid
+        }
+        a {
+          color:inherit
+        }
+        body {
+          font-size:12px
+        }
+        .completion {
+          break-before:page
+        }
+        .hero,.persona {
+          box-shadow:none
+        }
+      }
+      .observation-counts {
+        display:flex;
+        gap:18px 28px;
+        flex-wrap:wrap;
+        padding:18px 0;
+        margin:0 0 20px;
+        border-top:1px solid var(--line);
+        border-bottom:1px solid var(--line)
+      }
+      .observation-counts span {
+        font-size:14px;
+        color:var(--muted)
+      }
+      .observation-counts strong {
+        font-size:22px;
+        color:var(--ink);
+        margin-right:6px
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#observation-and-proposal" style="position:absolute;left:-10000px" onfocus="this.style.left='16px'" onblur="this.style.left='-10000px'">Skip to report</a>
+    <nav class="topbar" aria-label="Project page">
+      <div class="container">
+        <a class="brand" href="#top">AITrace</a>
+        <div class="navlinks">
+          <a href="#observation-and-proposal">Observation and Proposal</a>
+        </div>
+      </div>
+    </nav>
+    <header id="top" class="hero">
+      <div class="container">
+        <p class="eyebrow">McGill · ECSE 424 · Human–Computer Interaction</p>
+        <h1>AITrace</h1>
+        <p class="byline">Group A<br>Eric Lu, Antony Hu, Zuojun Gu<br>Fall 2026</p>
+      </div>
+    </header>
+    <main>
+      <section id="observation-and-proposal" class="report-section">
+        <div class="container">
+          <h2>Observation and Proposal</h2>
+          <div class="intro-card">
+            <p>AITrace helps students understand AI-generated changes to existing code before deciding whether to accept them. It links each meaningful change to a short explanation, its behavioural effects, and optional detail. Students can review the affected code, ask a contextual question, and accept or reject a suggestion without losing the connection between explanation and implementation.</p>
+            <p>This proposal is grounded in observations of six students completing a To-do List project task supplied by our team. We identified three approaches: directly adopting AI output, understanding the overall program while struggling with local details, and investigating code line by line. These differences inform our personas and a design that supports different depths of explanation.</p>
+          </div>
+          <h3>Observing Users</h3>
+          <div class="observation-counts" aria-label="Observation sample">
+            <span><strong>6</strong> students observed</span>
+            <span><strong>2</strong> direct adopters</span>
+            <span><strong>3</strong> structural reviewers</span>
+            <span><strong>1</strong> deep investigator</span>
+          </div>
+          <p>We conducted one two-hour Zoom observation event on September 28, 2026, beginning at 3:00 p.m. Six student participants, approximately 20 years old and not all enrolled at McGill, joined voluntarily through invitations to friends. Participants were informed about recording and the use of anonymized findings in the course report and gave their consent.</p>
+          <p>Participants worked with AI to build a To-do List project from scratch. The common requirements were task creation, reading, updating, and deletion (CRUD), simple simulated database management, and a display of the tasks. They freely selected their AI tool: three used GPT, two used Gemini, and one used Claude. We provided no help during the task. Zoom recordings and written notes documented the activity and the subsequent questions.</p>
+          <p>After the task, we asked participants to explain the project as a whole, then examined a specific operation, such as adding or deleting a task. We asked about the role of a particular line within its function. This progression allowed us to distinguish an understanding of what the application does from an understanding of how its implementation works.</p>
+          <p>Two students without programming knowledge copied and pasted generated code without attending to implementation details. During questioning, they could describe what the project did but could not distinguish the implementation details. Three students with programming knowledge could explain files or functions but sometimes could not explain unfamiliar built-in functions or data structures used in local implementations. One student investigated code line by line and could clearly explain almost all the material discussed in the follow-up questions.</p>
+          <p>The shared task gave these observations a common activity context. This was an assigned practice activity, and the findings are qualitative. Differences in tool choice and prior knowledge mean that we do not attribute the observed differences to a particular AI system or infer their prevalence in the wider student population.</p>
+          <h3>Observation Grid</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Observation site and time</td>
+                  <td>Zoom online meeting, September 28, 2026, 3:00 p.m.; one event lasting two hours.</td>
+                </tr>
+                <tr>
+                  <td>Participants and recruitment</td>
+                  <td>Six students aged approximately 20, not all from McGill, recruited voluntarily through friends.</td>
+                </tr>
+                <tr>
+                  <td>Activity</td>
+                  <td>Build a To-do List project from scratch in collaboration with AI: task CRUD, simple simulated database management, and task display.</td>
+                </tr>
+                <tr>
+                  <td>AI tools</td>
+                  <td>Free choice: GPT (3 participants), Gemini (2), Claude (1).</td>
+                </tr>
+                <tr>
+                  <td>Observation procedure</td>
+                  <td>No assistance during the activity; follow-up questions moved from the whole project to a specific operation, function, and line of code.</td>
+                </tr>
+                <tr>
+                  <td>Documentation and consent</td>
+                  <td>Zoom recording and written notes; participants were informed and consented to recording and anonymized course reporting.</td>
+                </tr>
+                <tr>
+                  <td>Direct adoption — O1</td>
+                  <td>Two students adopted output without attending to details and could explain the application&#x27;s purpose, but not its implementation.</td>
+                </tr>
+                <tr>
+                  <td>Structural review — O2</td>
+                  <td>Three students could explain files or functions but struggled with unfamiliar built-in functions or data structures.</td>
+                </tr>
+                <tr>
+                  <td>Detailed investigation — O3</td>
+                  <td>One student studied individual lines and clearly explained almost all the material discussed afterward.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 1. Observation grid for the To-do List practice activity.</em></p>
+        </div>
+      </section>
+      <section id="identifying-the-problem" class="report-section">
+        <div class="container">
+          <h2>Identifying the Problem</h2>
+          <p>The observed interaction problem is a gap between obtaining usable AI output and understanding the changes it introduces. Direct adoption leaves little opportunity to inspect a modification. Understanding a project&#x27;s structure does not necessarily explain a small condition or expression. Detailed investigation can produce learning, but requires substantial effort.</p>
+          <p>Students need to connect a particular change to its purpose, its effect on the program, and a decision about whether to use it. More explanation alone may not be sufficient: the explanation must be attached to relevant code and available at an appropriate level of detail.</p>
+          <p class="design-question"><strong>Design question: How can an interface help students connect an AI code change to its meaning and consequences before accepting it, while supporting different depths of investigation?</strong></p>
+          <figure>
+            <a href="AITrace_assets/observation-patterns.svg" target="_blank" aria-label="Enlarge: Three observed approaches to reviewing AI-generated code"><img src="AITrace_assets/observation-patterns.svg" alt="Three observed approaches to reviewing AI-generated code" width="1000" height="370" loading="lazy"></a>
+            <figcaption>Figure 1. Observation-based illustration of the three review approaches.</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section id="developing-personas" class="report-section">
+        <div class="container">
+          <h2>Developing Personas</h2>
+          <p>We developed task-based audience segments by identifying reported behaviours, organizing them by activity, and mapping them to needs. Programming knowledge and investigative effort are considered separately: willingness to study every line is not itself a measure of programming proficiency.</p>
+          <h3>Distinguishing Behaviours</h3>
+          <ul>
+            <li>Transferring generated code without inspecting implementation details (O1).</li>
+            <li>Understanding project files and, in some cases, functions (O2).</li>
+            <li>Struggling to explain unfamiliar built-in functions or data structures within local implementations (O2).</li>
+            <li>Independently studying code line by line (O3).</li>
+            <li>Investing additional time and clearly explaining almost all the material discussed in follow-up questioning (O3).</li>
+          </ul>
+          <h3>User Behaviours Organized by Task</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Task area</th>
+                  <th scope="col">Observed behaviour</th>
+                  <th scope="col">Inferred need</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Adopt AI output</td>
+                  <td>Direct copy-and-paste without attention to details (O1).</td>
+                  <td>Accessible purpose, observable effects, and checks.</td>
+                </tr>
+                <tr>
+                  <td>Understand project structure</td>
+                  <td>Understanding files and sometimes functions (O2).</td>
+                  <td>Connect local changes to their surrounding function and task.</td>
+                </tr>
+                <tr>
+                  <td>Interpret a local implementation</td>
+                  <td>Unfamiliar built-in functions or data structures despite structural knowledge (O2).</td>
+                  <td>Explain the operation, its data, and how it changes program behaviour.</td>
+                </tr>
+                <tr>
+                  <td>Investigate and learn</td>
+                  <td>Line-by-line investigation and clear explanations during follow-up questioning (O3).</td>
+                  <td>Detailed explanations, examples, and contextual questions.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 2. Intermediate organization of behaviours into task areas and needs.</em></p>
+          <h3>Tasks and Performers</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Reported pattern</th>
+                  <th scope="col">Direct adopters (2)</th>
+                  <th scope="col">Structural reviewers (3)</th>
+                  <th scope="col">Deep investigator (1)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Adopt code without attending to details</td>
+                  <td>Observed</td>
+                  <td>Not established</td>
+                  <td>Not established</td>
+                </tr>
+                <tr>
+                  <td>Understand files or functions</td>
+                  <td>Not established</td>
+                  <td>Observed</td>
+                  <td>Not established</td>
+                </tr>
+                <tr>
+                  <td>Struggle with a local implementation</td>
+                  <td>Not established</td>
+                  <td>Observed</td>
+                  <td>Not established</td>
+                </tr>
+                <tr>
+                  <td>Investigate individual lines extensively</td>
+                  <td>Not established</td>
+                  <td>Not established</td>
+                  <td>Observed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 3. Patterns mapped to observed groups. “Not established” means the summaries do not establish the behaviour, not that it never occurred.</em></p>
+          <h3>Definition of Personas</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Persona</th>
+                  <th scope="col">Observation basis</th>
+                  <th scope="col">Task goal</th>
+                  <th scope="col">Design response</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>The Direct Adopter</td>
+                  <td>O1, two students</td>
+                  <td>Use AI output to make progress.</td>
+                  <td>Plain-language purpose, examples, and visible checks.</td>
+                </tr>
+                <tr>
+                  <td>The Structural Reviewer</td>
+                  <td>O2, three students</td>
+                  <td>Understand local changes within a familiar structure.</td>
+                  <td>Linked code and explanation, consequences, and review controls.</td>
+                </tr>
+                <tr>
+                  <td>The Deep Investigator</td>
+                  <td>O3, one student</td>
+                  <td>Learn through detailed investigation.</td>
+                  <td>Expandable detail, assumptions, alternatives, and questions.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 4. Personas derived from the observations. These are composite segments, not invented participant biographies.</em></p>
+          <h3>User Personas</h3>
+          <p class="persona"><strong>The Direct Adopter.</strong> This student lacks programming knowledge and adopts generated code without examining its implementation. A technical diff may be difficult to interpret. AITrace should explain what a change intends to do and provide an example the student can check. A short explanation cannot be assumed to establish code correctness; the initial goal is understanding purpose and visible consequences.</p>
+          <p class="persona"><strong>The Structural Reviewer.</strong> This student knows how to program and understands files or functions, but may not understand an unfamiliar built-in function or data structure used in a local implementation. AITrace should explain the unfamiliar operation in context and connect the affected lines to the function&#x27;s behaviour and the problem addressed. A comparison, concrete example, and change-specific question can support an informed decision.</p>
+          <p class="persona"><strong>The Deep Investigator.</strong> This student studies individual lines and learns through extended effort. The observed participant could clearly explain almost all the material discussed afterward. AITrace should preserve that opportunity through deeper explanations and contextual questions. Its benefit would be easier access to relevant information, rather than simply reducing learning time. One participant exemplified this approach in our sample.</p>
+          <h3>Our Primary Persona: The Structural Reviewer</h3>
+          <p>We focus on this persona because they have enough programming knowledge to act on an explanation while showing a specific difficulty: connecting a small implementation to its effect. This group also has the largest representation in our exploratory sample, although that does not imply population prevalence. The other personas guide accessible summaries and optional depth.</p>
+        </div>
+      </section>
+      <section id="our-solution" class="report-section">
+        <div class="container">
+          <h2>Our Solution</h2>
+          <p>AITrace organizes a suggestion into meaningful review units, such as correcting a filter. Each unit has an anchored comment next to the affected code and a card in a persistent explanation panel. Selecting a card highlights its code; selecting changed code reveals its explanation. The original and proposed versions remain visible together.</p>
+          <p>A <strong>summary</strong> states what changed and why. An <strong>expanded explanation</strong> connects implementation to behaviour through an example. <strong>Further exploration</strong> provides assumptions, side effects, alternatives, and contextual questions. Users choose their depth without first identifying a skill category.</p>
+          <p>Review units support acceptance, rejection, and undo, with pending, accepted, and rejected states. Edits that must work together are grouped in prepared cases to prevent incompatible partial acceptance. The final-code preview reflects the decisions.</p>
+          <p>Explanations, proposed checks, and executed results are labelled separately. An explanation describes a reason for a change; it does not certify correctness.</p>
+        </div>
+      </section>
+      <section id="finding-related-products" class="report-section">
+        <div class="container">
+          <h2>Finding Related Products</h2>
+          <h3>Category A: Chatbot Copy-and-Paste Workflows</h3>
+          <p>The original pitch describes copying code into a chatbot, making a broad request, and pasting the answer into a program. This obtains generated code, but the direct-adoption pattern does not establish that modifications are reviewed. AITrace adds an explicit link between a change, explanation, and decision.</p>
+          <h3>Category B: IDE Assistance and Edit Review</h3>
+          <p>GitHub Copilot Chat supports explanations and questions about selected code [1]. Visual Studio Code provides controls for keeping or undoing AI edits, including individual changes [2]. These capabilities already address parts of our proposal. We will investigate whether packaging purpose, examples, assumptions, and decisions together helps students use them more effectively.</p>
+          <h3>Category C: AI Coding Environments</h3>
+          <p>Cursor provides difference review and selective acceptance [3]. AITrace does not claim that selective acceptance is new. Its proposed contribution is a student-oriented review structure with progressive explanation depth, to be evaluated against existing approaches.</p>
+        </div>
+      </section>
+      <section id="comparing-the-products" class="report-section">
+        <div class="container">
+          <h2>Comparing the Products</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Alternative</th>
+                  <th scope="col">Existing capability</th>
+                  <th scope="col">Question for our personas</th>
+                  <th scope="col">AITrace&#x27;s proposed distinction</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Observed chatbot workflow</td>
+                  <td>Generated replacement code.</td>
+                  <td>Does the student understand modifications before adoption?</td>
+                  <td>Change-linked explanation and explicit decisions.</td>
+                </tr>
+                <tr>
+                  <td>Copilot Chat</td>
+                  <td>Explanations and contextual questions.</td>
+                  <td>Can the student connect an explanation to a small edit and its effects?</td>
+                  <td>A consistent card with purpose, effects, examples, and questions.</td>
+                </tr>
+                <tr>
+                  <td>VS Code AI edit review</td>
+                  <td>Differences and granular keep/undo controls.</td>
+                  <td>Does visibility support understanding as well as control?</td>
+                  <td>Behavioural explanation beside decision controls.</td>
+                </tr>
+                <tr>
+                  <td>Cursor review</td>
+                  <td>Differences and selective acceptance.</td>
+                  <td>Does review accommodate accessible summaries and deep investigation?</td>
+                  <td>Progressive explanation depth around the observed approaches.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 5. Capability-based comparison. Documentation supports capabilities; comparative usability and learning benefits remain to be evaluated.</em></p>
+          <h3>Key Distinctions</h3>
+          <p><strong>Linked code and explanation.</strong> The selected modification, context, and commentary stay visible together.</p>
+          <p><strong>Progressive depth.</strong> Users can move from purpose and examples to local behaviour, assumptions, and alternatives.</p>
+          <p><strong>Behaviour-oriented units.</strong> Linked edits are grouped by the problem they address, with their relationship explained.</p>
+          <p><strong>Understanding as an evaluation target.</strong> We assess users&#x27; explanations and decisions alongside usability, rather than inferring understanding from acceptance or preference.</p>
+        </div>
+      </section>
+      <section id="illustrating-a-use-case-scenario" class="report-section">
+        <div class="container">
+          <h2>Illustrating a Use-case Scenario</h2>
+          <p>This is a proposed interaction for the Structural Reviewer. Its bugs and AI response are prepared examples, not reported observation events.</p>
+          <p>A student understands a To-do List project&#x27;s input, task list, and display function, but the Pending view shows completed tasks and its counter is inconsistent. An AI suggestion changes a filter, updates the remaining-task counter, and renames a variable.</p>
+          <p>AITrace presents the filter and counter edits as one repair unit, with renaming separate. The student selects the repair. The system highlights both expressions and explains that the Pending view should retain incomplete tasks and count that same set.</p>
+          <p>The student expands the explanation of <code>!todo.completed</code>. The panel shows an incomplete task being retained and a completed task excluded, assuming <code>completed</code> is Boolean. This connects the expression to visible list behaviour.</p>
+          <p>The student asks, “Why does the counter also change?” The answer stays attached to the repair and explains that counting all tasks would disagree with the filtered view. The student accepts the repair and rejects renaming. The preview updates and displays both decisions.</p>
+          <p>Before finishing, the student opens checks for mixed completion states, an empty list, and all tasks completed. Outcomes are labelled as illustrations or executed results. They can revisit the repair or undo the decision. The intended outcome is an informed choice; whether participants achieve it will be evaluated.</p>
+        </div>
+      </section>
+      <section id="designing-at-a-high-level" class="report-section">
+        <div class="container">
+          <h2>Designing at a High Level</h2>
+          <figure>
+            <a href="AITrace_assets/architecture.svg" target="_blank" aria-label="Enlarge: Architecture of the prepared-case AITrace prototype"><img src="AITrace_assets/architecture.svg" alt="Architecture of the prepared-case AITrace prototype" width="1000" height="720" loading="lazy"></a>
+            <figcaption>Figure 2. Prototype architecture. Browser and code-display components are existing building blocks; the team develops the review interaction and case-specific logic.</figcaption>
+          </figure>
+          <p>The prototype runs in a browser on a student&#x27;s computer. Prepared data contains original code, defined edits, explanations, dependencies, examples, and follow-up answers. Stable identifiers connect these in a change model. The comparison view and explanation panel share a selected identifier, keeping code and commentary synchronized.</p>
+          <p>Review decisions update state. A change-application component combines compatible accepted edits with the original code to generate a preview. Undo restores an earlier state. Contextual questions retrieve prepared answers for the selected unit.</p>
+          <p>We reuse HTML, CSS, JavaScript, and a selected code-display or difference component. We develop the case format, linked explanations, review controls, state, case-specific dependency checks, preview, and undo. A live model API, arbitrary code execution, and automatic whole-project dependency discovery are outside initial scope. Prepared content supports evaluation of the interaction.</p>
+        </div>
+      </section>
+      <section id="initial-sketches" class="report-section">
+        <div class="container">
+          <h2>Initial Sketches</h2>
+          <h3>Sketch 1: Anchored Comments</h3>
+          <figure>
+            <a href="AITrace_assets/sketch-comments.svg" target="_blank" aria-label="Enlarge: Anchored-comment concept"><img src="AITrace_assets/sketch-comments.svg" alt="Anchored-comment concept" width="1000" height="440" loading="lazy"></a>
+            <figcaption>Figure 3. Anchored-comment design sketch: a short comment identifies the purpose of a changed expression.</figcaption>
+          </figure>
+          <p>This keeps commentary close to code, but long comments may interrupt reading. We will examine discoverability and clutter.</p>
+          <h3>Sketch 2: Persistent Explanation Panel</h3>
+          <figure>
+            <a href="AITrace_assets/sketch-panel.svg" target="_blank" aria-label="Enlarge: Persistent explanation-panel concept"><img src="AITrace_assets/sketch-panel.svg" alt="Persistent explanation-panel concept" width="1000" height="440" loading="lazy"></a>
+            <figcaption>Figure 4. Selected code and a fixed explanation panel remain visible together.</figcaption>
+          </figure>
+          <p>This is our initial preferred layout. It offers a summary, expandable detail, and contextual questions while retaining the code. Testing will examine the code-card relationship and usability on smaller screens.</p>
+          <h3>Sketch 3: Change-specific Floating Window</h3>
+          <figure>
+            <a href="AITrace_assets/sketch-window.svg" target="_blank" aria-label="Enlarge: Floating-window concept"><img src="AITrace_assets/sketch-window.svg" alt="Floating-window concept" width="1000" height="440" loading="lazy"></a>
+            <figcaption>Figure 5. Alternative layout with an explanation window and decision controls.</figcaption>
+          </figure>
+          <p>The window makes review explicit, but may obscure code or interrupt exploration. We will compare it with the side panel. All sketches are proposed alternatives, not completed study findings.</p>
+        </div>
+      </section>
+      <section id="justifying-feasibility" class="report-section">
+        <div class="container">
+          <h2>Justifying Feasibility</h2>
+          <p>Our three-member team has HTML, CSS, JavaScript, and Java skills, along with Git collaboration, web-project development, and interface-design experience. HTML, CSS, and JavaScript support the browser interface; Java contributes programming experience for reviewing implementation logic. Our web and interface experience supports translating the sketches into a usable prototype, while Git supports collaborative development. A small set of To-do List cases, prepared responses, and conventional components keeps the prototype manageable.</p>
+          <p>We propose 75 team hours, or approximately 25 per member, within the course guideline of 20–30 hours each. The estimate is organized into three workstreams.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Workstream</th>
+                  <th scope="col">Work allocation</th>
+                  <th scope="col">Hours</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Interface</td>
+                  <td>Layout (5), comparison and explanation interface (11), styling/integration (4), report (3).</td>
+                  <td>20</td>
+                </tr>
+                <tr>
+                  <td>Review logic</td>
+                  <td>State, linked edits, preview, undo (11), case data (5), integration checks (4), report (3).</td>
+                  <td>25</td>
+                </tr>
+                <tr>
+                  <td>Research</td>
+                  <td>Observations/personas (6), explanation review (4), study preparation and evaluation (16), report (3).</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td>Shared coordination is included.</td>
+                  <td>75</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 6. Proposed effort allocation.</em></p>
+          <p>The workstreams will be shared across the three members. The study estimate includes eight team hours for two two-hour sessions attended by a moderator and an observer, plus eight hours for preparation and analysis. Responsibilities can be balanced to keep individual effort near 25 hours.</p>
+          <p>Misaligned explanations, incompatible edits, and information overload are the main implementation risks. Stable identifiers, explicit prepared-case dependencies, and optional detail address these. The prepared-case scope allows the team to focus its front-end and programming skills on the review interaction and its evaluation.</p>
+        </div>
+      </section>
+      <section id="evaluating-hci-quality" class="report-section">
+        <div class="container">
+          <h2>Evaluating HCI Quality</h2>
+          <p>For the next deliverable, we plan two Zoom testing events with three new student participants in each event. Each event will last two hours in total. Each group will include one Direct Adopter, one Structural Reviewer, and one Deep Investigator, giving two participants per approach across the study. Participants will be approximately 20 years old, recruited voluntarily through friends or campus channels, without gender restrictions or additional screening conditions beyond the stated audience characteristics.</p>
+          <p>Every participant will experience both a conventional AI-answer display and the low-fidelity AITrace interface, using different but similarly difficult To-do List modification cases. Three participants will start with the conventional display, and three with AITrace. The two participants representing each review approach will use opposite orders. Matched cases and varied order will help limit learning and order effects; with six participants, we will focus on descriptive comparisons and design difficulties rather than population-level conclusions.</p>
+          <p>Low-fidelity testing will examine whether participants can find changes, associate explanations, navigate detail, and understand review controls. After each condition, we will ask them to explain a change&#x27;s purpose and behaviour, indicate which suggestions they would accept, and identify a useful check. Zoom recordings and written notes will document the interaction and answers. Planned sessions include consent and instructions, both task conditions, a break, and a debrief; the two-hour duration applies to the whole group event rather than to an individual task.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Question</th>
+                  <th scope="col">Proposed measure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Can users locate changes?</td>
+                  <td>Correct identification of affected code.</td>
+                </tr>
+                <tr>
+                  <td>Do users understand effects?</td>
+                  <td>Explanation of purpose and behavioural consequences in their own words.</td>
+                </tr>
+                <tr>
+                  <td>Can users decide appropriately?</td>
+                  <td>Decisions judged against stated task requirements.</td>
+                </tr>
+                <tr>
+                  <td>Can users identify checks?</td>
+                  <td>Relevant inputs or boundary conditions.</td>
+                </tr>
+                <tr>
+                  <td>Is interaction manageable?</td>
+                  <td>Navigation difficulties, completion time, and reported effort.</td>
+                </tr>
+                <tr>
+                  <td>Is confidence supported?</td>
+                  <td>Confidence compared with demonstrated understanding and decision quality.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 7. Proposed evaluation criteria; no outcomes are claimed.</em></p>
+          <p>Direct adopters will be assessed on purpose and visible consequences, Structural Reviewers on local behaviour and decisions, and Deep Investigators on access to useful detail. Faster completion is secondary and must not come at the expense of understanding.</p>
+        </div>
+      </section>
+      <section id="ethics-table-for-hci" class="report-section">
+        <div class="container">
+          <h2>Ethics Table for HCI</h2>
+          <p>The following ethics table outlines the proposed low-fidelity prototype study for the next deliverable. Its planned participants are separate from the six students already observed.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Required field</th>
+                  <th scope="col">Proposed study information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Group / student names</td>
+                  <td>Group A: Eric Lu, Antony Hu, Zuojun Gu.</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>AITrace: Understanding AI Code Changes Before Accepting Them.</td>
+                </tr>
+                <tr>
+                  <td>Study description</td>
+                  <td>We will compare a low-fidelity AITrace interface with a conventional AI-answer display using prepared To-do List modification cases. Every participant will use both displays and explain the changes and their review decisions, with presentation order balanced across participants. Two Zoom events will be documented through recordings and written notes to identify comprehension and interaction difficulties.</td>
+                </tr>
+                <tr>
+                  <td>Participants</td>
+                  <td>Six new student participants aged approximately 20, with recruitment open to all genders. Two groups of three will each include one Direct Adopter, one Structural Reviewer, and one Deep Investigator; there are no additional screening conditions beyond these audience characteristics.</td>
+                </tr>
+                <tr>
+                  <td>Recruitment</td>
+                  <td>Voluntary invitations through friends or campus channels. The invitation will explain the study, both display conditions, the recording, and the two-hour duration of each group event.</td>
+                </tr>
+                <tr>
+                  <td>Risks</td>
+                  <td>Discomfort about programming ability, fatigue or frustration during a two-hour event, and privacy concerns associated with recording names, voices, or screens.</td>
+                </tr>
+                <tr>
+                  <td>Mitigation</td>
+                  <td>Explain that the interface is being evaluated; allow skipping, breaks, and withdrawal. Use prepared examples rather than private assignments and obtain informed consent for Zoom recording and anonymized reporting. Keep recordings and written notes in an access-restricted team folder accessible only to Eric Lu, Antony Hu, and Zuojun Gu. Use P1–P6 identifiers in study notes and obscure identifying information in report screenshots. Delete original recordings and identifiable records within 30 days after course grades are released.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption"><em>Table 8. Ethics information for the proposed low-fidelity study.</em></p>
+        </div>
+      </section>
+      <section id="references" class="report-section">
+        <div class="container">
+          <h2>References</h2>
+          <ol>
+            <li>GitHub. <a href="https://docs.github.com/en/copilot/get-started/quickstart-for-using-github-copilot-in-your-ide?platform=mac&amp;tool=windowsterminal">Quickstart for using GitHub Copilot in your IDE</a>.</li>
+            <li>Visual Studio Code. <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits">Review and revert agent changes</a>.</li>
+            <li>Cursor. <a href="https://docs.cursor.com/en/agent/review">Diffs &amp; Review</a>.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      AITrace · ECSE 424 · Observation and Proposal
+    </footer>
+  </body>
+</html>
