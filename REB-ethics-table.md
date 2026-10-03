@@ -10,19 +10,19 @@ Group A: Eric Lu, Antony Hu, Zuojun Gu
 
 ## 3. Project / study description
 
-This study will compare a low-fidelity AITrace interface with a conventional AI-answer display using prepared To-do List modification cases. Each participant will use both displays, explain the purpose and behavioural effects of suggested changes, make review decisions, and identify useful checks. The study will use balanced presentation order and will document interaction difficulties and comprehension through Zoom recordings and written notes.
+This study will compare a low-fidelity AITrace interface with a conventional AI-answer display using prepared To-do List modification cases. Each participant will use both displays, explain the purpose and behavioural effects of suggested changes, make review decisions, and identify useful checks. The study will use balanced presentation order and will document interaction difficulties and comprehension through Zoom recordings and written notes during six individual sessions of approximately 40 minutes each.
 
 ## 4. Number and type of participants
 
-Six new student participants, approximately 20 years old, of any gender. They will take part in two Zoom sessions with three participants per session. Participants will have varying experience reviewing AI-generated code; the study will include or identify participants whose baseline review behaviours resemble the Direct Adopter, Structural Reviewer, and Deep Investigator audience segments described in the project report.
+Six new student participants, approximately 20 years old, of any gender. Each participant will take part in one individual Zoom session lasting approximately 40 minutes. Participants will have varying experience reviewing AI-generated code; the study will include or identify participants whose baseline review behaviours resemble the Direct Adopter, Structural Reviewer, and Deep Investigator audience segments described in the project report.
 
 ## 5. Recruitment
 
-Participants will be recruited voluntarily through friends and campus channels. The invitation will state that the study compares two prepared code-review displays, is expected to last approximately two hours per group session, and involves Zoom recording and written notes. Participation is voluntary; participants may decline to answer any question, take a break, or withdraw without penalty.
+Participants will be recruited voluntarily through friends and campus channels. The invitation will state that the study compares two prepared code-review displays, is expected to last approximately 40 minutes per individual session, and involves Zoom recording and written notes. Participation is voluntary; participants may decline to answer any question, take a break, or withdraw without penalty.
 
 ## 6. Risks
 
-Potential risks include discomfort about programming ability, fatigue or frustration during a two-hour group session, and privacy risks associated with recordings of participants' names, voices, screens, or comments. Participants may also feel pressure to appear knowledgeable when explaining code in front of others.
+Potential risks include discomfort about programming ability, fatigue or frustration during an approximately 40-minute session, and privacy risks associated with recordings of participants' names, voices, screens, or comments. Participants may also feel pressure to appear knowledgeable when explaining code to the study team.
 
 ## 7. Risk mitigation
 
