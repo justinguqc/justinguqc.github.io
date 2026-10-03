@@ -500,14 +500,16 @@
       <section id="developing-personas" class="report-section">
         <div class="container">
           <h2>Developing Personas</h2>
-          <p>We developed task-based audience segments by identifying reported behaviours, organizing them by activity, and mapping them to needs. Programming knowledge and investigative effort are considered separately: willingness to study every line is not itself a measure of programming proficiency.</p>
+          <p>We developed task-based audience segments from how participants adopted, interpreted, and modified AI-generated code. First, we listed behaviours from the observations and follow-up interviews. We then organized those behaviours by task and compared the participants&#x27; approaches to identify recurring needs. Finally, we used those patterns to define three audience segments. Programming knowledge and investigative effort were considered separately, since willingness to study every line is not itself a measure of proficiency.</p>
           <h3>Distinguishing Behaviours</h3>
           <ul>
-            <li>Transferring generated code without inspecting implementation details (O1).</li>
-            <li>Understanding project files and, in some cases, functions (O2).</li>
-            <li>Struggling to explain unfamiliar built-in functions or data structures within local implementations (O2).</li>
-            <li>Independently studying code line by line (O3).</li>
-            <li>Investing additional time and clearly explaining almost all the material discussed in follow-up questioning (O3).</li>
+            <li>Copying generated code without inspecting implementation details and being unable to locate files for simple requested tweaks (O1).</li>
+            <li>Reporting that the amount of generated code discouraged attempts to understand it (O1).</li>
+            <li>Explaining the general purpose of files or functions while struggling with unfamiliar operations, data structures, or imported objects (O2).</li>
+            <li>Moving toward the next feature and skipping lengthy explanations whose connections to the code were difficult to follow (O2).</li>
+            <li>For one participant, being unable to implement alternating To-do List row colours in a follow-up task (O2).</li>
+            <li>Investigating code line by line and quickly explaining where requested extensions would require changes (O3).</li>
+            <li>Sometimes writing large segments independently and reporting that processing extensive AI code and explanations could feel less productive (O3).</li>
           </ul>
           <h3>User Behaviours Organized by Task</h3>
           <div class="table-wrap">
@@ -523,7 +525,7 @@
                 <tr>
                   <td>Adopt AI output</td>
                   <td>Direct copy-and-paste without attention to details (O1).</td>
-                  <td>Accessible purpose, observable effects, and checks.</td>
+                  <td>A manageable starting point, plain-language purpose, and observable examples.</td>
                 </tr>
                 <tr>
                   <td>Understand project structure</td>
@@ -532,58 +534,65 @@
                 </tr>
                 <tr>
                   <td>Interpret a local implementation</td>
-                  <td>Unfamiliar built-in functions or data structures despite structural knowledge (O2).</td>
-                  <td>Explain the operation, its data, and how it changes program behaviour.</td>
+                  <td>Difficulty explaining unfamiliar operations or imported objects; skipping lengthy explanations that are difficult to connect to code (O2).</td>
+                  <td>A short explanation attached to the relevant expression, with an example of its behavioural effect.</td>
+                </tr>
+                <tr>
+                  <td>Locate and make a modification</td>
+                  <td>Difficulty locating relevant files (O1); one unsuccessful row-colour extension (O2); quickly explaining where to modify the code (O3).</td>
+                  <td>Visible code context and clear links between a requested behaviour and the implementation it affects.</td>
                 </tr>
                 <tr>
                   <td>Investigate and learn</td>
-                  <td>Line-by-line investigation and clear explanations during follow-up questioning (O3).</td>
-                  <td>Detailed explanations, examples, and contextual questions.</td>
+                  <td>Line-by-line investigation, sometimes followed by writing large segments independently; reported difficulty processing extensive AI responses (O3).</td>
+                  <td>Smaller review units, concise initial explanations, and optional detail or contextual questions.</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="caption"><em>Table 2. Intermediate organization of behaviours into task areas and needs.</em></p>
           <h3>Tasks and Performers</h3>
+          <p>We compared the recorded approaches before assigning persona names. The table below retains the observation references and sample sizes, including cases where a finding concerned only one participant. These observations support tentative segments for this activity; they do not establish fixed categories for all students.</p>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th scope="col">Reported pattern</th>
-                  <th scope="col">Direct adopters (2)</th>
-                  <th scope="col">Structural reviewers (3)</th>
-                  <th scope="col">Deep investigator (1)</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">O1: two participants</th>
+                  <th scope="col">O2: three participants</th>
+                  <th scope="col">O3: one participant</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Adopt code without attending to details</td>
-                  <td>Observed</td>
-                  <td>Not established</td>
-                  <td>Not established</td>
+                  <td>Review generated output</td>
+                  <td>Copied code without attending to implementation details.</td>
+                  <td>Often moved toward the next feature and skipped lengthy explanations.</td>
+                  <td>Investigated individual lines; sometimes wrote large segments independently.</td>
                 </tr>
                 <tr>
-                  <td>Understand files or functions</td>
-                  <td>Not established</td>
-                  <td>Observed</td>
-                  <td>Not established</td>
+                  <td>Explain the implementation</td>
+                  <td>Described the application&#x27;s purpose but could not explain its implementation.</td>
+                  <td>Explained files or functions but struggled with unfamiliar local details. One participant could not explain various imported objects.</td>
+                  <td>Clearly explained almost all the code discussed in follow-up questioning.</td>
                 </tr>
                 <tr>
-                  <td>Struggle with a local implementation</td>
-                  <td>Not established</td>
-                  <td>Observed</td>
-                  <td>Not established</td>
+                  <td>Respond to a requested extension</td>
+                  <td>Could not locate relevant files or carry out simple requested tweaks.</td>
+                  <td>One participant was unable to implement alternating row colours.</td>
+                  <td>Quickly explained where changes would be needed; implementation success was not established for every extension.</td>
                 </tr>
                 <tr>
-                  <td>Investigate individual lines extensively</td>
-                  <td>Not established</td>
-                  <td>Not established</td>
-                  <td>Observed</td>
+                  <td>Describe the difficulty of reviewing AI output</td>
+                  <td>Reported that the amount of code was overwhelming.</td>
+                  <td>Observed skipping of verbose explanations whose connections to code were difficult to follow.</td>
+                  <td>Reported that processing lengthy code and summaries could take more effort than writing the code themselves.</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="caption"><em>Table 3. Patterns mapped to observed groups. “Not established” means the summaries do not establish the behaviour, not that it never occurred.</em></p>
+          <p class="caption"><em>Table 3. Comparison of task performance and reported difficulties across the observation groups.</em></p>
+          <p>This comparison suggested three different needs: help entering and navigating an unfamiliar implementation, help connecting local code to behaviour within a broadly understood program, and support for detailed investigation without presenting everything at once. We named the resulting segments the Direct Adopter, Structural Reviewer, and Deep Investigator. All three encountered extensive output, but differed in how they approached it and what support they needed.</p>
           <h3>Definition of Personas</h3>
           <div class="table-wrap">
             <table>
@@ -600,7 +609,7 @@
                   <td>The Direct Adopter</td>
                   <td>O1, two students</td>
                   <td>Use AI output to make progress.</td>
-                  <td>Plain-language purpose, examples, and visible checks.</td>
+                  <td>Small review units, plain-language purpose, visible code context, and examples.</td>
                 </tr>
                 <tr>
                   <td>The Structural Reviewer</td>
@@ -611,17 +620,17 @@
                 <tr>
                   <td>The Deep Investigator</td>
                   <td>O3, one student</td>
-                  <td>Learn through detailed investigation.</td>
-                  <td>Expandable detail, assumptions, alternatives, and questions.</td>
+                  <td>Understand and modify code without spending excessive effort processing AI output.</td>
+                  <td>Manageable review units, concise summaries, and optional assumptions, alternatives, and questions.</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="caption"><em>Table 4. Personas derived from the observations. These are composite segments, not invented participant biographies.</em></p>
           <h3>User Personas</h3>
-          <p class="persona"><strong>The Direct Adopter.</strong> This student lacks programming knowledge and adopts generated code without examining its implementation. A technical diff may be difficult to interpret. AITrace should explain what a change intends to do and provide an example the student can check. A short explanation cannot be assumed to establish code correctness; the initial goal is understanding purpose and visible consequences.</p>
-          <p class="persona"><strong>The Structural Reviewer.</strong> This student knows how to program and understands files or functions, but may not understand an unfamiliar built-in function or data structure used in a local implementation. AITrace should explain the unfamiliar operation in context and connect the affected lines to the function&#x27;s behaviour and the problem addressed. A comparison, concrete example, and change-specific question can support an informed decision.</p>
-          <p class="persona"><strong>The Deep Investigator.</strong> This student studies individual lines and learns through extended effort. The observed participant could clearly explain almost all the material discussed afterward. AITrace should preserve that opportunity through deeper explanations and contextual questions. Its benefit would be easier access to relevant information, rather than simply reducing learning time. One participant exemplified this approach in our sample.</p>
+          <p class="persona"><strong>The Direct Adopter.</strong> This student uses generated code to make progress but has little programming knowledge and finds the volume of output overwhelming. In our observations, students following this approach could describe the application but could not locate relevant files or make simple requested tweaks. AITrace should provide a small, clearly located review unit, explain its purpose in plain language, and show a concrete behavioural example. The initial goal is understanding purpose and visible consequences; a short explanation does not establish correctness or replace programming knowledge.</p>
+          <p class="persona"><strong>The Structural Reviewer.</strong> This student understands the general purpose of files or functions but has difficulty connecting unfamiliar local details to program behaviour. Participants following this approach skipped lengthy explanations while moving toward the next feature, and one struggled to implement alternating row colours. AITrace should keep the relevant code and its explanation visible together, connect unfamiliar operations to concrete effects, and offer contextual questions. This supports reviewing a specific change within a program the student broadly understands.</p>
+          <p class="persona"><strong>The Deep Investigator.</strong> This student investigates code closely and can explain where requested modifications belong. The observed participant sometimes preferred writing large segments independently because processing extensive AI output felt less productive. AITrace should present manageable review units with concise initial explanations, while allowing deeper investigation through examples, assumptions, alternatives, and questions. More detail should be available when requested rather than displayed all at once. One participant exemplified this approach in our sample.</p>
           <h3>Our Primary Persona: The Structural Reviewer</h3>
           <p>We focus on this persona because they have enough programming knowledge to act on an explanation while showing a specific difficulty: connecting a small implementation to its effect. This group also has the largest representation in our exploratory sample, although that does not imply population prevalence. The other personas guide accessible summaries and optional depth.</p>
         </div>
@@ -638,59 +647,70 @@
       <section id="finding-related-products" class="report-section">
         <div class="container">
           <h2>Finding Related Products</h2>
+          <p>Our comparison focuses on the effort required to connect generated code with its explanation. When these are presented in separate views or lengthy responses, students must locate the relevant code and identify which explanation applies to it. This becomes harder as the response grows, as illustrated by our observations. The limitation depends on the workflow and presentation: contextual explanations and inline review can already reduce parts of this effort.</p>
           <h3>Category A: Chatbot Copy-and-Paste Workflows</h3>
-          <p>The original pitch describes copying code into a chatbot, making a broad request, and pasting the answer into a program. This obtains generated code, but the direct-adoption pattern does not establish that modifications are reviewed. AITrace adds an explicit link between a change, explanation, and decision.</p>
+          <p>In the observed chatbot workflow, students obtained generated code and explanations through conversational responses before adopting the implementation. Lengthy code blocks and explanations left students to identify the connections between them. Direct Adopters avoided inspecting the implementation, while Structural Reviewers often skipped explanations and moved toward the next feature. This workflow offered access to explanations, but their presentation did not consistently support review of a particular code portion.</p>
           <h3>Category B: IDE Assistance and Edit Review</h3>
-          <p>GitHub Copilot Chat supports explanations and questions about selected code [1]. Visual Studio Code provides controls for keeping or undoing AI edits, including individual changes [2]. These capabilities already address parts of our proposal. We will investigate whether packaging purpose, examples, assumptions, and decisions together helps students use them more effectively.</p>
+          <p>GitHub Copilot Chat supports explanations and questions about selected code [1]. Visual Studio Code provides controls for keeping or undoing AI edits, including individual changes [2]. Selection provides useful context, but students still need to ask a suitable question and connect the response to the edit&#x27;s behavioural consequences. Keep/undo controls provide control over changes, while interpreting an unfamiliar expression remains a separate task. For our Structural Reviewer, the potential difficulty is coordinating contextual questions, explanations, and review decisions. AITrace proposes a consistent explanation card for each review unit, placing purpose, examples, and decision controls together.</p>
           <h3>Category C: AI Coding Environments</h3>
-          <p>Cursor provides difference review and selective acceptance [3]. AITrace does not claim that selective acceptance is new. Its proposed contribution is a student-oriented review structure with progressive explanation depth, to be evaluated against existing approaches.</p>
+          <p>Cursor Agent accepts conversational requests, edits multiple files, and exposes changes in a diff view for review and rejection [3]. This makes changed code visible and supports revisiting decisions. In a workflow where a lengthy explanation appears in the conversation while edits appear in the diff view, the student must still connect the explanation to the relevant portions of code. Our concern is the effort of making those connections across a large response, rather than an absence of diff review. AITrace proposes smaller review units with a short explanation and optional detail attached to each selected portion. Whether this improves comprehension compared with Cursor&#x27;s workflow remains to be tested.</p>
+          <h3>Category D: Terminal Coding Agents</h3>
+          <p>Claude Code supports a terminal conversation and a <code>/diff</code> view of working-tree changes, so it can display changed code without leaving the terminal [4]. Its VS Code integration also supports contextual questions about selected code and review of proposed edits [5]. These features already reduce the distance between conversation and implementation. However, a diff identifies additions and removals; interpreting their purpose and consequences can still require a follow-up question and matching the answer to the relevant code. For a student investigating several changes, that coordination may add effort. AITrace instead prepares a concise behavioural explanation for each meaningful review unit and exposes further detail on demand.</p>
+          <p>Documentation establishes the capabilities described above. The difficulties identified for IDE and terminal workflows are design concerns inferred from those workflows and our student observations, not findings from a comparative usability study of these products.</p>
         </div>
       </section>
       <section id="comparing-the-products" class="report-section">
         <div class="container">
           <h2>Comparing the Products</h2>
+          <p>AITrace makes the relationship between a proposed change and its explanation explicit during review. It divides a suggestion into meaningful code portions and displays a short explanation directly alongside the selected portion. Students can inspect its purpose and behavioural effects, then reveal additional detail without searching through a separate response. For the Structural Reviewer, the expected advantage is less effort locating an unfamiliar expression and connecting it to an explanation within a program they broadly understand. This is a proposed benefit to evaluate, rather than an established improvement over every related product.</p>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
                   <th scope="col">Alternative</th>
                   <th scope="col">Existing capability</th>
-                  <th scope="col">Question for our personas</th>
+                  <th scope="col">Potential review difficulty</th>
                   <th scope="col">AITrace&#x27;s proposed distinction</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Observed chatbot workflow</td>
-                  <td>Generated replacement code.</td>
-                  <td>Does the student understand modifications before adoption?</td>
-                  <td>Change-linked explanation and explicit decisions.</td>
+                  <td>Generated code and explanations in conversational responses.</td>
+                  <td>Lengthy responses require students to locate code and associate it with the relevant explanation.</td>
+                  <td>Smaller review units with explanations displayed alongside the selected code and explicit decisions.</td>
                 </tr>
                 <tr>
                   <td>Copilot Chat</td>
                   <td>Explanations and contextual questions.</td>
-                  <td>Can the student connect an explanation to a small edit and its effects?</td>
+                  <td>Students must formulate contextual questions and interpret the response in relation to a particular edit.</td>
                   <td>A consistent card with purpose, effects, examples, and questions.</td>
                 </tr>
                 <tr>
                   <td>VS Code AI edit review</td>
                   <td>Differences and granular keep/undo controls.</td>
-                  <td>Does visibility support understanding as well as control?</td>
+                  <td>Seeing and controlling an edit does not itself explain an unfamiliar expression&#x27;s behavioural effect.</td>
                   <td>Behavioural explanation beside decision controls.</td>
                 </tr>
                 <tr>
                   <td>Cursor review</td>
-                  <td>Differences and selective acceptance.</td>
-                  <td>Does review accommodate accessible summaries and deep investigation?</td>
-                  <td>Progressive explanation depth around the observed approaches.</td>
+                  <td>Conversational Agent interaction, diff review, rejection, and checkpoint restoration.</td>
+                  <td>When explanations are lengthy, relating conversational detail to particular edits can require searching across the response and diff.</td>
+                  <td>Short explanations attached to meaningful code portions, with optional detail.</td>
+                </tr>
+                <tr>
+                  <td>Claude Code</td>
+                  <td>Terminal diff review; IDE integration with contextual questions and proposed-edit review.</td>
+                  <td>Interpreting a diff&#x27;s behavioural consequences can require follow-up questions and associating responses with code.</td>
+                  <td>Prepared purpose and behavioural examples for each review unit, available beside its code.</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="caption"><em>Table 5. Capability-based comparison. Documentation supports capabilities; comparative usability and learning benefits remain to be evaluated.</em></p>
           <h3>Key Distinctions</h3>
-          <p><strong>Linked code and explanation.</strong> The selected modification, context, and commentary stay visible together.</p>
-          <p><strong>Progressive depth.</strong> Users can move from purpose and examples to local behaviour, assumptions, and alternatives.</p>
+          <p><strong>Linked code and explanation.</strong> The selected modification, its context, and its explanation stay visible together. This makes their correspondence explicit and is intended to reduce searching and the effort of matching a separate explanation to code.</p>
+          <p><strong>Progressive depth.</strong> Each review unit begins with a short explanation. Users can reveal examples, local behaviour, assumptions, and alternatives as needed, rather than processing all the detail in one lengthy response.</p>
           <p><strong>Behaviour-oriented units.</strong> Linked edits are grouped by the problem they address, with their relationship explained.</p>
           <p><strong>Understanding as an evaluation target.</strong> We assess users&#x27; explanations and decisions alongside usability, rather than inferring understanding from acceptance or preference.</p>
         </div>
@@ -883,7 +903,9 @@
           <ol>
             <li>GitHub. <a href="https://docs.github.com/en/copilot/get-started/quickstart-for-using-github-copilot-in-your-ide?platform=mac&amp;tool=windowsterminal">Quickstart for using GitHub Copilot in your IDE</a>.</li>
             <li>Visual Studio Code. <a href="https://code.visualstudio.com/docs/agents/run/review-code-edits">Review and revert agent changes</a>.</li>
-            <li>Cursor. <a href="https://docs.cursor.com/en/agent/review">Diffs &amp; Review</a>.</li>
+            <li>Cursor. <a href="https://prod.cursor.com/help/ai-features/agent">Agent mode</a>.</li>
+            <li>Anthropic. <a href="https://code.claude.com/docs/en/interactive-mode#review-changes-with-diff">Claude Code: Interactive mode and diff review</a>.</li>
+            <li>Anthropic. <a href="https://code.claude.com/docs/en/ide-integrations">Use Claude Code in VS Code</a>.</li>
           </ol>
         </div>
       </section>
