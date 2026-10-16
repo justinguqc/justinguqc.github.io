@@ -252,7 +252,7 @@
           <p>The design opportunity is to make the relationship between code and explanation easier to follow. AITrace will organize proposed changes into smaller meaningful review units and attach each explanation directly to its affected code. A short initial explanation with optional detail will let students investigate one change at a time while keeping its context visible. This is intended to help them connect a change to its purpose and behavioural consequences before deciding whether to accept it.</p>
           <p class="design-question"><strong>Design question: How can an interface help students connect an AI code change to its meaning and consequences before accepting it, while supporting different depths of investigation?</strong></p>
           <figure>
-            <a href="AITrace_assets/observation-patterns.svg" target="_blank" aria-label="Enlarge: Three observed approaches to reviewing AI-generated code"><img src="AITrace_assets/observation-patterns.svg" alt="Three observed approaches to reviewing AI-generated code" width="1000" height="370" loading="lazy"></a>
+            <a href="images/observation-patterns.svg" target="_blank" aria-label="Enlarge: Three observed approaches to reviewing AI-generated code"><img src="images/observation-patterns.svg" alt="Three observed approaches to reviewing AI-generated code" width="1000" height="370" loading="lazy"></a>
             <figcaption>Figure 1. Observation-based illustration of the three review approaches.</figcaption>
           </figure>
         </div>
@@ -490,7 +490,7 @@
         <div class="container">
           <h2>Designing at a High Level</h2>
           <figure>
-            <a href="AITrace_assets/architecture.svg" target="_blank" aria-label="Enlarge: Architecture of the prepared-case AITrace prototype"><img src="AITrace_assets/architecture.svg" alt="Architecture of the prepared-case AITrace prototype" width="1000" height="720" loading="lazy"></a>
+            <a href="images/architecture.svg" target="_blank" aria-label="Enlarge: Architecture of the prepared-case AITrace prototype"><img src="images/architecture.svg" alt="Architecture of the prepared-case AITrace prototype" width="1000" height="720" loading="lazy"></a>
             <figcaption>Figure 2. Prototype architecture. Browser and code-display components are existing building blocks; the team develops the review interaction and case-specific logic.</figcaption>
           </figure>
           <p>The prototype runs in a browser on a student&#x27;s computer. Prepared data contains original code, defined edits, explanations, dependencies, examples, and follow-up answers. Stable identifiers connect these in a change model. The comparison view and explanation panel share a selected identifier, keeping code and commentary synchronized.</p>
@@ -503,19 +503,19 @@
           <h2>Initial Sketches</h2>
           <h3>Sketch 1: Anchored Comments</h3>
           <figure>
-            <a href="AITrace_assets/sketch-comments.svg" target="_blank" aria-label="Enlarge: Anchored-comment concept"><img src="AITrace_assets/sketch-comments.svg" alt="Anchored-comment concept" width="1000" height="440" loading="lazy"></a>
+            <a href="images/sketch-comments.svg" target="_blank" aria-label="Enlarge: Anchored-comment concept"><img src="images/sketch-comments.svg" alt="Anchored-comment concept" width="1000" height="440" loading="lazy"></a>
             <figcaption>Figure 3. Anchored-comment design sketch: a short comment identifies the purpose of a changed expression.</figcaption>
           </figure>
           <p>This keeps commentary close to code, but long comments may interrupt reading. We will examine discoverability and clutter.</p>
           <h3>Sketch 2: Persistent Explanation Panel</h3>
           <figure>
-            <a href="AITrace_assets/sketch-panel.svg" target="_blank" aria-label="Enlarge: Persistent explanation-panel concept"><img src="AITrace_assets/sketch-panel.svg" alt="Persistent explanation-panel concept" width="1000" height="440" loading="lazy"></a>
+            <a href="images/sketch-panel.svg" target="_blank" aria-label="Enlarge: Persistent explanation-panel concept"><img src="images/sketch-panel.svg" alt="Persistent explanation-panel concept" width="1000" height="440" loading="lazy"></a>
             <figcaption>Figure 4. Selected code and a fixed explanation panel remain visible together.</figcaption>
           </figure>
           <p>This is our initial preferred layout. It offers a summary, expandable detail, and contextual questions while retaining the code. Testing will examine the code-card relationship and usability on smaller screens.</p>
           <h3>Sketch 3: Change-specific Floating Window</h3>
           <figure>
-            <a href="AITrace_assets/sketch-window.svg" target="_blank" aria-label="Enlarge: Floating-window concept"><img src="AITrace_assets/sketch-window.svg" alt="Floating-window concept" width="1000" height="440" loading="lazy"></a>
+            <a href="images/sketch-window.svg" target="_blank" aria-label="Enlarge: Floating-window concept"><img src="images/sketch-window.svg" alt="Floating-window concept" width="1000" height="440" loading="lazy"></a>
             <figcaption>Figure 5. Alternative layout with an explanation window and decision controls.</figcaption>
           </figure>
           <p>The window makes review explicit, but may obscure code or interrupt exploration. We will compare it with the side panel. All sketches are proposed alternatives, not completed study findings.</p>
