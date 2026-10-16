@@ -131,6 +131,26 @@
         border: 1px solid #ddd;
         margin-bottom: 16px;
       }
+      .sketch-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 24px;
+      }
+      .sketch-grid figure {
+        min-width: 0;
+        margin: 0;
+      }
+      .sketch-grid img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+      }
+      .sketch-grid figcaption strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #242424;
+      }
       @media (max-width: 600px) {
         body {
           margin: 20px auto;
@@ -173,6 +193,68 @@
       <h1>Low Fidelity Prototype</h1>
       <section id="low-fidelity-sketches">
         <h2>Low Fidelity Sketches</h2>
+        <div class="sketch-grid">
+          <figure>
+            <a href="images/sketch1.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 1: Hover Explanation for Changes">
+              <img src="images/sketch1.jpg" alt="Hand-drawn AITrace concept: Hover Explanation for Changes" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 1: Hover Explanation for Changes</strong>Hovering over a code change opens a popup explaining the change.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch2.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 2: Inline Hover Comment">
+              <img src="images/sketch2.jpg" alt="Hand-drawn AITrace concept: Inline Hover Comment" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 2: Inline Hover Comment</strong>Hovering over a code change displays an inline comment explaining it.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch3.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 3: Hotkey Prompt Input">
+              <img src="images/sketch3.jpg" alt="Hand-drawn AITrace concept: Hotkey Prompt Input" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 3: Hotkey Prompt Input</strong>Pressing a hotkey opens a prompt input where users can enter a request.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch4.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 4: Selected Code Explanation">
+              <img src="images/sketch4.jpg" alt="Hand-drawn AITrace concept: Selected Code Explanation" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 4: Selected Code Explanation</strong>Users can highlight any code and press a hotkey to open a side panel with an explanation of the selection.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch5.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 5: Side-by-Side Comparison">
+              <img src="images/sketch5.jpg" alt="Hand-drawn AITrace concept: Side-by-Side Comparison" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 5: Side-by-Side Comparison</strong>The original and modified code are displayed side by side for comparison.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch6.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 6: Relationship Arrow">
+              <img src="images/sketch6.jpg" alt="Hand-drawn AITrace concept: Relationship Arrow" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 6: Relationship Arrow</strong>Hovering over the arrow connecting two code snippets reveals an explanation of their relationship.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch7.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 7: Relationships in the Sidebar">
+              <img src="images/sketch7.jpg" alt="Hand-drawn AITrace concept: Relationships in the Sidebar" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 7: Relationships in the Sidebar</strong>The sidebar shows relationships between functions alongside explanations of what they do.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch8.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 8: Sequential Change Review">
+              <img src="images/sketch8.jpg" alt="Hand-drawn AITrace concept: Sequential Change Review" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 8: Sequential Change Review</strong>Changes are displayed one at a time. Pressing Next moves to the following change.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch9.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 9: Review Progress Checklist">
+              <img src="images/sketch9.jpg" alt="Hand-drawn AITrace concept: Review Progress Checklist" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 9: Review Progress Checklist</strong>A checklist in the sidebar lets users track their review progress across code snippets.</figcaption>
+          </figure>
+          <figure>
+            <a href="images/sketch10.jpg" target="_blank" rel="noopener" aria-label="Enlarge sketch 10: Snippet Hover Popup">
+              <img src="images/sketch10.jpg" alt="Hand-drawn AITrace concept: Snippet Hover Popup" loading="lazy">
+            </a>
+            <figcaption><strong>Sketch 10: Snippet Hover Popup</strong>Hovering anywhere within a code snippet opens a popup with an explanation of that snippet.</figcaption>
+          </figure>
+        </div>
       </section>
       <section id="low-fidelity-prototypes">
         <h2>Low Fidelity Prototypes</h2>
