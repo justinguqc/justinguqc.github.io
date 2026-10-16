@@ -6,390 +6,144 @@
     <title>AITrace: Observation and Proposal</title>
     <meta name="description" content="ECSE 424 proposal: six To-do List task observations, three review approaches, and a code-linked explanation interface.">
     <style>
-      :root {
-        --ink:#26323a;
-        --muted:#58656d;
-        --line:#d8dfe3;
-        --paper:#f5f7f8;
-        --accent:#2e5b60
-      }
-      * {
-        box-sizing:border-box
-      }
       html {
-        scroll-behavior:auto;
-        scroll-padding-top:82px
+        scroll-padding-top: 1rem;
       }
       body {
-        margin:0;
-        font-family:Arial,Helvetica,sans-serif;
-        color:var(--ink);
-        font-size:17px;
-        line-height:1.72;
-        background:white
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 24px;
+        color: #242424;
+        background: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-wrap: break-word;
       }
       a {
-        color:var(--accent);
-        text-underline-offset:3px
-      }
-      .container {
-        width:min(1080px,calc(100% - 64px));
-        margin:auto
-      }
-      .topbar {
-        background:#101719;
-        color:white;
-        position:sticky;
-        top:0;
-        z-index:5
+        color: #0969da;
+        text-underline-offset: 2px;
       }
       .topbar .container {
-        display:flex;
-        gap:32px;
-        align-items:center;
-        padding:15px 0
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        font-size: 14px;
       }
       .brand {
-        font-size:22px;
-        font-weight:700;
-        color:white;
-        text-decoration:none;
-        white-space:nowrap
-      }
-      .navlinks {
-        display:flex;
-        gap:23px;
-        flex-wrap:wrap
-      }
-      .navlinks a {
-        color:#d6dfe1;
-        font-size:14px;
-        text-decoration:none
-      }
-      .navlinks a:hover,.navlinks a:focus-visible {
-        color:white;
-        text-decoration:underline
+        color: inherit;
+        font-weight: 600;
       }
       .hero {
-        background:#343d44;
-        color:white;
-        padding:54px 0 46px
+        margin: 40px 0 32px;
       }
-      .eyebrow {
-        font-size:13px;
-        letter-spacing:2px;
-        text-transform:uppercase;
-        color:#ccd7dc;
-        margin:0 0 18px
+      .eyebrow, .byline {
+        color: #666;
+        font-size: 14px;
       }
-      .hero h1 {
-        font-size:clamp(36px,4.5vw,52px);
-        line-height:1.14;
-        letter-spacing:-1.3px;
-        max-width:1000px;
-        margin:0 0 24px;
-        font-weight:800
+      h1, h2, h3 {
+        line-height: 1.3;
       }
-      .hero p {
-        max-width:850px;
-        font-size:19px;
-        color:#eef2f4
-      }
-      .hero .byline {
-        font-size:15px;
-        color:#d5dfe3;
-        margin:22px 0 0
-      }
-      .facts {
-        display:flex;
-        gap:38px;
-        flex-wrap:wrap;
-        margin-top:28px;
-        border-top:1px solid #667179;
-        padding-top:21px
-      }
-      .facts span {
-        font-size:14px;
-        color:#dbe3e6
-      }
-      .facts strong {
-        color:white;
-        font-size:22px;
-        margin-right:8px
-      }
-      .report-section {
-        padding:66px 0
-      }
-      .report-section:nth-of-type(odd) {
-        background:var(--paper)
+      h1 {
+        margin: 12px 0;
+        font-size: 2em;
       }
       h2 {
-        font-size:31px;
-        line-height:1.3;
-        text-align:center;
-        margin:0 0 36px;
-        font-weight:600
+        margin: 40px 0 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.5em;
       }
       h3 {
-        font-size:22px;
-        line-height:1.4;
-        margin:35px 0 16px
+        margin: 28px 0 12px;
+        font-size: 1.15em;
       }
-      p {
-        margin:0 0 21px
+      p, ul, ol {
+        margin: 0 0 16px;
       }
-      li {
-        margin-bottom:8px
+      ul, ol {
+        padding-left: 28px;
       }
-      ul,ol {
-        padding-left:26px;
-        margin:0 0 25px
+      li + li {
+        margin-top: 6px;
+      }
+      .observation-counts {
+        margin: 0 0 16px;
+      }
+      .observation-counts span {
+        display: inline-block;
+        margin-right: 16px;
       }
       .table-wrap {
-        overflow-x:auto;
-        margin:23px 0 0;
-        border:1px solid var(--line);
-        border-radius:5px;
-        background:white
+        overflow-x: auto;
+        margin: 20px 0 8px;
       }
       table {
-        width:100%;
-        border-collapse:collapse;
-        font-size:15px;
-        line-height:1.55
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      th, td {
+        border: 1px solid #d8d8d8;
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
       }
       th {
-        text-align:left;
-        background:#303b43;
-        color:white;
-        padding:15px 17px;
-        vertical-align:top;
-        font-weight:600
-      }
-      td {
-        padding:15px 17px;
-        border-top:1px solid var(--line);
-        vertical-align:top
-      }
-      td+td,th+th {
-        border-left:1px solid var(--line)
-      }
-      tbody tr:nth-child(even) {
-        background:#f7f9fa
-      }
-      td:first-child {
-        font-weight:600;
-        min-width:145px
-      }
-      .caption {
-        font-size:14px;
-        text-align:center;
-        color:var(--muted);
-        margin:13px 0 30px
-      }
-      .persona {
-        padding:24px 27px;
-        background:white;
-        border:1px solid var(--line);
-        border-left:4px solid #718990;
-        border-radius:5px
-      }
-      .persona strong {
-        display:block;
-        font-size:20px;
-        margin-bottom:8px
-      }
-      .design-question {
-        padding:24px 27px;
-        background:#eaf0f2;
-        border-left:4px solid #506d78;
-        font-size:19px;
-        margin:30px 0
-      }
-      .design-question strong {
-        font-weight:600
+        background: #f6f6f6;
       }
       figure {
-        margin:30px 0
+        margin: 24px 0;
       }
-      figure img {
-        width:100%;
-        height:auto;
-        display:block;
-        border:1px solid var(--line);
-        border-radius:7px
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
       }
-      figcaption {
-        font-size:14px;
-        line-height:1.6;
-        color:var(--muted);
-        margin-top:12px;
-        text-align:center
+      figcaption, .caption {
+        margin-top: 8px;
+        color: #666;
+        font-size: 14px;
       }
       code {
-        font-family:Consolas,monospace;
-        font-size:.92em;
-        background:#eaf0f2;
-        padding:2px 5px;
-        border-radius:3px
-      }
-      .completion {
-        background:#edf1f3!important;
-        border-top:1px solid var(--line)
-      }
-      .completion h2 {
-        font-size:24px
-      }
-      .completion p,.completion li {
-        font-size:15px
+        padding: 2px 4px;
+        background: #f4f4f4;
+        font-family: Consolas, monospace;
+        font-size: 0.9em;
       }
       .footer {
-        background:#101719;
-        color:#bdcbd1;
-        text-align:center;
-        padding:23px;
-        font-size:13px
+        margin-top: 40px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
       }
-      .intro-card {
-        background:white;
-        border:1px solid #e3e8eb;
-        box-shadow:0 9px 28px #27323a0b;
-        padding:35px;
-        border-radius:7px
-      }
-      #observation-and-proposal .container>p:first-of-type {
-        font-size:19px
-      }
-      @media(max-width:680px) {
+      @media (max-width: 600px) {
         body {
-          font-size:16px
+          margin: 20px auto;
+          padding: 0 16px;
         }
-        .container {
-          width:calc(100% - 32px)
-        }
-        .topbar .container {
-          gap:16px;
-          align-items:flex-start
-        }
-        .navlinks {
-          gap:8px 17px
-        }
-        .navlinks a {
-          font-size:12px
-        }
-        .brand {
-          font-size:20px
-        }
-        .hero {
-          padding:48px 0
-        }
-        .hero h1 {
-          font-size:39px;
-          letter-spacing:-.7px
-        }
-        .hero p {
-          font-size:17px
-        }
-        .facts {
-          gap:12px 23px
-        }
-        .report-section {
-          padding:43px 0
-        }
-        h2 {
-          font-size:26px
-        }
-        h3 {
-          font-size:20px
-        }
-        table {
-          font-size:13px;
-          min-width:610px
-        }
-        th,td {
-          padding:12px
-        }
-        .persona,.design-question {
-          padding:20px
-        }
-        figcaption {
-          font-size:12px
+        th, td {
+          min-width: 120px;
         }
       }
       @media print {
-        .topbar,.footer {
-          display:none
-        }
-        .hero {
-          background:white;
-          color:black;
-          padding:18px 0
-        }
-        .hero p,.hero .byline,.eyebrow,.facts span,.facts strong {
-          color:black
-        }
-        .hero h1 {
-          font-size:32px
-        }
-        .container {
-          width:100%
-        }
-        .report-section {
-          padding:18px 0;
-          background:white!important
-        }
-        h2 {
-          font-size:24px;
-          text-align:left;
-          margin-bottom:16px
-        }
-        h3 {
-          break-after:avoid
+        body {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          font-size: 11pt;
         }
         .table-wrap {
-          overflow:visible
+          overflow: visible;
         }
-        table {
-          min-width:0!important;
-          font-size:11px
+        h1, h2, h3 {
+          break-after: avoid;
         }
-        th {
-          background:#eceff1;
-          color:black
+        figure, tr {
+          break-inside: avoid;
         }
-        figure,tbody tr,.persona {
-          break-inside:avoid
-        }
-        a {
-          color:inherit
-        }
-        body {
-          font-size:12px
-        }
-        .completion {
-          break-before:page
-        }
-        .hero,.persona {
-          box-shadow:none
-        }
-      }
-      .observation-counts {
-        display:flex;
-        gap:18px 28px;
-        flex-wrap:wrap;
-        padding:18px 0;
-        margin:0 0 20px;
-        border-top:1px solid var(--line);
-        border-bottom:1px solid var(--line)
-      }
-      .observation-counts span {
-        font-size:14px;
-        color:var(--muted)
-      }
-      .observation-counts strong {
-        font-size:22px;
-        color:var(--ink);
-        margin-right:6px
       }
     </style>
   </head>
@@ -407,7 +161,7 @@
       <div class="container">
         <p class="eyebrow">McGill · ECSE 424 · Human–Computer Interaction</p>
         <h1>AITrace</h1>
-        <p class="byline">Group A<br>Eric Lu, Antony Hu, Zuojun Gu<br>Fall 2026</p>
+        <p class="byline">Group A<br>Antony Hu, Zuojun Gu<br>Fall 2026</p>
       </div>
     </header>
     <main>
@@ -865,7 +619,7 @@
               <tbody>
                 <tr>
                   <td>Group / student names</td>
-                  <td>Group A: Eric Lu, Antony Hu, Zuojun Gu.</td>
+                  <td>Group A: Antony Hu, Zuojun Gu.</td>
                 </tr>
                 <tr>
                   <td>Title</td>
@@ -889,7 +643,7 @@
                 </tr>
                 <tr>
                   <td>Mitigation</td>
-                  <td>Explain that the interface is being evaluated; allow skipping, breaks, and withdrawal. Use prepared examples rather than private assignments and obtain informed consent for Zoom recording and anonymized reporting. Keep recordings and written notes in an access-restricted team folder accessible only to Eric Lu, Antony Hu, and Zuojun Gu. Use P1–P6 identifiers in study notes and obscure identifying information in report screenshots. Delete original recordings and identifiable records within 30 days after course grades are released.</td>
+                  <td>Explain that the interface is being evaluated; allow skipping, breaks, and withdrawal. Use prepared examples rather than private assignments and obtain informed consent for Zoom recording and anonymized reporting. Keep recordings and written notes in an access-restricted team folder accessible only to Antony Hu and Zuojun Gu. Use P1–P6 identifiers in study notes and obscure identifying information in report screenshots. Delete original recordings and identifiable records within 30 days after course grades are released.</td>
                 </tr>
               </tbody>
             </table>
