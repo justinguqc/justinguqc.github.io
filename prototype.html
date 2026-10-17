@@ -310,29 +310,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>
-          <strong>Code Understanding</strong><br>
-          Users should be able to explain the modified code and
-          itseffects in their own words.
-        </td>
-        <td>
-          Score participants' explanations on a 0–2 scale:
-          0 = incorrect or no explanation;
-          1 = identifies what changed but cannot explain its effect;
-          2 = correctly explains the change and its intended effect/functionality.;
-          
-        </td>
-        <td>
-          Evaluates whether AITrace helps users understand the
-          modified code rather than simply read an explanation
-          or accept AI generated suggestions without understanding them.
-        </td>
-      </tr>
 
       <tr>
         <td>
-          <strong>Change Visibility</strong><br>
+          <strong>Visibility of Changes</strong><br>
           Users must be able to identify which parts of the
           code are changed by an AI suggestion and recognize
           related edits.
@@ -452,7 +433,7 @@
         <tr>
           <td>Identify Code Changes</td>
           <td>
-            Change Visibility
+            Visibility of Changes
           </td>
           <td>
             Examine an AI modification and identify
@@ -482,36 +463,18 @@
         </tr>
 
         <tr>
-          <td>Understand a Code Change</td>
-          <td>
-            Code Understanding
-          </td>
-          <td>
-            Review the explanation and describe the modification
-            and its intended effect in their own words.
-          </td>
-          <td>
-            Comprehension score (0–2), explanation accuracy,
-            and misunderstandings.
-          </td>
-        </tr>
-
-        <tr>
           <td>Accept or Reject a Suggestion</td>
           <td>
-            Code Understanding,
             Task Success, Learnability;
             Efficiency of Review
           </td>
           <td>
-            Decide whether a suggested change meets the stated
-            task requirement/user's prompt (e.g., improving code quality, fixing a bug), accept or reject it, and explain
-            the decision.
+            State whether they use the interface to accept or reject a suggestion, and identify whether the suggestion was accepted or rejected.
           </td>
           <td>
-            Decision accuracy, comprehension score (0–2),
-            successful use of the intended control, time,
-            errors, and prompts required.
+            Decision accuracy, 
+            successful use of the intended control, time, interaction
+            errors, recognition of resulting state.
           </td>
         </tr>
 
@@ -625,18 +588,6 @@
     <li>Read the information about what changed and why.</li>
   </ol>
 
-  <h4>Understand a Code Change</h4>
-  <p>
-    Participants describe the modification in their own words.
-    Their responses will be scored using the 0–2 comprehension
-    scale defined in the usability goals.
-  </p>
-  <ol>
-    <li>Explain what the modification changes.</li>
-    <li>Describe its intended effect on the program's behaviour.</li>
-    <li>Point to the code responsible for that effect.</li>
-  </ol>
-
   <h4>Accept or Reject a Suggestion</h4>
   <p>
     Participants decide whether the proposed modification meets
@@ -717,21 +668,15 @@
     "Find the information explaining this modification."
   </p>
 
-  <h4>Task 3: Understand a Code Change</h4>
-  <p>
-    "In your own words, what does this modification do,
-    and how does it affect the program?"
-  </p>
 
-
-  <h4>Task 4: Accept or Reject a Suggestion</h4>
+  <h4>Task 3: Accept or Reject a Suggestion</h4>
   <p>
     "Does this suggestion meet the requirement? Accept or
     reject it, explain your decision."
   </p>
 
 
-  <h4>Task 5: Evaluate the Review Experience</h4>
+  <h4>Task 4: Evaluate the Review Experience</h4>
   <p>
     "How much effort did this review require, from
     0 = no effort to 5 = extreme effort?"
@@ -744,10 +689,7 @@
     "How satisfied were you with the review experience,
     from 0 = not at all satisfied to 5 = extremely satisfied?"
   </p>
-  <p>
-    "What helped you understand the code, and what made
-    the review difficult?"
-  </p>
+ 
 
   <h4>Repeat with the Other Prototype</h4>
   <p>
@@ -776,7 +718,7 @@
   <ul>
     <li>Which prototype made changes easier to find? Why?</li>
     <li>Which prototype helped you understand the code better?</li>
-    <li>Did the "What" and "Why" explanations provide useful information?</li>
+    <li>Do you the "What" and "Why" explanations provide useful information or is it unnecessary to have it there?</li>
     <li>Was anything missing, distracting, or unnecessary?</li>
     <li>What improvement you would make?</li>
   </ul>
