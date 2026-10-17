@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "HCI Project access restricted"
+AuthUserFile /home/2024/zgu10/webpasswords/.htpasswd
+require valid-user
