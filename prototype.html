@@ -721,8 +721,9 @@
         </section>
        <section id="materials-pre-test-questionnaire">
   <h3>Pre-test Questionnaire</h3>
-  <iframe class="document-preview" src="docs/HCI%20pre-test%20Questionnaire.pdf" title="Pre-test Questionnaire PDF" loading="lazy"></iframe>
-  <p><a href="docs/HCI%20pre-test%20Questionnaire.pdf">Sample Pre-test Questionnaire for both prototypes (PDF)</a></p>
+  <iframe class="document-preview" src="docs/Pre-Test%20Questionnaire.pdf" title="Pre-test Questionnaire PDF" loading="lazy"></iframe>
+  <p><a href="docs/Pre-Test%20Questionnaire.pdf">Sample Pre-test Questionnaire for both prototypes (PDF)</a></p>
+  <p><a href="https://formswrite.com/forms/iHRgs-HgxF4v">Online Version</a></p>
 </section>
 
 <section id="materials-data-collection-sheet">
@@ -735,37 +736,72 @@
   <h3>Post-test Questionnaire</h3>
   <iframe class="document-preview" src="docs/Post-Test%20Questionnaire.pdf" title="Post-test Questionnaire PDF" loading="lazy"></iframe>
   <p><a href="docs/Post-Test%20Questionnaire.pdf">Sample Post-test Questionnaire for both prototypes (PDF)</a></p>
+  <p><a href="https://formswrite.com/forms/-bMpyHfP3rxZ">Online Version</a></p>
 </section>
       </section>
       <section id="test">
         <h2>Test</h2>
         <section id="test-consent-form">
           <h3>Consent Form</h3>
+          <ul>
+            <li><a href="docs/consent1.pdf">Consent - Participant 1 (PDF)</a></li>
+            <li><a href="docs/consent2.pdf">Consent - Participant 2 (PDF)</a></li>
+          </ul>
         </section>
         <section id="test-pre-test-questionaire">
           <h3>Pre-test Questionaire</h3>
+          <ul>
+            <li><a href="docs/pre-test1.pdf">Pre-test Questionnaire - Participant 1 (PDF)</a></li>
+            <li><a href="docs/pre-test2.pdf">Pre-test Questionnaire - Participant 2 (PDF)</a></li>
+          </ul>
         </section>
-        <section id="test-screen-recordings">
-          <h3>Screen Recordings</h3>
+        <section id="test-recordings">
+          <h3>Recordings</h3>
+          <figure>
+            <video class="prototype-video" controls playsinline preload="metadata" aria-label="Participant 1 recording">
+              <source src="videos/participant1.mp4" type="video/mp4">
+              <a href="videos/participant1.mp4">Download Participant 1 recording</a>.
+            </video>
+            <figcaption>Recording - Participant 1</figcaption>
+          </figure>
+          <figure>
+            <video class="prototype-video" controls playsinline preload="metadata" aria-label="Participant 2 recording">
+              <source src="videos/participant2.mp4" type="video/mp4">
+              <a href="videos/participant2.mp4">Download Participant 2 recording</a>.
+            </video>
+            <figcaption>Recording - Participant 2</figcaption>
+          </figure>
         </section>
         <section id="test-data-colletion-sheet">
           <h3>Data Colletion Sheet</h3>
+          <h4>Participant 1</h4>
+          <iframe class="document-preview" src="docs/data-collection1.pdf" title="Data Collection Sheet - Participant 1" loading="lazy"></iframe>
+          <p><a href="docs/data-collection1.pdf">Data Collection Sheet - Participant 1 (PDF)</a></p>
+          <h4>Participant 2</h4>
+          <iframe class="document-preview" src="docs/data-collection2.pdf" title="Data Collection Sheet - Participant 2" loading="lazy"></iframe>
+          <p><a href="docs/data-collection2.pdf">Data Collection Sheet - Participant 2 (PDF)</a></p>
         </section>
         <section id="test-post-test-questionaire">
           <h3>Post-test Questionaire</h3>
-        </section>
-        <section id="test-interview">
-          <h3>Interview</h3>
+          <ul>
+            <li><a href="docs/post-test1.pdf">Post-test Questionnaire - Participant 1 (PDF)</a></li>
+            <li><a href="docs/post-test2.pdf">Post-test Questionnaire - Participant 2 (PDF)</a></li>
+          </ul>
         </section>
         <section id="test-observations">
           <h3>Observations</h3>
+          <p>Both participants could find explanations and describe how to use AITrace after some guidance. The main difficulty was knowing where to start interacting with each design. Both said they would accept the suggested code change. Both preferred the pop-up window layout.</p>
+          <p><strong>Participant 2:</strong> Participant 2 tried the floating window first and understood the plus/minus markers, but asked whether the minus marker was clickable. In the sidebar design, he referred to the what/why panel when asked to identify changed code, so the connection to the code was less clear. He also questioned how longer replacements would be shown. His post-test answers reinforced this concern: he preferred Pop-up Window Prototype because the plus/minus markers made changes easier to identify, especially across larger codebases. He also suggested asking follow-up questions directly from an explanation.</p>
         </section>
         <section id="test-summary">
           <h3>Summary</h3>
+          <p>The sessions suggest that showing code changes alongside a short explanation is worth developing further. Both participants preferred the pop-up window, particularly the visibility of changes in the code. We would use this layout as the starting point for the next version, make its entry point clearer, and keep plus/minus markers closely linked to the relevant explanation. We would also explore follow-up questions when an explanation is not enough. Both participants still needed some guidance, so the shared preference does not establish that the pop-up is easier or faster to use independently.</p>
         </section>
       </section>
       <section id="conclusions">
         <h2>Conclusions</h2>
+        <p>We explored ten sketches and developed two low-fidelity prototypes to try different ways of connecting code changes with explanations. Testing with two participants gave us useful feedback on both approaches. Highlights and plus/minus markers helped make changes visible, while the what/why explanations gave participants a place to look for more detail. Both participants preferred the pop-up window layout, which gives us a clear direction for the next iteration, while further testing is needed to assess how well it works without guidance.</p>
+        <p>Our next step is to make AITrace easier to discover and keep the link between each change and its explanation clear. We plan to refine the pop-up window approach, keep code differences visible, and explore follow-up questions for explanations that need more detail.</p>
       </section>
     </main>
   </body>
