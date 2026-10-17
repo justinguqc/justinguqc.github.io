@@ -533,16 +533,16 @@
         <section id="materials-test-tasks">
   <h3>Test Tasks</h3>
   <p>
-    Participants will complete a short code-review scenario using
+    Participants will complete a short code review session using
     each prototype. Starting with an existing code example, they
     will request a modification, inspect the prepared AI response,
-    find an explanation, and decide whether to accept or reject
+    find an explanation, and use the interface to accept or reject
     the suggestion. Comparable cases will be used across the
     prototypes.
   </p>
   <p>
     The activities below describe the intended task flow.
-    Participants will receive goal-based instructions rather
+    Participants will receive straightforward instructions rather
     than directions identifying the controls to use.
   </p>
 
@@ -550,12 +550,12 @@
   <h4>Request a Code Modification</h4>
   <p>
     Participants inspect the original code and request a change
-    based on a supplied requirement. This introduces the review
+    based on the given task. This introduces the review
     scenario before the benchmark tasks begin.
   </p>
   <ol>
-    <li>Review the original code and the required behaviour.</li>
-    <li>Enter a modification request in the ChatGPT-Codex chat area.</li>
+    <li>Review the original code and the required task.</li>
+    <li>Enter a request in the ChatGPT-Codex chat area.</li>
     <li>Inspect the prepared response revealed by the moderator.</li>
   </ol>
 
@@ -590,14 +590,12 @@
 
   <h4>Accept or Reject a Suggestion</h4>
   <p>
-    Participants decide whether the proposed modification meets
-    the supplied requirement and apply their decision using
-    the available review controls.
+    Participants use the interface to accept or reject a suggestion and identify the result of their decision in the code.
+    This task evaluates whether the interface makes it clear how to accept or reject a suggestion and whether the resulting state is recognizable.
   </p>
   <ol>
-    <li>Compare the suggestion with the task requirement.</li>
     <li>Decide whether to accept or reject it.</li>
-    <li>Apply the decision and explain the reason.</li>
+    <li>Indicate in the code whether the suggestion was accepted or rejected.</li>
   </ol>
 
   <h4>Evaluate the Review Experience</h4>
