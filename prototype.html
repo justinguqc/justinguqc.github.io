@@ -558,20 +558,217 @@
           <p>Please think aloud: tell us what you are looking for, what you expect to happen, and what feels confusing. These are early prototypes, so some actions may need to be shown by the moderator. We are testing the designs, not your coding skills. If you get stuck, just tell us, that is useful feedback too. You can ask questions, skip a task, take a break, or stop at any time.</p>
         </section>
         <section id="materials-user-training-documentation">
-          <h3>User Training Documentation</h3>
-        </section>
+  <h3>User Training Documentation</h3>
+  <p>
+    Participants will receive a brief explanation of the
+    paper-prototype interaction method, but no demonstration
+    of where to find explanations or how to accept and reject
+    changes. This allows us to observe whether the review
+    controls are discoverable without operational instructions.
+  </p>
+
+  <p>
+    Before starting, participants will be told that pointing
+    represents clicking and that they may write or speak text
+    they would normally enter. They will also be told that the
+    AI responses and explanations are prepared examples,
+    revealed manually by the moderator.
+  </p>
+
+  <p>
+    Each case will include the original code and a short statement
+    of the required modification. Participants may inspect the
+    code before beginning. The moderator may clarify task wording
+    but will not explain the solution or identify the correct
+    interface control.
+  </p>
+
+  <p>
+    If a participant cannot continue, the moderator may provide
+    limited assistance. The exact assistance will be recorded,
+    and the task will be marked as completed with assistance
+    rather than independently.
+  </p>
+</section>
         <section id="materials-test-script">
-          <h3>Test Script</h3>
+  <h3>Test Script</h3>
+
+  <h4>Preparation</h4>
+  <ul>
+    <li>
+      Assign a participant ID and prepare a separate data
+      collection sheet for each prototype.
+    </li>
+    <li>
+      Prepare comparable code cases and an answer guide
+      identifying the changed code, intended effects,
+      and expected review decisions.
+    </li>
+    <li>
+      Prepare paper states showing the original code, AI
+      modification, explanation, and accepted or rejected result.
+    </li>
+    <li>
+      Alternate the starting prototype across participants
+      where possible. Record both prototype and case order.
+    </li>
+    <li>
+      Obtain consent before collecting data or starting
+      any agreed recording.
+    </li>
+  </ul>
+
+  <h4>Opening Script</h4>
+  <p>
+    "Hello, and thank you for joining us. My name is
+    [moderator name]. Today we are testing AITrace, a design
+    intended to help students understand AI-generated code
+    modifications."
+  </p>
+  <p>
+    "Your participation is voluntary. You can skip a question,
+    take a break, or stop at any time. Before we begin,
+    please review the consent form. Do you have any questions
+    about the study or the information we will collect?"
+  </p>
+  <p>
+    After consent, read the User Introduction and administer
+    the pre-test questionnaire.
+  </p>
+
+  <h4>Present the Code Case</h4>
+  <p>
+    "Here is the starting code. Take a moment to look at it.
+    The required modification is: [insert requirement].
+    Please enter a request to the AI assistant for that change."
+  </p>
+  <p>
+    Reveal the prepared AI response and modified-code screen.
+    Explain that this is the response supplied for the study;
+    it is not generated live.
+  </p>
+
+  <h4>Task 1: Identify Code Changes</h4>
+  <p>
+    "Show us what has changed in the code."
+  </p>
+  <p>
+    Begin timing when the modified code is revealed. Stop when
+    the participant finishes identifying the changes or stops
+    the task. Record additions, removals, and related edits
+    identified correctly or missed.
+  </p>
+
+  <h4>Task 2: Locate and Read an Explanation</h4>
+  <p>
+    "Find the information explaining this modification."
+  </p>
+  <p>
+    Begin timing after the instruction. Stop when the matching
+    explanation is open or the task is stopped. Record incorrect
+    selections, repeated actions, and any assistance.
+  </p>
+
+  <h4>Task 3: Understand a Code Change</h4>
+  <p>
+    "In your own words, what does this modification do,
+    and how does it affect the program?"
+  </p>
+  <p>
+    Record the response and score it using the 0–2 comprehension
+    scale. Do not correct misunderstandings before the decision
+    task.
+  </p>
+
+  <h4>Task 4: Accept or Reject a Suggestion</h4>
+  <p>
+    "Does this suggestion meet the requirement? Accept or
+    reject it and explain your decision."
+  </p>
+  <p>
+    Record the intended decision, the control selected, and
+    the participant's reason separately. Reveal the corresponding
+    accepted or rejected paper state.
+  </p>
+
+  <h4>Task 5: Evaluate the Review Experience</h4>
+  <p>
+    "How much effort did this review require, from
+    0 = no effort to 5 = extreme effort?"
+  </p>
+  <p>
+    "How useful was the interface for understanding the changes,
+    from 0 = not at all useful to 5 = extremely useful?"
+  </p>
+  <p>
+    "How satisfied were you with the review experience,
+    from 0 = not at all satisfied to 5 = extremely satisfied?"
+  </p>
+  <p>
+    "What helped you understand the code, and what made
+    the review difficult?"
+  </p>
+
+  <h4>Repeat with the Other Prototype</h4>
+  <p>
+    "We will now try another layout using a different code
+    example. Please approach it in the same way and continue
+    thinking aloud."
+  </p>
+  <p>
+    Repeat the same benchmark instructions with the second
+    prepared case. Record that participants have already
+    encountered AITrace when interpreting second-condition
+    learnability and completion times.
+  </p>
+
+  <h4>Neutral Prompts</h4>
+  <ul>
+    <li>"What are you looking for?"</li>
+    <li>"What would you expect to happen?"</li>
+    <li>"What would you try next?"</li>
+    <li>"Please keep telling us what you are thinking."</li>
+  </ul>
+  <p>
+    If the participant still cannot continue, offer the minimum
+    assistance needed and record its wording. Do not count
+    neutral think-aloud reminders as interface guidance.
+  </p>
+
+  <h4>Final Reflection</h4>
+  <ul>
+    <li>Which layout made changes easier to find? Why?</li>
+    <li>Which layout helped you understand the code better?</li>
+    <li>Did the "What" and "Why" explanations provide different useful information?</li>
+    <li>Was anything missing, distracting, or unnecessary?</li>
+    <li>What is the first improvement you would make?</li>
+  </ul>
+
+  <h4>Closing Script</h4>
+  <p>
+    "Thank you for your time and feedback. Your observations
+    will help us decide what to improve in AITrace. That
+    concludes the session."
+  </p>
+</section>
         </section>
-        <section id="materials-pre-test-questionnaire">
-          <h3>Pre-test Questionnaire</h3>
-        </section>
-        <section id="materials-data-collection-sheet">
-          <h3>Data Collection Sheet</h3>
-        </section>
-        <section id="materials-post-test-questionnaire">
-          <h3>Post-test Questionnaire</h3>
-        </section>
+       <section id="materials-pre-test-questionnaire">
+  <h3>Pre-test Questionnaire</h3>
+  <iframe class="document-preview" src="docs/HCI%20pre-test%20Questionnaire.pdf" title="Pre-test Questionnaire PDF" loading="lazy"></iframe>
+  <p><a href="docs/HCI%20pre-test%20Questionnaire.pdf">Sample Pre-test Questionnaire for both prototypes (PDF)</a></p>
+</section>
+
+<section id="materials-data-collection-sheet">
+  <h3>Data Collection Sheet</h3>
+  <iframe class="document-preview" src="docs/HCI%20Data%20collection.pdf" title="Data Collection Sheet PDF" loading="lazy"></iframe>
+  <p><a href="docs/HCI%20Data%20collection.pdf">Sample Data Collection Sheet for both prototypes (PDF)</a></p>
+</section>
+
+<section id="materials-post-test-questionnaire">
+  <h3>Post-test Questionnaire</h3>
+  <iframe class="document-preview" src="docs/Post-Test%20Questionnaire.pdf" title="Post-test Questionnaire PDF" loading="lazy"></iframe>
+  <p><a href="docs/Post-Test%20Questionnaire.pdf">Sample Post-test Questionnaire for both prototypes (PDF)</a></p>
+</section>
       </section>
       <section id="test">
         <h2>Test</h2>
