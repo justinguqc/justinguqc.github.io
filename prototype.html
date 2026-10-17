@@ -583,6 +583,7 @@
     than directions identifying the controls to use.
   </p>
 
+  <h4>Pre AITrace Task </h4>
   <h4>Request a Code Modification</h4>
   <p>
     Participants inspect the original code and request a change
@@ -591,9 +592,11 @@
   </p>
   <ol>
     <li>Review the original code and the required behaviour.</li>
-    <li>Enter a modification request in the Codex chat area.</li>
+    <li>Enter a modification request in the ChatGPT-Codex chat area.</li>
     <li>Inspect the prepared response revealed by the moderator.</li>
   </ol>
+
+  <h4>AItrace Benchmark Tasks</h4>
 
   <h4>Identify Code Changes</h4>
   <p>
@@ -675,32 +678,7 @@
         <section id="materials-test-script">
   <h3>Test Script</h3>
 
-  <h4>Preparation</h4>
-  <ul>
-    <li>
-      Assign a participant ID and prepare a separate data
-      collection sheet for each prototype.
-    </li>
-    <li>
-      Prepare comparable code cases and an answer guide
-      identifying the changed code, intended effects,
-      and expected review decisions.
-    </li>
-    <li>
-      Prepare paper states showing the original code, AI
-      modification, explanation, and accepted or rejected result.
-    </li>
-    <li>
-      Alternate the starting prototype across participants
-      where possible. Record both prototype and case order.
-    </li>
-    <li>
-      Obtain consent before collecting data or starting
-      any agreed recording.
-    </li>
-  </ul>
-
-  <h4>Opening Script</h4>
+  <h4>Introduction Script</h4>
   <p>
     "Hello, and thank you for joining us. My name is
     [moderator name]. Today we are testing AITrace, a design
@@ -714,19 +692,18 @@
     about the study or the information we will collect?"
   </p>
   <p>
-    After consent, read the User Introduction and administer
-    the pre-test questionnaire.
+    "Before we start, please read the pre-test questionnaire. It will take about 5 minutes to complete."
   </p>
 
   <h4>Present the Code Case</h4>
   <p>
     "Here is the starting code. Take a moment to look at it.
-    The required modification is: [insert requirement].
-    Please enter a request to the AI assistant for that change."
+    You are asked to make the following modification: [the required modification using AI].
+    Please use the AI for the task."
   </p>
   <p>
-    Reveal the prepared AI response and modified-code screen.
-    Explain that this is the response supplied for the study;
+    Reveal the prepared AI response and modified code screen.
+    Explain that this is the response made for the study;
     it is not generated live.
   </p>
 
@@ -734,21 +711,10 @@
   <p>
     "Show us what has changed in the code."
   </p>
-  <p>
-    Begin timing when the modified code is revealed. Stop when
-    the participant finishes identifying the changes or stops
-    the task. Record additions, removals, and related edits
-    identified correctly or missed.
-  </p>
 
   <h4>Task 2: Locate and Read an Explanation</h4>
   <p>
     "Find the information explaining this modification."
-  </p>
-  <p>
-    Begin timing after the instruction. Stop when the matching
-    explanation is open or the task is stopped. Record incorrect
-    selections, repeated actions, and any assistance.
   </p>
 
   <h4>Task 3: Understand a Code Change</h4>
@@ -756,22 +722,14 @@
     "In your own words, what does this modification do,
     and how does it affect the program?"
   </p>
-  <p>
-    Record the response and score it using the 0–2 comprehension
-    scale. Do not correct misunderstandings before the decision
-    task.
-  </p>
+
 
   <h4>Task 4: Accept or Reject a Suggestion</h4>
   <p>
     "Does this suggestion meet the requirement? Accept or
-    reject it and explain your decision."
+    reject it, explain your decision."
   </p>
-  <p>
-    Record the intended decision, the control selected, and
-    the participant's reason separately. Reveal the corresponding
-    accepted or rejected paper state.
-  </p>
+
 
   <h4>Task 5: Evaluate the Review Experience</h4>
   <p>
@@ -793,15 +751,12 @@
 
   <h4>Repeat with the Other Prototype</h4>
   <p>
-    "We will now try another layout using a different code
-    example. Please approach it in the same way and continue
+    "We will now try another prototype. Please approach it in the same way and continue
     thinking aloud."
   </p>
   <p>
     Repeat the same benchmark instructions with the second
-    prepared case. Record that participants have already
-    encountered AITrace when interpreting second-condition
-    learnability and completion times.
+    prototype. Note that participants will already be familiar with AITrace when comparing their performance on the second prototype.
   </p>
 
   <h4>Neutral Prompts</h4>
