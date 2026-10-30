@@ -4,5 +4,4 @@ dist/**
 .vscode/**
 scripts/**
 Open-Demo.cmd
-DEVELOPMENT.md
 **/*.vsix

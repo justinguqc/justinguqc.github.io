@@ -104,6 +104,11 @@
         color: #666;
         font-size: 14px;
       }
+      .prototype-video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
       code {
         padding: 2px 4px;
         background: #f4f4f4;
@@ -183,7 +188,7 @@
       <section id="design-evolution">
         <h2>Design Evolution</h2>
         <p><strong>Make the starting point easier to find.</strong> Both participants needed help finding AITrace in the paper prototypes. The computer version adds a labelled entry above each changed block and an overview at the top of the file. Users can open a review directly from the code.</p>
-        <p><strong>Keep the explanation close to the code.</strong> Both participants preferred the pop-up layout. We kept its link between code and explanation, but use a panel beside the editor in this version. It stays open while users inspect the code, and highlights the block being discussed. Users can follow their code selection or pin an explanation. This differs from the paper pop-up and still needs testing.</p>
+        <p><strong>Keep the explanation close to the code.</strong> Both participants preferred the pop-up layout. However, VS Code's extension API limits how we can place a custom interactive window over the code editor, so our final implementation uses a sidebar beside the code. It stays open while users inspect the code, and highlights the block being discussed. Users can follow their code selection or pin an explanation. This keeps the explanation connected to the code, though it differs from the paper pop-up and still needs testing.</p>
         <p><strong>Make larger changes easier to review.</strong> P2 liked the plus/minus markers but wondered how longer replacements would appear. The plugin keeps short previews in the code and shows the full original and suggested block in the panel. Previous/Next controls and a review count help users work through the changes. Extra examples and assumptions are available when needed; free-form follow-up questions are not implemented.</p>
       </section>
 
@@ -192,7 +197,14 @@
         <p>The prototype is a VS Code extension with a Python sample file on the left and an AITrace review panel on the right. Accepting, rejecting, undoing, navigation, and progress updates work without someone changing the interface behind the scenes. Accepting a change updates and saves the sample file.</p>
         <p>AITrace is meant to help review output from another AI assistant. For this study, <strong>Simulate AI Output</strong> loads fixed suggestions and explanations. Pending suggestions are previewed beside the original code; they only enter the file when accepted. This version does not connect to a live AI, explain arbitrary files, run code, or answer new questions.</p>
         <p>There are two bundled cases: a one-change pass/fail practice case and a three-change task-list case. Each demo opens a fresh sample copy. The original samples stay unchanged, and participants do not need to open their own projects.</p>
-        <p><a href="https://github.com/justinguqc/justinguqc.github.io/tree/main/aitrace-plugin-dev">Plugin source and samples</a> · <a href="aitrace-plugin-dev/DEVELOPMENT.md">Development instructions</a></p>
+        <figure>
+          <video class="prototype-video" controls playsinline preload="metadata" aria-label="AITrace computer prototype demo">
+            <source src="videos/computer-prototype.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="videos/computer-prototype.mp4">Open the demo video</a>.
+          </video>
+          <figcaption>A walkthrough of the AITrace computer prototype.</figcaption>
+        </figure>
+        <p><a href="https://github.com/justinguqc/justinguqc.github.io/tree/main/aitrace-plugin-dev">Plugin source and samples</a></p>
       </section>
 
       <section id="user-population">
@@ -203,7 +215,7 @@
 
       <section id="usability-goals">
         <h2>Usability Goals</h2>
-        <p>We want users to spot changes, understand the review controls, and move through a case without losing their place. The targets below are starting points for the test, not results we have already achieved.</p>
+        <p>We want users to spot changes, understand the review controls, and move through a case without losing their place.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th scope="col">Goal</th><th scope="col">What we check</th><th scope="col">Target</th></tr></thead>
@@ -221,12 +233,11 @@
 
       <section id="usability-evaluation-plan">
         <h2>Usability Evaluation Plan</h2>
-        <p>The testing team will run a timed usability test with students, then inspect the interface for usability problems. The instructions below let them do both without help from our team.</p>
 
         <section id="activity-usability-test">
           <h3>Activity 1: Formal Usability Test</h3>
           <h4>People and Equipment</h4>
-          <p>One examiner introduces the session and reads the tasks. An observer records actions, timing, comments, and any help given. Use a computer with desktop VS Code 1.85 or later and the linked extension installed, a timer, the manual above, and the three forms below. Record the operating system and VS Code version. A screen recording is useful if the participant agrees; written notes and a timer are enough if he does not.</p>
+          <p>One examiner introduces the session and reads the tasks. An observer records actions, timing, comments, and any help given. Use a computer with desktop VS Code and the linked extension installed, a timer, the manual above, and the three forms below. Record the operating system. A screen recording is useful if the participant agrees; written notes and a timer are enough if he does not.</p>
 
           <h4>Before the Session</h4>
           <ol>
@@ -291,7 +302,6 @@
             </section>
             <section id="materials-post-test-questionnaire">
               <h4>Post-test Questionnaire</h4>
-              <p>This form still has spaces for two prototypes. For this test, label “Prototype 1” as AITrace and complete questions 1–6. Skip the Prototype 2 block and comparison questions 13–14; ask questions 15–16 about this version only. We are testing one computer prototype, not comparing two layouts.</p>
               <iframe class="document-preview" src="docs/Post-Test%20Questionnaire%20comp%20proto.pdf" title="Post-test Questionnaire for AITrace Computer Prototype" loading="lazy"></iframe>
               <p><a href="docs/Post-Test%20Questionnaire%20comp%20proto.pdf">Open post-test questionnaire (PDF)</a></p>
             </section>
