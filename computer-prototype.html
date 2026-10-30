@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Computer Prototype</title>
+    <style>
+      html {
+        scroll-padding-top: 1rem;
+      }
+      body {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 24px;
+        color: #242424;
+        background: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+      a {
+        color: #0969da;
+        text-underline-offset: 2px;
+      }
+      .topbar .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        font-size: 14px;
+      }
+      .navlinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+      }
+      .brand {
+        color: inherit;
+        font-weight: 600;
+      }
+      .hero {
+        margin: 40px 0 32px;
+      }
+      .eyebrow, .byline {
+        color: #666;
+        font-size: 14px;
+      }
+      h1, h2, h3 {
+        line-height: 1.3;
+      }
+      h1 {
+        margin: 12px 0;
+        font-size: 2em;
+      }
+      h2 {
+        margin: 40px 0 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.5em;
+      }
+      h3 {
+        margin: 28px 0 12px;
+        font-size: 1.15em;
+      }
+      p, ul, ol {
+        margin: 0 0 16px;
+      }
+      ul, ol {
+        padding-left: 28px;
+      }
+      li + li {
+        margin-top: 6px;
+      }
+      .observation-counts {
+        margin: 0 0 16px;
+      }
+      .observation-counts span {
+        display: inline-block;
+        margin-right: 16px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 20px 0 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      th, td {
+        border: 1px solid #d8d8d8;
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f6f6f6;
+      }
+      figure {
+        margin: 24px 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      figcaption, .caption {
+        margin-top: 8px;
+        color: #666;
+        font-size: 14px;
+      }
+      code {
+        padding: 2px 4px;
+        background: #f4f4f4;
+        font-family: Consolas, monospace;
+        font-size: 0.9em;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+      }
+      .prototype-video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .document-preview {
+        display: block;
+        width: 100%;
+        height: 75vh;
+        max-height: 800px;
+        border: 1px solid #ddd;
+        margin-bottom: 16px;
+      }
+      .sketch-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 24px;
+      }
+      .sketch-grid figure {
+        min-width: 0;
+        margin: 0;
+      }
+      .sketch-grid img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+      }
+      .sketch-grid figcaption strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #242424;
+      }
+      @media (max-width: 600px) {
+        body {
+          margin: 20px auto;
+          padding: 0 16px;
+        }
+        th, td {
+          min-width: 120px;
+        }
+      }
+      @media print {
+        body {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          font-size: 11pt;
+        }
+        .table-wrap {
+          overflow: visible;
+        }
+        h1, h2, h3 {
+          break-after: avoid;
+        }
+        figure, tr {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Project page">
+      <div class="container">
+        <a class="brand" href="index.html">AITrace</a>
+        <div class="navlinks">
+          <a href="index.html#observation-and-proposal">Observation and Proposal</a>
+          <a href="prototype.html">Low Fidelity Prototype</a>
+          <a href="computer-prototype.html" aria-current="page">Computer Prototype</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <h1>Computer Prototype</h1>
+      <section id="user-manual">
+        <h2>User Manual</h2>
+      </section>
+      <section id="design-evolution">
+        <h2>Design Evolution</h2>
+        <p><strong>A clearer way to start.</strong> Both participants needed help finding AITrace or knowing where to click. We plan to add a labelled Explain change action beside the changed code, so users can open an explanation without having to guess what an icon does.</p>
+        <p><strong>Pop-up explanations linked to the code.</strong> Both participants preferred the pop-up window. However, P2 sometimes referred to the explanation panel when asked to identify changed code. We plan to keep explanations beside the code and highlight the matching lines when a pop-up opens. A short explanation will appear first, with more detail available when needed.</p>
+        <p><strong>A complete view of changes.</strong> P2 found the plus/minus markers helpful and worried about seeing all changes in longer code replacements. We plan to keep added and deleted code visible, with previous/next actions and a review count. This should help users check the full change and keep track of their progress.</p>
+      </section>
+      <section id="prototype-implementation">
+        <h2>Prototype Implementation</h2>
+      </section>
+      <section id="user-population">
+        <h2>User Population</h2>
+      </section>
+      <section id="usability-goals">
+        <h2>Usability Goals</h2>
+      </section>
+      <section id="usability-test-procedure">
+        <h2>Usability Test Procedure</h2>
+      </section>
+      <section id="reporting-instructions">
+        <h2>Reporting Instructions</h2>
+      </section>
+      <section id="usability-evaluation">
+        <h2>Usability Evaluation</h2>
+      </section>
+      <section id="conclusions">
+        <h2>Conclusions</h2>
+      </section>
+    </main>
+  </body>
+</html>
