@@ -1,0 +1,90 @@
+{
+  "name": "aitrace-prototype",
+  "displayName": "AITrace Prototype",
+  "description": "Understand and review AI code changes in your editor.",
+  "version": "0.4.2",
+  "publisher": "aitrace-lab",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "check": "node --check src/extension.js && node --check src/review.js && node --check src/panel.js && node --check media/panel.js && node --check samples/cases.js",
+    "samples": "node scripts/write-samples.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "aitrace.start",
+        "title": "AITrace: Start Demo",
+        "icon": "$(play)"
+      },
+      {
+        "command": "aitrace.request",
+        "title": "AITrace: Simulate AI Output",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "aitrace.explain",
+        "title": "AITrace: Open Review Panel",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "aitrace.previous",
+        "title": "AITrace: Previous Change",
+        "icon": "$(arrow-up)"
+      },
+      {
+        "command": "aitrace.next",
+        "title": "AITrace: Next Change",
+        "icon": "$(arrow-down)"
+      },
+      {
+        "command": "aitrace.pick",
+        "title": "AITrace: Choose a Change",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "aitrace.result",
+        "title": "AITrace: Return to Working Code",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "aitrace.compare",
+        "title": "AITrace: Compare Original and Suggested Code",
+        "icon": "$(diff)"
+      },
+      {
+        "command": "aitrace.undo",
+        "title": "AITrace: Undo Last Decision",
+        "icon": "$(discard)"
+      },
+      {
+        "command": "aitrace.reset",
+        "title": "AITrace: Reset Current Case",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "aitrace.export",
+        "title": "AITrace: Export Session Log",
+        "icon": "$(export)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "aitrace.explain",
+          "when": "aitrace.isWorkingFile",
+          "group": "navigation@1"
+        }
+      ]
+    }
+  }
+}

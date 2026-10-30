@@ -1,1 +1,6 @@
 /.review-drafts/
+/aitrace-plugin-dev/.cache/
+/aitrace-plugin-dev/.runtime/
+/aitrace-plugin-dev/node_modules/
+/aitrace-plugin-dev/dist/*
+!/aitrace-plugin-dev/dist/aitrace-prototype-0.4.2.vsix
