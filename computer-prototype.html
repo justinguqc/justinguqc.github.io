@@ -170,558 +170,171 @@
 
       <section id="user-manual">
         <h2>User Manual</h2>
+        <p>This illustrated guide covers installation, reviewing changes, and accepting or rejecting suggestions in AITrace.</p>
+        <iframe
+          class="document-preview"
+          src="output/pdf/AITrace-User-Manual.pdf"
+          title="AITrace User Manual with screenshots"
+          loading="lazy"
+        ></iframe>
+        <p><a href="output/pdf/AITrace-User-Manual.pdf">Open user manual (PDF)</a> · <a href="aitrace-plugin-dev/dist/aitrace-prototype-0.4.2.vsix" download>Download AITrace Prototype (.vsix)</a></p>
       </section>
 
       <section id="design-evolution">
         <h2>Design Evolution</h2>
-        <p><strong>A clearer way to start.</strong> Both participants needed help finding AITrace or knowing where to click. We plan to add a labelled Explain change action beside the changed code, so users can open an explanation without having to guess what an icon does.</p>
-        <p><strong>Pop-up explanations linked to the code.</strong> Both participants preferred the pop-up window. However, P2 sometimes referred to the explanation panel when asked to identify changed code. We plan to keep explanations beside the code and highlight the matching lines when a pop-up opens. A short explanation will appear first, with more detail available when needed.</p>
-        <p><strong>A complete view of changes.</strong> P2 found the plus/minus markers helpful and worried about seeing all changes in longer code replacements. We plan to keep added and deleted code visible, with previous/next actions and a review count. This should help users check the full change and keep track of their progress.</p>
+        <p><strong>Make the starting point easier to find.</strong> Both participants needed help finding AITrace in the paper prototypes. The computer version adds a labelled entry above each changed block and an overview at the top of the file. Users can open a review directly from the code.</p>
+        <p><strong>Keep the explanation close to the code.</strong> Both participants preferred the pop-up layout. We kept its link between code and explanation, but use a panel beside the editor in this version. It stays open while users inspect the code, and highlights the block being discussed. Users can follow their code selection or pin an explanation. This differs from the paper pop-up and still needs testing.</p>
+        <p><strong>Make larger changes easier to review.</strong> P2 liked the plus/minus markers but wondered how longer replacements would appear. The plugin keeps short previews in the code and shows the full original and suggested block in the panel. Previous/Next controls and a review count help users work through the changes. Extra examples and assumptions are available when needed; free-form follow-up questions are not implemented.</p>
       </section>
 
       <section id="prototype-implementation">
         <h2>Prototype Implementation</h2>
+        <p>The prototype is a VS Code extension with a Python sample file on the left and an AITrace review panel on the right. Accepting, rejecting, undoing, navigation, and progress updates work without someone changing the interface behind the scenes. Accepting a change updates and saves the sample file.</p>
+        <p>AITrace is meant to help review output from another AI assistant. For this study, <strong>Simulate AI Output</strong> loads fixed suggestions and explanations. Pending suggestions are previewed beside the original code; they only enter the file when accepted. This version does not connect to a live AI, explain arbitrary files, run code, or answer new questions.</p>
+        <p>There are two bundled cases: a one-change pass/fail practice case and a three-change task-list case. Each demo opens a fresh sample copy. The original samples stay unchanged, and participants do not need to open their own projects.</p>
+        <p><a href="https://github.com/justinguqc/justinguqc.github.io/tree/main/aitrace-plugin-dev">Plugin source and samples</a> · <a href="aitrace-plugin-dev/DEVELOPMENT.md">Development instructions</a></p>
       </section>
 
-       <section id="user-population">
+      <section id="user-population">
         <h2>User Population</h2>
-        <p>
-          The target users are university students who use AI tools while completing programming assignments. The
-          evaluation focuses on the Structural Reviewer persona: a student who wants to understand and evaluate
-          AI-generated changes rather than accept them without review.
-        </p>
-        <p>
-          Participants should have basic experience reading code and using a web browser. They do not need prior
-          experience with AITrace. The study examines whether participants can discover and use the interface, not
-          whether they already know how the system works.
-        </p>
+        <p>Our target users are university students who use AI tools for programming assignments. We focus on students who want to check how the code works before accepting a change, as described in our Structural Reviewer persona.</p>
+        <p>Participants should be able to read basic Python and have some experience with desktop VS Code. They do not need to have used AITrace. Record their experience with coding, VS Code, and AI tools in the pre-test questionnaire so it can help explain any difficulties during the session.</p>
       </section>
 
       <section id="usability-goals">
         <h2>Usability Goals</h2>
-        <p>
-          The table below summarizes the usability goals for the AITrace computer prototype. Each goal is linked to a
-          quantitative measurement and a possible goal that will guide the evaluation. Time targets apply to short
-          interface actions and exclude time spent reading explanations or analyzing code.
-        </p>
-
+        <p>We want users to spot changes, understand the review controls, and move through a case without losing their place. The targets below are starting points for the test, not results we have already achieved.</p>
         <div class="table-wrap">
           <table>
-            <thead>
-              <tr>
-                <th scope="col">Goal</th>
-                <th scope="col">Description</th>
-                <th scope="col">Measurement</th>
-                <th scope="col">Possible Goal</th>
-              </tr>
-            </thead>
+            <thead><tr><th scope="col">Goal</th><th scope="col">What we check</th><th scope="col">Target</th></tr></thead>
             <tbody>
-              <tr>
-                <td><strong>Visibility</strong></td>
-                <td>
-                  Users can identify which parts of the code were added, removed, or modified by an AI suggestion.
-                </td>
-                <td>
-                  Number of correctly identified changes, missed changes, and incorrect identifications.
-                </td>
-                <td>
-                  Participants correctly identify all required changed regions in the prepared code case without
-                  operational assistance.
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong>Learning</strong></td>
-                <td>
-                  First-time users can complete the main review tasks with little or no guidance.
-                </td>
-                <td>
-                  Task completion rate, task completion time, number of errors, and number of prompts required.
-                </td>
-                <td>
-                  Participants complete each benchmark task without operational assistance. Participants start AITrace
-                  within 30 seconds and complete an instructed accept or reject action within 30 seconds.
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong>Manageability</strong></td>
-                <td>
-                  Users do not feel overwhelmed by the amount of code, explanations, or review controls.
-                </td>
-                <td>
-                  Post-task effort rating on a 0–5 scale, where 0 = no effort and 5 = extreme effort; observed
-                  hesitation, confusion, and skipped explanations.
-                </td>
-                <td>
-                  Participants give an average effort rating of 2 or lower and review the prepared changes without
-                  skipping explanations or losing track of the interface.
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong>Review Efficiency</strong></td>
-                <td>
-                  Users can find, inspect, and decide on code changes without unnecessary repeated actions.
-                </td>
-                <td>
-                  Task completion time, navigation errors, and number of repeated or redundant interactions.
-                </td>
-                <td>
-                  Participants locate an assigned explanation within 30 seconds. Participants complete each short
-                  interface action without repeated searching or unnecessary navigation.
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong>User Satisfaction</strong></td>
-                <td>
-                  Users find the explanations, review controls, and navigation features useful and are satisfied with the
-                  review experience.
-                </td>
-                <td>
-                  Post-test usefulness and satisfaction ratings on a 0–5 scale, along with qualitative feedback.
-                </td>
-                <td>
-                  Participants give an average rating of 4 or higher for both usefulness and satisfaction.
-                </td>
-              </tr>
+              <tr><td><strong>Visibility</strong></td><td>Correctly identified, missed, and incorrectly identified changed blocks.</td><td>Find all three changed blocks in the task-list case without help.</td></tr>
+              <tr><td><strong>Learning</strong></td><td>Task completion, time, wrong actions, and help needed on first use after practice.</td><td>Open the review within 30 seconds and carry out each instructed accept/reject action within 30 seconds, without help.</td></tr>
+              <tr><td><strong>Manageability</strong></td><td>Effort rated from 0 (no effort) to 5 (extreme effort), plus signs of confusion or losing one's place.</td><td>Average effort of 2 or less. Participants can move through all three changes without losing track of which one is open.</td></tr>
+              <tr><td><strong>Review efficiency</strong></td><td>Time to find an assigned explanation, wrong destinations, and repeated searching.</td><td>Find the assigned explanation within 30 seconds without help. Record reading time separately.</td></tr>
+              <tr><td><strong>Satisfaction</strong></td><td>Usefulness and satisfaction ratings from 0 (lowest) to 5 (highest), with comments about each.</td><td>Average of at least 4 for both usefulness and satisfaction.</td></tr>
             </tbody>
           </table>
         </div>
-
-        <p>
-          These possible goals are provisional and will be checked during a pilot session before the independent
-          evaluation. They measure interface usability and do not evaluate the correctness of AI-generated code or
-          programming learning.
-        </p>
+        <p>The 30-second targets apply to short actions with visible controls after a practice case. They leave room to look around but should reveal repeated searching. They exclude time spent reading explanations or judging code. The rating targets mean that we are aiming for low effort and a clearly positive experience. Check these targets in a pilot before testing with the other team, and document any changes.</p>
       </section>
 
       <section id="usability-evaluation-plan">
         <h2>Usability Evaluation Plan</h2>
-        <p>
-          The evaluation includes two complementary activities: a formal laboratory usability test and a heuristic
-          evaluation. The usability test examines whether representative users can complete the core AITrace tasks. The
-          heuristic evaluation identifies interface problems that may not appear during task-based testing.
-        </p>
+        <p>The testing team will run a timed usability test with students, then inspect the interface for usability problems. The instructions below let them do both without help from our team.</p>
 
         <section id="activity-usability-test">
           <h3>Activity 1: Formal Usability Test</h3>
+          <h4>People and Equipment</h4>
+          <p>One examiner introduces the session and reads the tasks. An observer records actions, timing, comments, and any help given. Use a computer with desktop VS Code 1.85 or later and the linked extension installed, a timer, the manual above, and the three forms below. Record the operating system and VS Code version. A screen recording is useful if the participant agrees; written notes and a timer are enough if he does not.</p>
 
-          <h4>Examiners and Roles</h4>
-          <ul>
-            <li><strong>Lead Examiner:</strong> Explains the session, reads tasks verbatim, manages timing, and answers only procedural questions.</li>
-            <li><strong>Observer:</strong> Records task outcomes, time, errors, hesitations, backtracking, technical failures, and participant comments.</li>
-          </ul>
-
-          <h4>Equipment Required</h4>
-          <ul>
-            <li>Computer with [FILL IN: browser and version].</li>
-            <li>AITrace computer prototype from [FILL IN: repository or hosted link].</li>
-            <li>Stopwatch or timer application.</li>
-            <li>Task log sheet, printed or digital.</li>
-            <li>User manual and installation guide.</li>
-            <li>Pre-test and post-test questionnaires.</li>
-            <li>Phone or screen-recording device, if participants consent.</li>
-          </ul>
-
-          <h4>Prototype Handling Guidelines</h4>
-          <ul>
-            <li>Use only the provided manual; do not modify, debug, or redesign the prototype during testing.</li>
-            <li>Open the required prepared code case before the participant begins.</li>
-            <li>Record technical failures separately from participant errors.</li>
-            <li>If the prototype crashes or becomes unresponsive, reload or restart it using the documented recovery procedure and resume from the last completed task.</li>
-            <li>Do not change the interface, task wording, or evaluation procedure during a session.</li>
-          </ul>
-
-          <h4>Examiner Instructions</h4>
-
-          <h5>Before the Session</h5>
+          <h4>Before the Session</h4>
           <ol>
-            <li>Obtain informed consent, including consent for audio or video recording if used.</li>
-            <li>Explain: “We are testing the usability of AITrace. We are evaluating the system, not your programming ability or personal performance.”</li>
-            <li>Conduct the pre-test questionnaire.</li>
-            <li>Open the prototype and prepared test case.</li>
-            <li>Position the recording device to capture the screen and participant actions.</li>
-            <li>Begin recording and start the session timer.</li>
+            <li>Check that the plugin starts and both samples load. Do not use a participant's personal project.</li>
+            <li>Explain consent, including any recording, and collect the pre-test questionnaire.</li>
+            <li>Let the participant read the manual and try <strong>Practice - Course result</strong>. Allow questions during practice and note any help. Do not include this in the timed results.</li>
+            <li>Run <strong>AITrace: Start Demo</strong>, choose <strong>Review - Pending task list</strong>, and click <strong>Simulate AI Output</strong>. Leave all three decisions pending, close only the AITrace panel tab, and leave the sample source visible. Task 1 begins from this state.</li>
+            <li>Start recording only if agreed. Read the introduction and task instructions below.</li>
           </ol>
 
-          <h5>During the Session</h5>
-          <ol>
-            <li>Read each task verbatim from the task script.</li>
-            <li>Do not provide hints beyond the standard introduction and user manual.</li>
-            <li>Encourage participants to think aloud while remaining neutral.</li>
-            <li>Start the stopwatch when a task begins and stop it when the participant indicates completion or the examiner ends the task.</li>
-            <li>Record success, time, errors, hesitations, backtracking, and technical failures for every task.</li>
-          </ol>
-
-          <h5>After the Session</h5>
-          <ol>
-            <li>Stop recording.</li>
-            <li>Ask the participant to complete the post-test questionnaire.</li>
-            <li>Ask the open-ended feedback questions.</li>
-            <li>Thank the participant and explain how their data will be used.</li>
-          </ol>
-
-          <h4>Examiner Conduct</h4>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Do</th>
-                  <th scope="col">Don’t</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Stay neutral and encouraging.</td>
-                  <td>Explain how to perform a task.</td>
-                </tr>
-                <tr>
-                  <td>Ask participants to verbalize their thoughts.</td>
-                  <td>Interrupt or complete actions for the participant.</td>
-                </tr>
-                <tr>
-                  <td>Use a stopwatch or timer.</td>
-                  <td>Praise or criticize the participant’s performance.</td>
-                </tr>
-                <tr>
-                  <td>Observe silently.</td>
-                  <td>Modify the interface during the test.</td>
-                </tr>
-                <tr>
-                  <td>Record technical failures separately.</td>
-                  <td>Count a system failure as a participant error.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <h4>During the Session</h4>
+          <p>Read each task as written. Start timing when you finish the instruction, and stop when the task is complete or the participant stops. For Task 3, stop the navigation timer when the right explanation opens, then time reading separately. For Task 4, time each accept/reject action separately. Record code discussion separately from these short action times.</p>
+          <p>Stay neutral and ask the participant to think aloud. Do not point out controls or finish actions for him. If he cannot complete a short action within two minutes, ask whether he wants to stop or receive help. Allow up to three minutes for Task 2. Record the unfinished attempt and any help given; keep assisted completion separate from independent success. A reminder to think aloud does not count as interface help.</p>
+          <p>If a technical problem interrupts the test, pause the timer and record it separately from user errors. For an unresponsive extension, reload the VS Code window and open a fresh task-list demo. Record the lost state and repeat the interrupted task after restoring its starting state. Do not combine time from the interrupted attempt with the new attempt.</p>
 
           <section id="materials-test-script">
             <h3>Test Script</h3>
+            <h4>Introduction</h4>
+            <p>“Thanks for joining us. Today we are trying AITrace, a tool for reviewing AI code changes. We are testing the tool, not you. Please tell us what you are looking for and anything that feels confusing. You can take a break, skip a question, or stop at any time.”</p>
+            <p>“The examples and AI responses are prepared in advance. You do not need to write or run code. In this case, the goal is to show only unfinished tasks, make the count match that list, and keep the original task order.”</p>
 
-            <h4>Introduction Script</h4>
-            <p>
-              “Hello, and thank you for joining us. My name is [moderator name]. Today we are testing AITrace, a computer
-              prototype designed to help users review code changes suggested by AI assistants.”
-            </p>
-            <p>
-              “Your participation is voluntary. You can skip a question, take a break, or stop at any time. Before we begin,
-              please review the consent form. Do you have any questions about the study or the information we will collect?”
-            </p>
-            <p>
-              “Before we start, please complete the pre-test questionnaire. It will take about 5 minutes.”
-            </p>
-
-            <h4>Present the Code Case</h4>
-            <p>
-              “Here is the starting code and the required modification. An AI assistant has already produced a suggested
-              change for this task. The response has been prepared for this study; it is not generated live.”
-            </p>
-            <p>
-              “Please use AITrace to review the suggested changes. You can think aloud while you work. Tell us what you are
-              looking for, what you expect to happen, and anything that feels confusing.”
-            </p>
-
-            <h4>Task 1: Start AITrace Plugin</h4>
-            <p>
-              “Open AITrace so you can begin reviewing the suggested changes.”
-            </p>
+            <h4>Task 1: Open AITrace</h4>
+            <p>“Open AITrace's review panel for this sample.”</p>
+            <p class="caption">Observer check: the panel opens for the task-list sample. Time from the end of the instruction until the panel is visible.</p>
 
             <h4>Task 2: Identify Code Changes</h4>
-            <p>
-              “Look at the code shown in AITrace and identify the changes that have been suggested. Tell us which parts of
-              the code were added, removed, or modified.”
-            </p>
+            <p>“Find the three suggested changes and tell us what each would change in the code.”</p>
+            <p class="caption">Observer check: the participant identifies the incomplete-task filter, the remaining-task count, and the alphabetical sort. Record any missed blocks or unchanged code identified as a change.</p>
 
-            <h4>Task 3: Locate and Read an Explanation</h4>
-            <p>
-              “Find the explanation for [FILL IN: X modification] and read it. Tell us when you have finished reading.”
-            </p>
+            <h4>Task 3: Find and Read an Explanation</h4>
+            <p>“Find the explanation for the change to the remaining-task count. Tell us when you have finished reading it, and briefly explain why the count changes.”</p>
+            <p class="caption">Observer check: the panel shows “Count the same tasks that Pending displays.” Stop navigation timing here and record reading time separately. The count uses the Pending list rather than the full task list; record the participant's explanation without treating a quick answer as proof of understanding.</p>
 
-            <h4>Task 4: Accept or Reject a Suggestion</h4>
-            <p>
-              “Using AITrace, [accept / reject] the suggested change for [FILL IN: X modification].”
-            </p>
+            <h4>Task 4: Accept and Reject Changes</h4>
+            <p>Read these instructions one at a time, allowing the participant to finish each action:</p>
+            <ol>
+              <li>“Accept the change that excludes completed tasks.”</li>
+              <li>“Accept the change that makes the remaining count match the Pending list.”</li>
+              <li>“Reject the alphabetical sort so the tasks stay in their original order.”</li>
+            </ol>
+            <p class="caption">Observer check: the filter and count are accepted, the sort is rejected, and the review count reaches 3 of 3. The source uses a filtered Pending list and <code>len(pending)</code>, with <code>visible = pending</code>. Record the time and any wrong action for each instruction. This task checks use of the controls; it does not measure whether users independently judge a suggestion correctly.</p>
 
             <h4>Neutral Prompts</h4>
-            <ul>
-              <li>“What are you looking for?”</li>
-              <li>“What are you expecting to happen?”</li>
-              <li>“What do you want to try next?”</li>
-              <li>“Please keep telling us what you are thinking.”</li>
-            </ul>
-            <p>
-              If the participant cannot continue, offer the minimum assistance needed and record its wording. Do not count
-              neutral think-aloud reminders as interface guidance.
-            </p>
+            <p>Use prompts such as “What are you looking for?”, “What did you expect to happen?”, or “Please keep telling us what you are thinking.” If help is needed, write down exactly what you said.</p>
 
-            <h4>Final Reflection</h4>
-            <ul>
-              <li>What did you find easiest to do in AITrace?</li>
-              <li>What did you find confusing, difficult, or frustrating?</li>
-              <li>Which parts of the interface helped you understand the suggested changes?</li>
-              <li>Was anything missing, distracting, or unnecessary?</li>
-              <li>What improvement would you make?</li>
-            </ul>
-
-            <h4>Closing Script</h4>
-            <p>
-              “Thank you for your time and feedback. Your observations will help us decide what to improve in AITrace. That
-              concludes the session.”
-            </p>
+            <h4>After the Tasks</h4>
+            <p>Ask for an effort rating from 0 (no effort) to 5 (extreme effort) after each task. At the end, collect the post-test questionnaire and ask: “What felt easy?”, “What was confusing or distracting?”, and “What would you change?” Thank the participant and stop any recording.</p>
           </section>
 
           <section id="materials">
             <h3>Materials</h3>
-
             <section id="materials-pre-test-questionnaire">
               <h4>Pre-test Questionnaire</h4>
-              <iframe
-                class="document-preview"
-                src="docs/HCI%20Pre-test%20Questionnaire%20comp%20proto.pdf"
-                title="Pre-test Questionnaire for AITrace Computer Prototype"
-                loading="lazy"
-              ></iframe>
-              <p>
-                <a href="docs/HCI-Pre-test-Questionnaire-comp-proto.pdf">
-                  Pre-test Questionnaire for the Computer Prototype (PDF)
-                </a>
-              </p>
+              <iframe class="document-preview" src="docs/HCI%20Pre-test%20Questionnaire%20comp%20proto.pdf" title="Pre-test Questionnaire for AITrace Computer Prototype" loading="lazy"></iframe>
+              <p><a href="docs/HCI%20Pre-test%20Questionnaire%20comp%20proto.pdf">Open pre-test questionnaire (PDF)</a></p>
             </section>
-
             <section id="materials-data-collection-sheet">
               <h4>Data Collection Sheet</h4>
-              <iframe
-                class="document-preview"
-                src="docs/HCI%20Data%20collection%20comp%20proto.pdf"
-                title="Data Collection Sheet for AITrace Computer Prototype"
-                loading="lazy"
-              ></iframe>
-              <p>
-                <a href="docs/HCI-Data-collection-comp-proto.pdf">
-                  Data Collection Sheet for the Computer Prototype (PDF)
-                </a>
-              </p>
+              <p>The sheet's “Start AItrace plugin” row corresponds to Task 1: reopening the review panel after setup. Use the Observations column or an extra notes page to separate reading time, assisted completions, and Task 4's three action times.</p>
+              <iframe class="document-preview" src="docs/HCI%20Data%20collection%20comp%20proto.pdf" title="Data Collection Sheet for AITrace Computer Prototype" loading="lazy"></iframe>
+              <p><a href="docs/HCI%20Data%20collection%20comp%20proto.pdf">Open data collection sheet (PDF)</a></p>
             </section>
-
             <section id="materials-post-test-questionnaire">
               <h4>Post-test Questionnaire</h4>
-              <iframe
-                class="document-preview"
-                src="docs/Post-Test%20Questionnaire%20comp%20proto.pdf"
-                title="Post-test Questionnaire for AITrace Computer Prototype"
-                loading="lazy"
-              ></iframe>
-              <p>
-                <a href="docs/Post-Test-Questionnaire-comp-proto.pdf">
-                  Post-test Questionnaire for the Computer Prototype (PDF)
-                </a>
-              </p>
+              <p>This form still has spaces for two prototypes. For this test, label “Prototype 1” as AITrace and complete questions 1–6. Skip the Prototype 2 block and comparison questions 13–14; ask questions 15–16 about this version only. We are testing one computer prototype, not comparing two layouts.</p>
+              <iframe class="document-preview" src="docs/Post-Test%20Questionnaire%20comp%20proto.pdf" title="Post-test Questionnaire for AITrace Computer Prototype" loading="lazy"></iframe>
+              <p><a href="docs/Post-Test%20Questionnaire%20comp%20proto.pdf">Open post-test questionnaire (PDF)</a></p>
             </section>
           </section>
 
-          <h4>Measurements: What, How, and When</h4>
-          <p>
-            Measurements will be collected both during and after each task to evaluate performance and perception.
-            Quantitative data, such as task completion time and number of errors, will provide an objective measure of
-            usability. Qualitative data, including participant comments, facial expressions, and think-aloud observations,
-            will offer insight into user perception, understanding, and satisfaction.
-          </p>
+          <h4>What to Record</h4>
+          <p>Use one sheet per participant. For each task, note whether he finished independently, finished with help, or did not finish. Add the elapsed time, wrong actions, help given, and any comments or pauses worth following up. A wrong selection or decision counts as an error; a broken control or extension crash is a technical failure.</p>
+          <p>Keep navigation time separate from reading and code discussion. Report missed changed blocks separately from wrong clicks. Use recordings only when consented to; otherwise, rely on the timer and notes. The plugin's optional <strong>AITrace: Export Session Log</strong> command can support the notes, but its events do not prove that someone read or understood an explanation. Export before switching cases or reloading, since a new session clears the in-memory log.</p>
 
+          <h4>Reporting Instructions</h4>
+          <p>Summarize participants' relevant experience, test setup, and any departures from the plan. For each task, report independent and assisted completions, unfinished attempts, individual times, and errors. Compare these with the targets above. Include effort and satisfaction ratings, useful comments, and technical failures. Tie each suggested improvement to something observed in the test, and avoid drawing broad conclusions from a small group.</p>
+        </section>
+
+        <section id="activity-heuristic-evaluation">
+          <h3>Activity 2: Heuristic Evaluation</h3>
+          <p>Two members of the testing team will inspect AITrace separately using Nielsen's ten usability heuristics. Each should try the four tasks above, then explore undo, pinning, examples, closing and reopening the panel, and resetting a sample. Afterward, compare notes, combine duplicate issues, and agree on which problems need attention first.</p>
+          <h4>What to Look For</h4>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th scope="col">Measurement</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Collection Method</th>
-                </tr>
-              </thead>
+              <thead><tr><th scope="col">Heuristic</th><th scope="col">Check in AITrace</th></tr></thead>
               <tbody>
-                <tr>
-                  <td><strong>Task Completion Time</strong></td>
-                  <td>
-                    Time taken to start AITrace, locate an explanation, or complete an instructed accept/reject action.
-                    Explanation-reading time is recorded separately.
-                  </td>
-                  <td>Stopwatch + screen recording</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Error Count</strong></td>
-                  <td>
-                    Number of incorrect actions, such as selecting the wrong control, identifying the wrong changed region,
-                    or accepting when rejection was instructed.
-                  </td>
-                  <td>Observer notes + predefined answer guide</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Task Success Rate</strong></td>
-                  <td>
-                    Whether the participant independently achieved the task goal without operational assistance. Assisted
-                    completions are recorded separately.
-                  </td>
-                  <td>Binary task log (Yes/No)</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Qualitative Feedback</strong></td>
-                  <td>
-                    Participant comments about what felt clear, confusing, useful, or difficult while reviewing AI-suggested
-                    code changes.
-                  </td>
-                  <td>Think-aloud recording + observer notes</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Post-test Satisfaction</strong></td>
-                  <td>
-                    Perceived usefulness, ease of use, and comfort when using AITrace to review AI-generated changes.
-                  </td>
-                  <td>Post-test questionnaire</td>
-                </tr>
+                <tr><td>Visibility of system status</td><td>Can you tell which change is open, whether it is pending, accepted, or rejected, and how many changes remain?</td></tr>
+                <tr><td>Match between system and real world</td><td>Do the labels and plus/minus previews make sense when reading code?</td></tr>
+                <tr><td>User control and freedom</td><td>Can you change a decision with Undo, accept/reject again, or close the panel without deciding?</td></tr>
+                <tr><td>Consistency and standards</td><td>Do labels, colors, and review states mean the same thing in the source and panel?</td></tr>
+                <tr><td>Error prevention</td><td>Are Accept and Reject easy to tell apart? Does reset warn before clearing work?</td></tr>
+                <tr><td>Recognition rather than recall</td><td>Can you see the relevant code and explanation without remembering an earlier screen?</td></tr>
+                <tr><td>Flexibility and efficiency of use</td><td>Can you move between changes, follow code, pin an explanation, and jump back to the source easily?</td></tr>
+                <tr><td>Aesthetic and minimalist design</td><td>Does the panel show what you need without distracting controls or repeated information?</td></tr>
+                <tr><td>Help users recognize, diagnose, and recover from errors</td><td>After a wrong decision or manual edit, is it clear what happened and how to continue?</td></tr>
+                <tr><td>Help and documentation</td><td>Are the labels and manual enough to get started without asking the examiner?</td></tr>
               </tbody>
             </table>
           </div>
-
-          <h4>Reporting</h4>
-          <p>The evaluation report will include:</p>
-          <ul>
-            <li>A participant summary, including demographics and session duration.</li>
-            <li>Quantitative results for completion, task time, errors, hesitations, backtracking, and technical failures.</li>
-            <li>Observations and qualitative notes for each task.</li>
-            <li>Post-test questionnaire results and open-ended feedback.</li>
-            <li>A distinction between usability problems, technical failures, and participant errors.</li>
-            <li>Design recommendations supported by the collected evidence.</li>
-          </ul>
+          <h4>Severity and Reporting</h4>
+          <p>Rate each issue from 0 to 4: <strong>0</strong> is not a usability problem; <strong>1</strong> is cosmetic; <strong>2</strong> causes a small delay or confusion; <strong>3</strong> makes a task difficult; <strong>4</strong> blocks an important task with no reasonable workaround. Consider how often the problem occurs and whether users can recover.</p>
+          <p>For each issue, record the heuristic, where it happened, the steps to reproduce it, the severity, and a possible fix. Keep each evaluator's original notes as well as the combined list. If you disagree about severity, record why.</p>
         </section>
 
-<section id="activity-heuristic-evaluation">
-  <h3>Activity 2:Heuristic Evaluation</h3>
-
-  <p>
-    Both team members will independently inspect the AITrace interface using Nielsen’s 10 usability heuristics. Each
-    evaluator will complete the four benchmark tasks, record usability violations, assign a severity rating, and propose
-    an improvement. After individual reviews, the evaluators will meet to combine duplicate findings, resolve
-    differences in interpretation, and prioritize issues by severity.
-  </p>
-
-  <h4>Procedure</h4>
-  <ol>
-    <li>Each evaluator independently explores the AITrace interface.</li>
-    <li>Each evaluator completes the same four benchmark tasks.</li>
-    <li>Each evaluator records heuristic violations, affected interface elements, severity, and recommendations.</li>
-    <li>Evaluators meet to consolidate duplicate findings and resolve differences in interpretation.</li>
-    <li>The team prioritizes issues by severity and frequency across evaluators.</li>
-  </ol>
-
-  <h4>Heuristics and Applications</h4>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Heuristic</th>
-          <th scope="col">Application in AITrace</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Visibility of system status</td>
-          <td>The interface should clearly show when AITrace is active, when changes are displayed, and when an accept or reject action has been completed.</td>
-        </tr>
-        <tr>
-          <td>Match between system and real world</td>
-          <td>Labels and visual cues should use familiar programming and review terminology, such as “added,” “removed,” “modified,” “accept,” and “reject.”</td>
-        </tr>
-        <tr>
-          <td>User control and freedom</td>
-          <td>Users should be able to review explanations before deciding and should be able to accept or reject suggestions without feeling locked into an action.</td>
-        </tr>
-        <tr>
-          <td>Consistency and standards</td>
-          <td>Colors, icons, labels, and interaction patterns should be used consistently across added, removed, and modified changes.</td>
-        </tr>
-        <tr>
-          <td>Error prevention</td>
-          <td>The interface should make accept and reject controls distinguishable and should prevent accidental irreversible actions where applicable.</td>
-        </tr>
-        <tr>
-          <td>Recognition rather than recall</td>
-          <td>Users should recognize available actions and the meaning of visual cues rather than needing to remember them from earlier steps.</td>
-        </tr>
-        <tr>
-          <td>Flexibility and efficiency of use</td>
-          <td>Users should be able to move between the code view, explanations, and review controls without unnecessary navigation.</td>
-        </tr>
-        <tr>
-          <td>Aesthetic and minimalist design</td>
-          <td>The interface should present relevant information without overwhelming users with unnecessary visual detail.</td>
-        </tr>
-        <tr>
-          <td>Help users recognize, diagnose, and recover from errors</td>
-          <td>If an action fails or cannot be completed, the interface should provide clear feedback and a way to recover.</td>
-        </tr>
-        <tr>
-          <td>Help and documentation</td>
-          <td>Labels, tooltips, and the user manual should support first-time use without requiring the examiner to explain the interface.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h4>Severity Scale</h4>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Severity</th>
-          <th scope="col">Meaning</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>0</td><td>Not a usability problem.</td></tr>
-        <tr><td>1</td><td>Cosmetic problem; should be fixed only if time permits.</td></tr>
-        <tr><td>2</td><td>Minor usability problem; should be given low priority.</td></tr>
-        <tr><td>3</td><td>Major usability problem; important to fix.</td></tr>
-        <tr><td>4</td><td>Critical usability problem; must be fixed before release.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h4>Reporting Format</h4>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Heuristic</th>
-          <th scope="col">Severity</th>
-          <th scope="col">Interface Element</th>
-          <th scope="col">Violation Description</th>
-          <th scope="col">Suggested Improvement</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-
-      <section id="expected-outcome">
-        <h4>Expected Outcome</h4>
-        <p>
-     Strong usability results will support our current design choices and future development. Lower scores, participant difficulties, and heuristic violations will help us prioritize improvements to AITrace’s interface and interaction design.
-        </p>
+        <section id="expected-outcome">
+          <h3>How We Will Use the Results</h3>
+          <p>The test should show whether users can find AITrace, connect explanations to code, and make decisions without help. We will use the timings, comments, and inspection findings to decide what to change next. These tests evaluate the prepared review workflow; they cannot establish how well AITrace would explain new code from a live AI assistant.</p>
+        </section>
       </section>
     </main>
 
