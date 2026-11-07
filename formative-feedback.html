@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formative Feedback — AI Fact Checker</title>
+
+    <style>
+      html {
+        scroll-padding-top: 1rem;
+      }
+      body {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 24px;
+        color: #242424;
+        background: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+      a {
+        color: #0969da;
+        text-underline-offset: 2px;
+      }
+      .topbar .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        font-size: 14px;
+      }
+      .navlinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+      }
+      .brand {
+        color: inherit;
+        font-weight: 600;
+      }
+      .hero {
+        margin: 40px 0 32px;
+      }
+      .eyebrow, .byline {
+        color: #666;
+        font-size: 14px;
+      }
+      h1, h2, h3 {
+        line-height: 1.3;
+      }
+      h1 {
+        margin: 12px 0;
+        font-size: 2em;
+      }
+      h2 {
+        margin: 40px 0 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.5em;
+      }
+      h3 {
+        margin: 28px 0 12px;
+        font-size: 1.15em;
+      }
+      p, ul, ol {
+        margin: 0 0 16px;
+      }
+      ul, ol {
+        padding-left: 28px;
+      }
+      li + li {
+        margin-top: 6px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 20px 0 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      th, td {
+        border: 1px solid #d8d8d8;
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f6f6f6;
+      }
+      figure {
+        margin: 24px 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      figcaption, .caption {
+        margin-top: 8px;
+        color: #666;
+        font-size: 14px;
+      }
+      code {
+        padding: 2px 4px;
+        background: #f4f4f4;
+        font-family: Consolas, monospace;
+        font-size: 0.9em;
+      }
+      .fill-in {
+        background: #fff8d6;
+        border: 1px dashed #d4a700;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .note {
+        background: #f6f8fa;
+        border-left: 4px solid #0969da;
+        padding: 12px 16px;
+        margin: 16px 0;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+      }
+      @media (max-width: 600px) {
+        body {
+          margin: 20px auto;
+          padding: 0 16px;
+        }
+        th, td {
+          min-width: 120px;
+        }
+      }
+      @media print {
+        body {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          font-size: 11pt;
+        }
+        .table-wrap {
+          overflow: visible;
+        }
+        h1, h2, h3 {
+          break-after: avoid;
+        }
+        figure, tr {
+          break-inside: avoid;
+        }
+      }
+    </style>
+</head>
+
+<body id="top">
+
+  <nav class="topbar" aria-label="Project page">
+    <div class="container">
+        <a class="brand" href="index.html#top">AITrace</a>
+        <div class="navlinks">
+            <a href="index.html">Observation and Proposal</a>
+            <a href="prototype.html">Low Fidelity Prototype</a>
+            <a href="computer-prototype.html">Computer Prototype</a>
+            <a href="formative-feedback.html" aria-current="page">Formative Feedback</a>
+        </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>Formative Feedback</h1>
+      </p>
+    </section>
+
+    <section id="overview">
+      <h2>1. Evaluation Overview</h2>
+
+      <h3>Prototype evaluated</h3>
+      <p>
+        We evaluated Group B’s <strong>AI Fact Checker</strong> high-fidelity prototype.
+        The prototype is an AI chat assistant designed to help students assess the reliability
+        of AI-generated information before using it in academic work.
+      </p>
+
+      <h3>Prototype link and version</h3>
+      <p>
+        Prototype link:
+        <a href="https://cim.mcgill.ca/~jer/courses/hci/project/2026/www.cs.mcgill.ca/~carman3/hci/prototype.html" target="_blank" rel="noopener">
+          Open Group B’s AI Fact Checker prototype
+        </a>
+      </p>
+      <p>
+        Prototype version tested: <span class="fill-in">[FILL IN: date/version or “latest version accessed on DATE”]</span>
+      </p>
+
+      <h3>Participants</h3>
+      <p>
+        We tested the prototype with <span class="fill-in">[FILL IN: number]</span> participants.
+        Participants were <span class="fill-in">[FILL IN: describe participants, e.g., McGill students who use AI tools for academic work]</span>.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Participant</th>
+              <th>Age</th>
+              <th>AI chatbot use</th>
+              <th>User type</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>P1</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN: speed / verification / mixed]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+            <tr>
+              <td>P2</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN: speed / verification / mixed]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+            <tr>
+              <td>P3</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN: speed / verification / mixed]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Testing environment</h3>
+      <ul>
+        <li>Device: <span class="fill-in">[FILL IN: laptop/desktop model]</span></li>
+        <li>Browser: <span class="fill-in">[FILL IN: Chrome/Safari/Firefox/Edge]</span></li>
+        <li>Screen size: <span class="fill-in">[FILL IN]</span></li>
+        <li>Location: <span class="fill-in">[FILL IN: quiet room/location]</span></li>
+        <li>Recording: <span class="fill-in">[FILL IN: screen/audio recording used or not]</span></li>
+        <li>Liaison support: <span class="fill-in">[FILL IN: who from Group B helped, if anyone]</span></li>
+      </ul>
+
+      <h3>Procedure</h3>
+      <p>
+        Each participant completed Group B’s three documented usability tasks:
+        claim assessment, selective copying, and correction/reporting.
+        Participants were asked to think aloud while completing the tasks.
+        We recorded task completion, time on task, errors, navigation paths, participant comments,
+        and responses to the post-test questionnaire.
+      </p>
+
+      <div class="note">
+        <strong>Consent:</strong> Each participant completed the course consent form before testing.
+        Add the signed/scanned consent forms or a link to them here.
+      </div>
+
+      <p>
+        Consent form: <span class="fill-in">[FILL IN: link to consent form PDF or scanned forms]</span>
+      </p>
+    </section>
+
+    <section id="group-b-plan">
+      <h2>2. Group B’s Evaluation Plan</h2>
+
+      <p>
+        Group B’s evaluation plan included three usability tasks, a structured testing procedure,
+        quantitative and qualitative measures, a SUS questionnaire, and a heuristic evaluation
+        based on Nielsen’s heuristics.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>What the participant does</th>
+              <th>Usability goal assessed</th>
+              <th>Measures</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Task 1: Claim assessment</td>
+              <td>
+                Review the study-advice response and determine whether the claim about sleep
+                improving grades by a full letter is supported. Inspect the available evidence.
+              </td>
+              <td>Understanding; ease of use</td>
+              <td>Time, completion, errors, trap detection</td>
+            </tr>
+            <tr>
+              <td>Task 2: Selective copying</td>
+              <td>
+                Copy the disputed claim about rereading notes, along with its evidence, into the
+                Assignment draft tab.
+              </td>
+              <td>User control; error prevention</td>
+              <td>Time, completion, warning behavior, copy path</td>
+            </tr>
+            <tr>
+              <td>Task 3: Correction and reporting</td>
+              <td>
+                Assume the Pomodoro-method claim label is incorrect and report the issue to the system.
+              </td>
+              <td>User control; error recovery</td>
+              <td>Time, completion, path followed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Assessment of the plan</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Write whether Group B’s plan matched their usability goals. Mention the strengths,
+          such as clear tasks, defined measures, and use of SUS. Then mention gaps, such as small sample
+          size, unclear trap-detection criteria, or lack of baseline comparison.]
+        </span>
+      </p>
+    </section>
+
+    <section id="testing">
+      <h2>3. Testing Procedure</h2>
+
+      <h3>Tasks completed</h3>
+      <ul>
+        <li>Task 1: Claim assessment</li>
+        <li>Task 2: Selective copying</li>
+        <li>Task 3: Correction and reporting</li>
+        <li>Post-test SUS questionnaire</li>
+        <li>Semi-structured debrief</li>
+      </ul>
+
+      <h3>Additional exercises</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: If you added an exercise, describe it here and explain why it was needed.
+          For example: “We added a keyboard-only navigation exercise because Group B’s plan mentioned
+          keyboard accessibility but did not include a task to evaluate it.”]
+        </span>
+      </p>
+
+      <h3>Measures collected</h3>
+      <ul>
+        <li>Task completion</li>
+        <li>Time on task</li>
+        <li>Errors and confusion</li>
+        <li>Whether the participant detected the intentionally mislabeled claim</li>
+        <li>Whether the copy warning appeared and how the participant responded</li>
+        <li>Navigation path</li>
+        <li>SUS score</li>
+        <li>Qualitative observations and participant comments</li>
+      </ul>
+    </section>
+
+    <section id="task-1">
+      <h2>4. Task 1: Claim Assessment</h2>
+
+      <h3>Task instructions</h3>
+      <p>
+        Participants were asked to review the study-advice response and determine whether the claim,
+        “getting a full night’s sleep can raise your grade by a full letter,” was supported by evidence.
+        They were then asked to inspect the sources related to the claim.
+      </p>
+
+      <h3>Results</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Measure</th>
+              <th>P1</th>
+              <th>P2</th>
+              <th>P3</th>
+              <th>Group result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Time to complete</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN: average/median]</span></td>
+            </tr>
+            <tr>
+              <td>Completed without help</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Opened evidence panel</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Detected mislabeled claim</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Errors or confusion</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Observations</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Describe what participants did. Did they hover over claims? Did they open the evidence
+          panel? Did they trust the green label without checking the source? Did they notice the
+          intentionally mislabeled claim?]
+        </span>
+      </p>
+
+      <h3>Participant comments</h3>
+      <ul>
+        <li><span class="fill-in">[FILL IN: P1 quote or comment]</span></li>
+        <li><span class="fill-in">[FILL IN: P2 quote or comment]</span></li>
+        <li><span class="fill-in">[FILL IN: P3 quote or comment]</span></li>
+      </ul>
+
+      <figure>
+        <img src="[FILL IN: screenshot file name]" alt="Screenshot of Task 1 evidence panel or claim assessment">
+        <figcaption>Figure 1. <span class="fill-in">[FILL IN: caption describing the screenshot]</span></figcaption>
+      </figure>
+
+      <h3>Analysis</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Explain what the results mean. For example, did participants understand the labels?
+          Did they identify the unsupported claim? Was the evidence panel easy to find?]
+        </span>
+      </p>
+    </section>
+
+    <section id="task-2">
+      <h2>5. Task 2: Selective Copying</h2>
+
+      <h3>Task instructions</h3>
+      <p>
+        Participants were asked to use the fact-checked finding in their paper draft by copying the
+        disputed claim about rereading notes, along with its evidence, into the Assignment draft tab.
+      </p>
+
+      <h3>Results</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Measure</th>
+              <th>P1</th>
+              <th>P2</th>
+              <th>P3</th>
+              <th>Group result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Time to complete</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN: average/median]</span></td>
+            </tr>
+            <tr>
+              <td>Completed without help</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Copy warning appeared</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Understood warning</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Copy option selected</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+            <tr>
+              <td>Errors or confusion</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Observations</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Describe whether participants noticed the warning, understood the copy options,
+          and successfully copied the claim with evidence. Note whether they chose “Copy with context,”
+          “Claim only,” or another option.]
+        </span>
+      </p>
+
+      <h3>Participant comments</h3>
+      <ul>
+        <li><span class="fill-in">[FILL IN: P1 quote or comment]</span></li>
+        <li><span class="fill-in">[FILL IN: P2 quote or comment]</span></li>
+        <li><span class="fill-in">[FILL IN: P3 quote or comment]</span></li>
+      </ul>
+
+      <figure>
+        <img src="[FILL IN: screenshot file name]" alt="Screenshot of Task 2 copy warning or Assignment draft">
+        <figcaption>Figure 2. <span class="fill-in">[FILL IN: caption describing the screenshot]</span></figcaption>
+      </figure>
+
+      <h3>Analysis</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Explain whether the copy warning helped participants avoid copying unsupported or
+          disputed information. Discuss whether the copy options were clear.]
+        </span>
+      </p>
+    </section>
+
+    <section id="task-3">
+      <h2>6. Task 3: Correction and Reporting</h2>
+
+      <h3>Task instructions</h3>
+      <p>
+        Participants were told to assume that the system’s label for the Pomodoro-method claim was
+        incorrect. They were asked to report the incorrect label to the system.
+      </p>
+
+      <h3>Results</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Measure</th>
+              <th>P1</th>
+              <th>P2</th>
+              <th>P3</th>
+              <th>Group result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Time to complete</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN: average/median]</span></td>
+            </tr>
+            <tr>
+              <td>Completed without help</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Found report control</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Submitted report</td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: Y/N]</span></td>
+              <td><span class="fill-in">[FILL IN: X/3]</span></td>
+            </tr>
+            <tr>
+              <td>Errors or confusion</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Observations</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Describe how participants found the reporting feature. Did they open the evidence panel?
+          Did they understand how to choose an alternative label or reason? Did they receive confirmation
+          after submitting?]
+        </span>
+      </p>
+
+      <h3>Participant comments</h3>
+      <ul>
+        <li><span class="fill-in">[FILL IN: P1 quote or comment]</span></li>
+        <li><span class="fill-in">[FILL IN: P2 quote or comment]</span></li>
+        <li><span class="fill-in">[FILL IN: P3 quote or comment]</span></li>
+      </ul>
+
+      <figure>
+        <img src="[FILL IN: screenshot file name]" alt="Screenshot of Task 3 report interface">
+        <figcaption>Figure 3. <span class="fill-in">[FILL IN: caption describing the screenshot]</span></figcaption>
+      </figure>
+
+      <h3>Analysis</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Explain whether participants could recover from an incorrect label and whether the
+          reporting process was clear and efficient.]
+        </span>
+      </p>
+    </section>
+
+    <section id="sus">
+      <h2>7. SUS Results</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Participant</th>
+              <th>SUS score</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>P1</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+            <tr>
+              <td>P2</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+            <tr>
+              <td>P3</td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Average</strong></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+              <td><span class="fill-in">[FILL IN]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <span class="fill-in">
+          [FILL IN: Interpret the SUS results. For example, state whether the average score was above or
+          below 68, which is commonly considered an acceptable usability score. Explain what participant
+          comments suggest about the prototype.]
+        </span>
+      </p>
+    </section>
+
+    <section id="issues">
+      <h2>8. Usability Issues</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Severity</th>
+              <th>Evidence from testing</th>
+              <th>Affected task</th>
+              <th>Recommendation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="fill-in">[FILL IN: issue name]</span></td>
+              <td><span class="fill-in">[FILL IN: High/Medium/Low]</span></td>
+              <td><span class="fill-in">[FILL IN: observation, quote, or metric]</span></td>
+              <td><span class="fill-in">[FILL IN: Task 1/2/3]</span></td>
+              <td><span class="fill-in">[FILL IN: recommended change]</span></td>
+            </tr>
+            <tr>
+              <td><span class="fill-in">[FILL IN: issue name]</span></td>
+              <td><span class="fill-in">[FILL IN: High/Medium/Low]</span></td>
+              <td><span class="fill-in">[FILL IN: observation, quote, or metric]</span></td>
+              <td><span class="fill-in">[FILL IN: Task 1/2/3]</span></td>
+              <td><span class="fill-in">[FILL IN: recommended change]</span></td>
+            </tr>
+            <tr>
+              <td><span class="fill-in">[FILL IN: issue name]</span></td>
+              <td><span class="fill-in">[FILL IN: High/Medium/Low]</span></td>
+              <td><span class="fill-in">[FILL IN: observation, quote, or metric]</span></td>
+              <td><span class="fill-in">[FILL IN: Task 1/2/3]</span></td>
+              <td><span class="fill-in">[FILL IN: recommended change]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Cross-participant comparison</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Explain similarities and differences between participants. For example, did all
+          participants have trouble with the same feature, or did only one participant struggle?]
+        </span>
+      </p>
+    </section>
+
+    <section id="critique">
+      <h2>9. Test Plan Critique</h2>
+
+      <h3>Strengths of Group B’s plan</h3>
+      <ul>
+        <li><span class="fill-in">[FILL IN: strength 1]</span></li>
+        <li><span class="fill-in">[FILL IN: strength 2]</span></li>
+        <li><span class="fill-in">[FILL IN: strength 3]</span></li>
+      </ul>
+
+      <h3>Limitations of Group B’s plan</h3>
+      <ul>
+        <li><span class="fill-in">[FILL IN: limitation 1]</span></li>
+        <li><span class="fill-in">[FILL IN: limitation 2]</span></li>
+        <li><span class="fill-in">[FILL IN: limitation 3]</span></li>
+      </ul>
+
+      <h3>Nielsen heuristic analysis</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Discuss which Nielsen heuristics Group B’s plan addressed well and which were not
+          fully covered. For example: visibility of system status, match between system and real world,
+          user control and freedom, consistency, error prevention, recognition rather than recall,
+          flexibility and efficiency, aesthetic and minimalist design, error recovery, and help/documentation.]
+        </span>
+      </p>
+
+      <h3>Changes or additions made</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Explain any changes you made to the original plan or additional exercises you conducted.
+          Justify why they were important.]
+        </span>
+      </p>
+    </section>
+
+    <section id="recommendations">
+      <h2>10. Design Recommendations</h2>
+
+      <h3>High priority</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Describe the most important change. Include the observed problem, evidence,
+          recommended solution, and expected improvement.]
+        </span>
+      </p>
+
+      <h3>Medium priority</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Describe another important change based on testing results.]
+        </span>
+      </p>
+
+      <h3>Low priority</h3>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Describe a smaller improvement that would still improve the user experience.]
+        </span>
+      </p>
+    </section>
+
+    <section id="conclusion">
+      <h2>11. Conclusion</h2>
+      <p>
+        <span class="fill-in">
+          [FILL IN: Summarize whether Group B’s prototype supported its usability goals. Mention the main
+          strengths, the most important usability issues, and the changes that would most improve the design.]
+        </span>
+      </p>
+    </section>
+
+    <section id="appendix">
+      <h2>12. Appendix</h2>
+
+      <h3>Raw testing notes</h3>
+      <p>
+        <span class="fill-in">[FILL IN: Add raw observation notes, timing logs, or link to data-collection document.]</span>
+      </p>
+
+      <h3>Pre-test questionnaire</h3>
+      <p>
+        <span class="fill-in">[FILL IN: Add pre-test questions and participant responses.]</span>
+      </p>
+
+      <h3>Post-test questionnaire</h3>
+      <p>
+        <span class="fill-in">[FILL IN: Add SUS scores and debrief responses.]</span>
+      </p>
+
+      <h3>Screenshots</h3>
+      <p>
+        <span class="fill-in">[FILL IN: Add additional screenshots of important moments during testing.]</span>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Formative feedback for Group B’s AI Fact Checker prototype.</p>
+  </footer>
+
+</body>
+</html>
