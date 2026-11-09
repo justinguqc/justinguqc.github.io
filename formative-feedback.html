@@ -96,6 +96,11 @@
         max-width: 100%;
         height: auto;
       }
+      video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
       figcaption {
         margin-top: 8px;
         color: #666;
@@ -186,27 +191,27 @@
         We tested the prototype with two students who use AI chatbots for academic work.
       </p>
 
-      <h3>Completed tasks</h3>
+      <h3>Task outcomes</h3>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>Task</th>
-              <th>Completed with target users</th>
+              <th>Outcome</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Task 1: Claim assessment</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>Both opened the source. Neither identified the gap between the source and the claimed grade increase.</td>
             </tr>
             <tr>
               <td>Task 2: Selective copying</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>1/2 completed. P1 assembled the claim and sources. P2 pasted the summary only.</td>
             </tr>
             <tr>
               <td>Task 3: Correction and reporting</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>Both submitted a simulated report.</td>
             </tr>
           </tbody>
         </table>
@@ -214,20 +219,20 @@
 
       <h3>Testing procedure</h3>
       <p>
-        Each participant completed Group B’s three documented usability tasks:
-        claim assessment, selective copying, and correction/reporting.
-        Participants were asked to think aloud while completing the tasks.
-        We recorded time on task, task success, task-specific measures, errors, and critical incidents.
+        Both participants worked through Group B’s three usability tasks in order. The tasks covered claim assessment, copying with evidence, and label reporting.
+        Participants explored the Study tips screen first and were asked to think aloud during the tasks.
+        The run logs record time, completion, errors and help from the facilitator.
       </p>
 
       <h3>Additional exercises</h3>
       <p>
-        The source review identified three paths to check: copying with labels hidden, cancelling a report with the keyboard, and resetting a non-empty draft.
+        The sessions ended after Task 3. The toggle, keyboard and reset checks came from source inspection.
       </p>
     </section>
 
     <section id="results-analysis">
       <h2>2. Results and Analysis</h2>
+      <p>Times are rounded estimates from the recordings. They run from the end of the first task instruction to the answer, observed paste or report confirmation. They include any clarification in between. P2's Task 2 time ends at the partial paste.</p>
 
       <h3>Participant run log: P1</h3>
 
@@ -241,46 +246,23 @@
           </thead>
           <tbody>
             <tr>
-              <td>Participant ID</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Date/time</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Facilitator</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Observer</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
               <td>Task 1: Claim assessment</td>
-              <td>
-                ToT: <span class="fill-in">[FILL IN]</span><br>
-                Success: <span class="fill-in">[FILL IN]</span><br>
-                Trap detected: <span class="fill-in">[FILL IN]</span><br>
-                Errors: <span class="fill-in">[FILL IN]</span>
-              </td>
+              <td>ToT: ≈34 s (1:31–2:05)<br>
+                Result: Opened the source and accepted the claim.<br>
+                Trap detected: No. The response treated better performance after sleep as support for the one-letter increase.</td>
             </tr>
             <tr>
               <td>Task 2: Selective copy</td>
-              <td>
-                ToT: <span class="fill-in">[FILL IN]</span><br>
-                Success: <span class="fill-in">[FILL IN]</span><br>
-                Warning triggered: <span class="fill-in">[FILL IN]</span><br>
-                Plain copy placed: <span class="fill-in">[FILL IN]</span>
-              </td>
+              <td>ToT: ≈78 s (2:25–3:43)<br>
+                Success: Completed. The claim and evidence were pasted separately. The Disputed label was missing.<br>
+                Copy warning: None shown in the recording.<br>
+                Plain copy placed: Yes, initially. The participant then added excerpts and citations from both sources.</td>
             </tr>
             <tr>
               <td>Task 3: Report wrong label</td>
-              <td>
-                ToT: <span class="fill-in">[FILL IN]</span><br>
-                Success: <span class="fill-in">[FILL IN]</span><br>
-                Path followed: <span class="fill-in">[FILL IN]</span>
-              </td>
+              <td>ToT: ≈13 s (4:00–4:13)<br>
+                Success: Report submitted.<br>
+                Path followed: Pomodoro highlight → evidence panel → scroll to Report a wrong label → Should be Supported.</td>
             </tr>
           </tbody>
         </table>
@@ -288,14 +270,17 @@
 
       <h3>Observations and comments: P1</h3>
       <ul>
-        <li><span class="fill-in">[FILL IN]</span></li>
-        <li><span class="fill-in">[FILL IN]</span></li>
-        <li><span class="fill-in">[FILL IN]</span></li>
+        <li>P1 opened <strong>Source details</strong> and said, “I think it supports the claim.” The explanation linked staying up all night with worse performance and did not address the size of the claimed grade increase.</li>
+        <li>P1 first pasted the rereading claim on its own and asked whether both pieces were needed. The final draft contained the claim, source text from both sides and citations assembled across several pastes. The Disputed label was absent from the draft.</li>
+        <li>P1 scrolled to the report link in the Pomodoro panel and chose <strong>Should be Supported</strong>. The panel showed the flag.</li>
       </ul>
 
       <figure>
-        <p class="fill-in">[Screenshot to be added after testing]</p>
-        <figcaption>Figure 1. <span class="fill-in">[FILL IN]</span></figcaption>
+        <video controls playsinline preload="metadata" aria-label="Participant 1 test recording">
+          <source src="videos/bparticipant1.mp4" type="video/mp4">
+          <a href="videos/bparticipant1.mp4">Open the P1 recording</a>.
+        </video>
+        <figcaption>P1 recording. <a href="videos/bparticipant1.mp4#t=100">1:40 Source details</a> · <a href="videos/bparticipant1.mp4#t=152">2:32 Claim-only paste</a> · <a href="videos/bparticipant1.mp4#t=224">3:44 Draft with evidence</a> · <a href="videos/bparticipant1.mp4#t=253">4:13 Report</a>.</figcaption>
       </figure>
 
       <h3>Participant run log: P2</h3>
@@ -310,46 +295,23 @@
           </thead>
           <tbody>
             <tr>
-              <td>Participant ID</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Date/time</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Facilitator</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Observer</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
               <td>Task 1: Claim assessment</td>
-              <td>
-                ToT: <span class="fill-in">[FILL IN]</span><br>
-                Success: <span class="fill-in">[FILL IN]</span><br>
-                Trap detected: <span class="fill-in">[FILL IN]</span><br>
-                Errors: <span class="fill-in">[FILL IN]</span>
-              </td>
+              <td>ToT: ≈85 s (1:27–2:52)<br>
+                Result: Opened the source and judged that it indirectly supported the claim.<br>
+                Trap detected: No. The participant called the support indirect and did not identify the missing evidence for a one-letter increase.</td>
             </tr>
             <tr>
               <td>Task 2: Selective copy</td>
-              <td>
-                ToT: <span class="fill-in">[FILL IN]</span><br>
-                Success: <span class="fill-in">[FILL IN]</span><br>
-                Warning triggered: <span class="fill-in">[FILL IN]</span><br>
-                Plain copy placed: <span class="fill-in">[FILL IN]</span>
-              </td>
+              <td>ToT: ≈36 s to partial paste (3:13–3:49)<br>
+                Success: Incomplete, with help finding Assignment draft.<br>
+                Copy warning: None shown in the recording.<br>
+                Plain copy placed: Evidence summary only. The disputed claim itself was missing.</td>
             </tr>
             <tr>
               <td>Task 3: Report wrong label</td>
-              <td>
-                ToT: <span class="fill-in">[FILL IN]</span><br>
-                Success: <span class="fill-in">[FILL IN]</span><br>
-                Path followed: <span class="fill-in">[FILL IN]</span>
-              </td>
+              <td>ToT: ≈30 s (4:10–4:40)<br>
+                Success: Report submitted after the prompt was clarified.<br>
+                Path followed: Pomodoro highlight → evidence panel → browser Find for “report” → Report a wrong label → Should be Disputed.</td>
             </tr>
           </tbody>
         </table>
@@ -357,14 +319,17 @@
 
       <h3>Observations and comments: P2</h3>
       <ul>
-        <li><span class="fill-in">[FILL IN]</span></li>
-        <li><span class="fill-in">[FILL IN]</span></li>
-        <li><span class="fill-in">[FILL IN]</span></li>
+        <li>P2 examined the sleep source and described it as evidence that “indirectly supports” the claim. The final answer did not question the one-letter increase.</li>
+        <li>P2 selected the panel summary and asked, “Where is the assignment draft?” The facilitator pointed out that it was at the top. The pasted text was the summary alone.</li>
+        <li>P2 asked whether the reporting task referred to the colour label, then used the browser’s Find feature to locate the report link. P2 chose <strong>Should be Disputed</strong>, and the confirmation appeared.</li>
       </ul>
 
       <figure>
-        <p class="fill-in">[Screenshot to be added after testing]</p>
-        <figcaption>Figure 2. <span class="fill-in">[FILL IN]</span></figcaption>
+        <video controls playsinline preload="metadata" aria-label="Participant 2 test recording">
+          <source src="videos/bparticipant2.mp4" type="video/mp4">
+          <a href="videos/bparticipant2.mp4">Open the P2 recording</a>.
+        </video>
+        <figcaption>P2 recording. <a href="videos/bparticipant2.mp4#t=145">2:25 Source details</a> · <a href="videos/bparticipant2.mp4#t=229">3:49 Summary-only paste</a> · <a href="videos/bparticipant2.mp4#t=266">4:26 Find the report link</a> · <a href="videos/bparticipant2.mp4#t=280">4:40 Report</a>.</figcaption>
       </figure>
 
       <h3>Consolidated results</h3>
@@ -373,7 +338,7 @@
         <table>
           <thead>
             <tr>
-              <th>Measure</th>
+              <th>Task</th>
               <th>P1</th>
               <th>P2</th>
               <th>Group result</th>
@@ -381,112 +346,28 @@
           </thead>
           <tbody>
             <tr>
-              <td>Task 1 time on task</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>Task 1: Claim assessment</td>
+              <td>≈34 s. Opened the source and accepted the claim.</td>
+              <td>≈85 s. Opened the source and judged the support indirect.</td>
+              <td>2/2 opened the source. 0/2 detected the evidence gap. Mean and median ≈60 s.</td>
             </tr>
             <tr>
-              <td>Task 1 success</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>Task 2: Selective copying</td>
+              <td>≈78 s. Completed by pasting the claim and evidence separately.</td>
+              <td>≈36 s to a partial paste. The draft contained only the summary.</td>
+              <td>1/2 completed.</td>
             </tr>
             <tr>
-              <td>Task 1 trap detected</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 1 errors</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 2 time on task</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 2 success</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 2 warning triggered</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 2 plain copy placed</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 3 time on task</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 3 success</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-            <tr>
-              <td>Task 3 path followed</td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>Task 3: Correction and reporting</td>
+              <td>≈13 s. Submitted.</td>
+              <td>≈30 s. Submitted after clarification.</td>
+              <td>2/2 submitted a simulated report. Mean and median ≈22 s.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Critical incident log</h3>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Participant</th>
-              <th>Incident</th>
-              <th>Interface state</th>
-              <th>Impact</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Usability issues</h3>
+      <h3>Usability issues observed in the prototype</h3>
 
       <div class="table-wrap">
         <table>
@@ -501,39 +382,46 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>The Supported label gives little indication of what the evidence actually covers.</td>
+              <td>High</td>
+              <td>Both opened the sleep source and treated it as support. Neither questioned the one-letter increase in this planned trap.<br>
+                <a href="videos/bparticipant1.mp4#t=107">P1 1:47</a> · <a href="videos/bparticipant2.mp4#t=165">P2 2:45</a>.</td>
+              <td>Task 1</td>
+              <td>Show which part of the claim the source supports and which part remains unverified.</td>
             </tr>
             <tr>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>The With evidence button is easy to miss.</td>
+              <td>High</td>
+              <td>With evidence sits below the source cards alongside Claim and Citation. Both participants selected text manually. P1 assembled the claim and sources in several pastes, while P2 pasted only the summary.<br>
+                <a href="videos/bparticipant1.mp4#t=152">P1 2:32</a> · <a href="videos/bparticipant2.mp4#t=229">P2 3:49</a>.</td>
+              <td>Task 2</td>
+              <td>Put With evidence beside the claim and show the claim, label and sources together in the preview.</td>
             </tr>
             <tr>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
-              <td><span class="fill-in">[FILL IN]</span></td>
+              <td>The Assignment draft tab is easy to overlook after copying.</td>
+              <td>Medium</td>
+              <td>P2 asked where the draft was. The facilitator pointed out the tab at the top.<br>
+                <a href="videos/bparticipant2.mp4#t=222">P2 3:42</a>.</td>
+              <td>Task 2</td>
+              <td>Add an Open Assignment draft button to the copy confirmation.</td>
+            </tr>
+            <tr>
+              <td>The report link sits below the evidence and copy controls.</td>
+              <td>Medium</td>
+              <td>P1 scrolled to the link. P2 used browser Find to locate it.<br>
+                <a href="videos/bparticipant2.mp4#t=266">P2 4:26</a>.</td>
+              <td>Task 3</td>
+              <td>Move Report a wrong label nearer to the claim heading.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3>Cross-participant comparison</h3>
-      <p>
-        <span class="fill-in">[FILL IN]</span>
-      </p>
+      <p>Both participants reached the sleep source. P1 gave a direct yes, while P2 described the support as indirect. They took different copying routes: P1 assembled the claim and sources over several pastes, while P2 pasted only the summary. Both reported the Pomodoro label, with P2 using browser Find to reach the link.</p>
 
       <h3>Analysis</h3>
-      <p>
-        <span class="fill-in">[FILL IN]</span>
-      </p>
+      <p>Only P1 answered within 45 seconds. Neither participant identified the evidence gap, yielding a detection rate of 0/2 against B’s below-50% reference. Neither copy attempt showed a warning, so the sessions yielded no warning responses to score.</p>
     </section>
 
     <section id="test-plan-critique">
@@ -542,17 +430,15 @@
       <h3>Strengths and limitations</h3>
       <ul>
         <li>The three tasks cover checking evidence, copying with context and challenging a label. The briefing, examiner roles and run log give the testing team a useful starting point.</li>
-        <li>The plan also needs a clear timeout rule. Direct With evidence copying can succeed without a warning. Reporting is simulated and submits when a reason is selected, without a separate Submit button.</li>
+        <li>The plan needs a clear timeout rule and a definition of a successful evidence copy. Check the pasted draft for the claim, evidence and label separately. Record warning exposure separately because users can reach the draft without seeing a warning.</li>
       </ul>
 
 
-      <p>B's submitted files did not include a consent form or the ten-item SUS questionnaire mentioned in the test plan. These should be included so another team can run the study without having to create missing materials.</p>
+      <p>B’s submission omitted the consent form and the ten-item SUS questionnaire listed in the test plan. Include both in the testing package so another team can follow the same procedure.</p>
 
       <h3>Nielsen heuristic analysis</h3>
       <p>
-        The source review focuses on clear feedback, error prevention, user control and keyboard recovery.
-        Findings below are provisional; they still need browser checks and B's three independent evaluators.
-        The sleep claim's misleading green label is a planned trap, not an accidental defect.
+        This review draws on two participant recordings and a source inspection. B’s plan calls for a separate inspection by three independent evaluators.
       </p>
 
 
@@ -566,14 +452,14 @@
               <th>Screen / Description</th>
               <th>Heuristics</th>
               <th>Violations / Issues Found</th>
-              <th>Severity (0–4)</th>
+              <th>Review severity (0–4)</th>
               <th>Nice to Keep (Effective Elements)</th>
               <th>Recommendations</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1. Claim Assessment</td>
+              <td>1. Claim Assessment and Evidence Inspection</td>
               <td>
                 Study-advice response with highlighted claims, evidence panel, and source details.
               </td>
@@ -582,10 +468,13 @@
                 Match between system and the real world;<br>
                 Recognition rather than recall
               </td>
-              <td>The sleep claim is labelled Supported, but its source does not establish a one-letter grade increase. This is intentional.</td>
-              <td>Not rated: planned trap</td>
-              <td>Claim highlights and access to source details.</td>
-              <td>Keep the trap for testing and explain it during debrief. Record the participant’s reasoning.</td>
+              <td>
+                <strong>Recorded sessions.</strong> Both participants opened Source details and treated the source as supportive. Neither questioned the one-letter grade increase.<br>
+                <strong>Source inspection.</strong> The Supported label was deliberately set for the test. The source discusses memory and gives no grade result.
+              </td>
+              <td>Planned trap</td>
+              <td>Claim highlights, source excerpts and access to the full source.</td>
+              <td>Show what the source supports and what remains unverified beside the excerpt.</td>
             </tr>
 
             <tr>
@@ -598,10 +487,10 @@
                 User control and freedom;<br>
                 Visibility of system status
               </td>
-              <td>The direct With evidence path skips the warning. No participant difficulty has been observed yet.</td>
+              <td><strong>Recorded sessions.</strong> Both used manual text selection. The With evidence button below the source cards went unused. One draft initially had only the claim, and the other ended with only the summary.</td>
               <td>Not rated</td>
               <td>Safe copy option and exact-text preview.</td>
-              <td>Score the pasted claim and evidence separately from warning exposure.</td>
+              <td>Bring With evidence closer to the claim and check the actual draft when scoring the task.</td>
             </tr>
 
             <tr>
@@ -614,10 +503,13 @@
                 Help users recognize, diagnose, and recover from errors;<br>
                 Visibility of system status
               </td>
-              <td>“Feedback sent” refers to a report stored only in local session memory.</td>
-              <td>2 — provisional</td>
+              <td>
+                <strong>Recorded sessions.</strong> Both submitted a simulated report. P2 used browser Find to locate the link.<br>
+                <strong>Source inspection.</strong> The prototype stores the report in session memory.
+              </td>
+              <td>2</td>
               <td>Visible reporting confirmation.</td>
-              <td>State that the report is recorded for this demo and that the label stays unchanged.</td>
+              <td>Move the report link near the claim heading and keep the visible confirmation.</td>
             </tr>
 
             <tr>
@@ -629,29 +521,14 @@
                 Visibility of system status;<br>
                 User control and freedom
               </td>
-              <td>Turning labels off also bypasses the native-copy warning handler.</td>
-              <td>3 — provisional</td>
+              <td><strong>Source inspection.</strong> Turning labels off also bypasses the native-copy warning handler.</td>
+              <td>3</td>
               <td>A visible on/off switch.</td>
-              <td>Check Ctrl/Cmd+C with labels off; keep warnings active or explain that they are disabled.</td>
+              <td>Keep copy warnings active when labels are hidden, or state on the switch that it also disables warnings.</td>
             </tr>
 
             <tr>
-              <td>5. Evidence Inspection</td>
-              <td>
-                Hover tooltips, source details, evidence explanations, and source-age information.
-              </td>
-              <td>
-                Recognition rather than recall;<br>
-                Match between system and the real world
-              </td>
-              <td>No observed issue yet; opening Source details adds a step to inspect the full text.</td>
-              <td>Not rated</td>
-              <td>Excerpts, source dates and full source text.</td>
-              <td>Use task timings to check whether the extra step causes difficulty before changing it.</td>
-            </tr>
-
-            <tr>
-              <td>6. Keyboard Navigation</td>
+              <td>5. Keyboard Navigation</td>
               <td>
                 Keyboard-only use of buttons, claim selection, evidence panel, and report feature.
               </td>
@@ -659,8 +536,8 @@
                 Flexibility and efficiency of use;<br>
                 User control and freedom
               </td>
-              <td>Report Cancel restores a ghost button, but its focus selector looks for a .btn that is not there.</td>
-              <td>2 — provisional</td>
+              <td><strong>Source inspection.</strong> The Cancel handler targets a missing button and fails to restore keyboard focus to Report a wrong label.</td>
+              <td>2</td>
               <td>Keyboard support for selecting claims and closing dialogs.</td>
               <td>Focus the restored report button and verify the full keyboard path.</td>
             </tr>
@@ -669,11 +546,7 @@
       </div>
 
       <h3>Changes or additions made</h3>
-      <p>
-        We kept all three tasks and used two participant records, with independent and assisted completion recorded separately.
-        Warning exposure was treated as not needed for a direct With evidence copy.
-        Source access and evidence interpretation were recorded separately, with participant counts reported out of two.
-      </p>
+      <p>Task 2 required both the claim and its evidence in the final draft. The run logs record label retention and facilitator help separately.</p>
 
     </section>
 
@@ -681,15 +554,13 @@
       <h2>4. Design Critique</h2>
 
       <h3>High-priority improvements</h3>
-      <p>Check copy protection with labels off and the loss of draft text on Reset. If confirmed in the browser, keep warnings active and add confirmation or Undo before clearing work. These priorities remain provisional until testing.</p>
-
+      <p>Show the scope of the evidence next to the claim. The sleep source discusses memory and gives no grade result. Place a prominent Copy claim with evidence button beside the claim and keep the preview that shows the claim, label and sources together.</p>
 
       <h3>Medium-priority improvements</h3>
-      <p>Clarify that report submission is simulated, and fix keyboard focus after cancelling a report. Both changes would make it clearer what happened and how to continue.</p>
-
+      <p>Add a direct link to Assignment draft in the copy confirmation. Move the report link nearer the claim heading and keep the confirmation that both participants reached.</p>
 
       <h3>Low-priority improvements</h3>
-      <p>Update the guide's filename and replace its screenshot placeholder. Keep the current label symbols and copy previews; broader layout changes should follow the user sessions.</p>
+      <p>Update the guide's filename and replace its screenshot placeholder with a view that points out the copy, draft and report controls.</p>
 
     </section>
   </main>
