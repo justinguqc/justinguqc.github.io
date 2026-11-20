@@ -10,6 +10,7 @@ function activate(context) {
   let changedOutsideReview = false;
   let panel, panelChangeId;
   let pinned = false;
+  let inlinePreviews = true;
   let feedback = '';
   const details = new Map();
   const documents = new vscode.EventEmitter();
@@ -19,10 +20,12 @@ function activate(context) {
   const focusDecoration = vscode.window.createTextEditorDecorationType({ isWholeLine: true,
     borderWidth: '0 0 0 2px', borderStyle: 'solid', borderColor: new vscode.ThemeColor('focusBorder') });
   const decorations = {
-    pending: vscode.window.createTextEditorDecorationType({
-      backgroundColor: new vscode.ThemeColor('diffEditor.removedTextBackground'),
+    pending: vscode.window.createTextEditorDecorationType({ isWholeLine: true,
+      backgroundColor: new vscode.ThemeColor('editor.wordHighlightBackground'),
+      borderWidth: '0 0 0 3px', borderStyle: 'solid', borderColor: new vscode.ThemeColor('editorWarning.foreground'),
       overviewRulerColor: new vscode.ThemeColor('editorWarning.foreground') }),
     accepted: vscode.window.createTextEditorDecorationType({ isWholeLine: true,
+      borderWidth: '0 0 0 3px', borderStyle: 'solid', borderColor: new vscode.ThemeColor('gitDecoration.addedResourceForeground'),
       backgroundColor: new vscode.ThemeColor('diffEditor.insertedTextBackground') }),
     rejected: vscode.window.createTextEditorDecorationType({ isWholeLine: true,
       borderWidth: '0 0 0 2px', borderStyle: 'solid', borderColor: new vscode.ThemeColor('disabledForeground') })
@@ -40,7 +43,7 @@ function activate(context) {
     const location = layout.ranges.find(item => item.id === id);
     return { ...review.snapshot(), stage: responseReady ? 'review' : 'original',
       session: workingUri.toString(), filename: review.sample.filename, task: review.sample.task,
-      paused: changedOutsideReview, pinned, feedback,
+      paused: changedOutsideReview, pinned, inlinePreviews, feedback,
       startLine: layout.text.slice(0, location.start).split('\n').length,
       endLine: layout.text.slice(0, Math.max(location.start, location.end - 1)).split('\n').length,
       index: review.changes.findIndex(item => item.id === id),
@@ -66,7 +69,8 @@ function activate(context) {
       }
       const map = { accept: 'aitrace.accept', reject: 'aitrace.reject', previous: 'aitrace.previous', next: 'aitrace.next',
         undo: 'aitrace.undo', reset: 'aitrace.reset', export: 'aitrace.export', compare: 'aitrace.compare',
-        close: 'aitrace.close', new: 'aitrace.start', select: 'aitrace.explain', pin: 'aitrace.pin', locate: 'aitrace.locate' };
+        close: 'aitrace.close', new: 'aitrace.start', select: 'aitrace.explain', pin: 'aitrace.pin', locate: 'aitrace.locate',
+        previews: 'aitrace.togglePreviews' };
       if (message.type === 'request') {
         await vscode.commands.executeCommand('aitrace.request');
         return;
@@ -87,7 +91,7 @@ function activate(context) {
       status.tooltip = 'Open a real sample Python file with prepared AI suggestions.';
     } else {
       const snapshot = review.snapshot();
-      status.text = changedOutsideReview ? '$(warning) AITrace: File edited' : !responseReady ? '$(sparkle) AITrace: Simulate AI Output' : `$(checklist) AITrace: ${snapshot.reviewed}/${snapshot.total} reviewed`;
+      status.text = changedOutsideReview ? '$(warning) AITrace: File edited' : !responseReady ? '$(sparkle) AITrace: Simulate AI Output' : `$(checklist) AITrace: ${snapshot.reviewed}/${snapshot.total} groups reviewed`;
       status.command = responseReady ? 'aitrace.pick' : 'aitrace.request';
       status.tooltip = changedOutsideReview ? 'Manual edits detected. Review decisions are paused to avoid overwriting your edits.' : !responseReady ? `Task: ${review.sample.task}\nSimulate output from a third-party AI to begin reviewing.` : 'Choose a change. Accept edits this file; Reject keeps the current original code.';
     }
@@ -98,13 +102,14 @@ function activate(context) {
       for (const [state, decoration] of Object.entries(decorations)) {
         const locations = review && responseReady && isWorking(editor.document) && !changedOutsideReview
           ? ranges(editor.document).filter(item => review.states[item.id] === state).map(item => {
-            if (state !== 'pending') return item.range;
+            if (state !== 'pending' || !inlinePreviews) return item.range;
             const change = review.change(item.id);
             const proposed = change.after.trimEnd().split('\n');
+            const preview = proposed.length > 1 ? `Replacement: ${proposed.length} lines`
+              : proposed[0].trim().length > 16 ? 'Replacement: …' : `Replacement: ${proposed[0].trim()}`;
             return { range: item.range, renderOptions: {
-              before: { contentText: '- ', color: new vscode.ThemeColor('gitDecoration.deletedResourceForeground') },
-              after: { contentText: `  + ${proposed[0].trim()}${proposed.length > 1 ? ` ... (${proposed.length} lines; full change in explanation)` : ''}`,
-                color: new vscode.ThemeColor('gitDecoration.addedResourceForeground'), fontStyle: 'italic' }
+              after: { contentText: `  ${preview}`,
+                color: new vscode.ThemeColor('editorCodeLens.foreground'), fontStyle: 'italic' }
             } };
           }) : [];
         editor.setDecorations(decoration, locations);
@@ -132,6 +137,7 @@ function activate(context) {
     refresh(); return editor;
   }
   async function start(caseId) {
+    if (busy) return;
     if (!caseId) {
       const choice = await vscode.window.showQuickPick(cases.map(item => ({
         label: item.title, detail: item.task, id: item.id
@@ -139,6 +145,7 @@ function activate(context) {
       if (!choice) return;
       caseId = choice.id;
     }
+    if (busy) return;
     const next = new Review(caseId);
     // A fresh real file per session: never overwrite a sample the user edited.
     const folder = vscode.Uri.file(path.join(context.extensionPath, '.runtime', 'sessions', `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, next.sample.id));
@@ -159,14 +166,14 @@ function activate(context) {
     const document = await workingDocument();
     if (document.getText() !== review.code('result')) throw new Error('The sample was edited. Start a fresh case to keep your edits, or reset this sample.');
     responseReady = true;
-    feedback = `${review.changes.length} prepared suggestions loaded. Choose a change to review.`;
+    feedback = `${review.changes.length} change groups ready. Review each group as one decision.`;
     review.log('ai_output_simulated', { task: review.sample.task });
     review.log('prepared_response_loaded'); refresh();
     const editor = await showWorking(Boolean(panel));
     const first = ranges(editor.document)[0];
     editor.revealRange(first.range, vscode.TextEditorRevealType.InCenterIfOutsideViewport);
     ensurePanel();
-    vscode.window.setStatusBarMessage(`AITrace: ${review.changes.length} prepared suggestion(s) loaded. Original lines stay unchanged until accepted.`, 10000);
+    vscode.window.setStatusBarMessage(`AITrace: ${review.changes.length} change groups loaded. Original lines stay unchanged until accepted.`, 10000);
     return review.snapshot();
   }
   const link = (label, command, args = []) => `[${label}](command:${command}?${encodeURIComponent(JSON.stringify(args))})`;
@@ -174,8 +181,16 @@ function activate(context) {
     const change = review.change(id);
     const md = new vscode.MarkdownString();
     md.isTrusted = { enabledCommands: ['aitrace.explain'] };
-    md.appendText(`AITrace - ${change.title}`);
+    md.appendText(`AITrace · Group ${review.changes.indexOf(change) + 1}/${review.changes.length} · ${review.states[id]}`);
+    md.appendMarkdown('\n\n'); md.appendText(change.title);
     md.appendMarkdown('\n\n'); md.appendText(change.what);
+    md.appendMarkdown('\n\n**Original**\n\n');
+    md.appendCodeblock(change.before.trimEnd(), 'python');
+    md.appendMarkdown('\n\n**Replacement**\n\n');
+    md.appendCodeblock(change.after.trimEnd(), 'python');
+    if (change.edits > 1) {
+      md.appendMarkdown('\n\n'); md.appendText(`${change.edits} related edits — accepted or rejected together.`);
+    }
     md.appendMarkdown('\n\n' + link('Open AITrace review', 'aitrace.explain', [id]));
     return md;
   }
@@ -204,18 +219,26 @@ function activate(context) {
     }
     busy = true;
     const previousStates = { ...review.states }, previousHistory = [...review.history];
+    const previousSelected = review.selected, previousEvents = review.events.length;
+    let applied = false;
     try {
       if (!action()) return;
       const next = review.code('result');
       if (document.getText() !== next) {
         const edit = new vscode.WorkspaceEdit();
         edit.replace(workingUri, new vscode.Range(document.positionAt(0), document.positionAt(document.getText().length)), next);
-        if (!await vscode.workspace.applyEdit(edit)) throw new Error('VS Code could not apply the change. The decision was not saved.');
-        await document.save();
+        applied = await vscode.workspace.applyEdit(edit);
+        if (!applied) throw new Error('VS Code could not apply the change. The decision was not saved.');
+        if (!await document.save()) throw new Error('The change is applied in the editor, but could not be saved. Save the sample file before continuing.');
       }
       changedOutsideReview = false; refresh();
     } catch (error) {
-      review.states = previousStates; review.history = previousHistory; refresh(); throw error;
+      if (!applied) {
+        review.states = previousStates; review.history = previousHistory;
+        review.selected = previousSelected; review.events.length = previousEvents;
+      }
+      changedOutsideReview = document.getText() !== review.code('result');
+      refresh(); throw error;
     } finally { busy = false; }
     await explain(review.selected);
     return review.snapshot();
@@ -254,10 +277,12 @@ function activate(context) {
       })];
       const snapshot = review.snapshot();
       return [new vscode.CodeLens(new vscode.Range(0, 0, 0, 0), {
-        title: `AITrace · ${snapshot.total - snapshot.reviewed} pending changes · Open review`, command: 'aitrace.explain'
+        title: `AITrace · ${snapshot.total - snapshot.reviewed} pending groups · Open review`, command: 'aitrace.explain'
       }), ...ranges(document).map((item, index) => {
         const range = new vscode.Range(item.range.start, item.range.start), state = review.states[item.id];
-        return new vscode.CodeLens(range, { title: `AITrace · Review change ${index + 1}/${snapshot.total} · ${state}`, command: 'aitrace.explain', arguments: [item.id] });
+        const icon = state === 'accepted' ? 'check' : state === 'rejected' ? 'close' : 'edit';
+        const edits = review.change(item.id).edits || 1;
+        return new vscode.CodeLens(range, { title: `$(${icon}) AITrace · Group ${index + 1}/${snapshot.total} · ${edits} ${edits === 1 ? 'edit' : 'related edits'} · ${state}`, command: 'aitrace.explain', arguments: [item.id] });
       })];
     }
   }));
@@ -270,6 +295,12 @@ function activate(context) {
   }));
   register('aitrace.start', start);
   register('aitrace.request', request);
+  register('aitrace.togglePreviews', () => {
+    inlinePreviews = !inlinePreviews;
+    review?.log('inline_previews_changed', { visible: inlinePreviews });
+    decorate(); syncPanel();
+    return inlinePreviews;
+  });
   register('aitrace.close', async id => {
     panel?.dispose();
     await vscode.commands.executeCommand('editor.action.hideHover');
@@ -322,9 +353,11 @@ function activate(context) {
     return result;
   });
   register('aitrace.reset', async (confirmed = false) => {
+    if (busy) return;
     if (!review) return start();
     if (!confirmed && await vscode.window.showWarningMessage('Reset this sample file? Review decisions and any manual edits in this sample will be cleared.', { modal: true }, 'Reset sample') !== 'Reset sample') return;
     const document = await workingDocument();
+    if (busy) return;
     busy = true;
     try {
       const edit = new vscode.WorkspaceEdit();
@@ -332,7 +365,8 @@ function activate(context) {
       if (!await vscode.workspace.applyEdit(edit)) throw new Error('Could not reset the sample file.');
       review.reset(); responseReady = false; details.clear(); changedOutsideReview = false;
       pinned = false; panelChangeId = review.selected; feedback = 'Sample reset. You can simulate AI output again.';
-      await document.save(); refresh();
+      refresh();
+      if (!await document.save()) throw new Error('The sample is reset in the editor, but could not be saved. Save the file before continuing.');
     } finally { busy = false; }
     await showWorking(); return review.snapshot();
   });
@@ -340,7 +374,7 @@ function activate(context) {
     if (!review) return start();
     const target = await vscode.window.showSaveDialog({ title: 'Save AITrace session log', filters: { JSON: ['json'] }, defaultUri: vscode.Uri.joinPath(vscode.Uri.file(path.dirname(workingUri.fsPath)), 'session-log.json') });
     if (!target) return;
-    await vscode.workspace.fs.writeFile(target, Buffer.from(JSON.stringify({ prototype: 'AITrace 0.4.2', snapshot: review.snapshot(), events: review.events }, null, 2)));
+    await vscode.workspace.fs.writeFile(target, Buffer.from(JSON.stringify({ prototype: `AITrace ${context.extension.packageJSON.version}`, snapshot: review.snapshot(), events: review.events }, null, 2)));
     vscode.window.showInformationMessage('Session log saved locally.');
   });
   disposables.push(vscode.window.onDidChangeActiveTextEditor(() => { updateStatus(); decorate(); }),

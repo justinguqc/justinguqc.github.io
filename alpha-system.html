@@ -177,42 +177,109 @@
 
       <section id="design-evolution">
         <h2>Design Evolution</h2>
-        <p>We made three changes based on Group I's feedback and added one from our own review of the computer prototype.</p>
+        <p>We revised the comparison, controls, explanations and review groups after Group I's feedback. We also added clearer decision counts after reviewing the prototype ourselves.</p>
 
         <h3>Clearer code comparisons</h3>
-        <p><strong>Change.</strong> We labelled inline suggestions as replacements and removed the ambiguous plus sign beside the preview. The review panel shows the full Original and Suggested blocks. We also added a switch to hide inline previews while keeping the review entries available above each changed block.</p>
-        <p><strong>Rationale.</strong> The evaluators reported confusion about whether the grey text was an addition, a replacement, or part of the code itself. They also reported different reactions to the editor's clutter. We introduced clear replacement labels to make the comparison easier to read and a switch so users can choose how much detail to show inside the editor. Both changes build on the existing preview and comparison controls.</p>
+        <p><strong>Change.</strong> We replaced the ambiguous plus sign with short Replacement labels. Each group has a highlighted code block, a status marker and a review link. Hovering over the code shows the full Original and Replacement blocks in a scrollable popup. Users can hide inline previews while keeping the highlights, hover previews and review links.</p>
+        <p><strong>Rationale.</strong> Group I reported confusion about whether the preview was added code, a replacement, or part of the file itself. Short labels keep the editor less crowded, while the hover preview lets users compare code in place. Within VS Code's extension interface, we kept the full explanation and controls in a panel beside the code.</p>
 
         <h3>Keep review controls together</h3>
-        <p><strong>Change.</strong> We moved Undo, Previous and Next into the same fixed area as Accept and Reject near the top of the panel. The controls stay in the same order and position when users switch between explanations of different lengths.</p>
-        <p><strong>Rationale.</strong> In the computer prototype, Accept and Reject were near the top, while navigation and Undo were below the explanation. One participant reported that the window jumped too much when using the lower controls. We grouped these actions to reduce scrolling and mouse travel and make it easier to reverse a decision immediately. The new layout reuses the existing commands.</p>
+        <p><strong>Change.</strong> We put Accept, Reject, Undo, Previous and Next in one fixed area at the top. Accept and Reject have distinct button styles and symbols. We also made Pin more visible: the button reads Pin this group, changes to Pinned · Unpin when active, and the panel identifies the pinned group.</p>
+        <p><strong>Rationale.</strong> In Group I's test, one participant reported that the window jumped when using the lower controls. Keeping the buttons together removes the need to scroll down for Undo or navigation. We also made the pin state clearer so users can tell whether the explanation will follow their code selection.</p>
 
         <h3>Explain the purpose and effect</h3>
-        <p><strong>Change.</strong> We added a short change-type label, such as Bug fix or Refactoring. Each explanation states why the change is needed and what it changes in the program's behaviour. Assumptions that affect that outcome appear beside the explanation.</p>
-        <p><strong>Rationale.</strong> Group I reported that participants could find the explanations but still spent considerable time checking the code themselves. One participant asked for the type of modification and a clearer separation between its context and function. We separated the purpose and effect to help users judge whether a suggestion matches their task. The explanations and assumptions in the prepared cases provided the content for this revision.</p>
+        <p><strong>Change.</strong> We added Bug fix and Behaviour change labels. A short Change &amp; purpose paragraph brings the explanation together, followed by an Effect block with a contrasting background and side line. Assumptions stay nearby, while the example and task reference can be expanded when needed.</p>
+        <p><strong>Rationale.</strong> Group I reported that participants found the explanations but still spent time checking the code. One participant asked for the modification type and clearer context. We brought the change and its reason together, then gave the expected effect its own visible block. This keeps the explanation short while making the outcome easier to find.</p>
+
+        <h3>Review related edits together</h3>
+        <p><strong>Change.</strong> We combined the incomplete-task filter and its counter into one review group. They share an explanation and are accepted, rejected or undone together. The alphabetical sort stays in a separate group, and the controls and counters now refer to groups.</p>
+        <p><strong>Rationale.</strong> Group I suggested grouping edits that depend on each other. In our sample, accepting the filter alone could leave the counter showing the wrong number. Reviewing both together prevents that incomplete repair. Sorting changes the order independently and can still be rejected. These groups are defined in the prepared sample.</p>
 
         <h3>Show what was kept</h3>
-        <p><strong>Change.</strong> We added separate totals for accepted, rejected and pending changes beside the overall progress count. These totals update after each decision, Undo and Reset.</p>
-        <p><strong>Rationale.</strong> During our own review, we noticed that the previous counter combined accepted and rejected changes as reviewed. For example, three reviewed changes could mean two accepted and one rejected, but the counter alone did not show that outcome. We added separate totals to give users a quick summary of their decisions and remaining work. The summary uses the change states already tracked by the plugin.</p>
+        <p><strong>Change.</strong> We added separate accepted, rejected and pending group counts beside overall progress. The numbers update after each decision, Undo and Reset. Status labels also use symbols and colour, so colour is not the only cue.</p>
+        <p><strong>Rationale.</strong> The old reviewed count combined accepted and rejected changes. We added the breakdown so users can see what they kept and what remains, without reopening every group. It uses the states already tracked by the plugin.</p>
       </section>
 
       <section id="prototype-implementation">
         <h2>Prototype Implementation</h2>
-        <!-- Add the implemented changes and functional checks after development. -->
+        <p>AITrace runs as a VS Code extension. The editor shows the affected code, and the panel beside it holds the explanation and review controls. The Pending sample contains three edits in two groups: the filter and counter together, and the sort separately.</p>
+        <p>Accepting a group updates and saves the sample file. Rejecting it keeps or restores its original code, and Undo reverses the last decision. Selecting code opens its group unless the panel is pinned. Manual edits pause review decisions to protect those edits.</p>
+        <p>The prototype works offline with prepared suggestions, groups and explanations. Users can complete the review without a facilitator switching screens or applying decisions for them. It does not connect to an AI service, generate explanations for new code or group arbitrary code automatically.</p>
 
         <h3>Download</h3>
-        <!-- Add the alpha extension package once it is ready. -->
+        <p><a href="aitrace-plugin-dev/dist/aitrace-prototype-0.5.0.vsix" download>Download AITrace for VS Code (.vsix)</a></p>
 
-        <h3>Demo</h3>
-        <!-- Add a demonstration of the revised interaction. -->
+        <h3 id="prototype-demo">Demo</h3>
+        <figure>
+          <img src="images/alpha/grouped-edits.png" alt="The filter and counter highlighted together as Group 1, with sorting in Group 2" width="446" height="94" loading="lazy">
+          <figcaption><strong>Review related edits together.</strong> The filter and counter share one decision, so users can keep them in sync. Sorting stays separate.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/alpha/hover-comparison.png" alt="Scrollable hover popup showing original code and the complete replacement for both related edits" width="433" height="234" loading="lazy">
+          <figcaption><strong>Compare code in place.</strong> Hovering shows the Original and Replacement blocks. Users can scroll for the full code or open the review panel.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/alpha/review-explanation.png" alt="Change type and combined purpose explanation, followed by an emphasized Effect block and assumptions" width="500" height="285" loading="lazy">
+          <figcaption><strong>Read a shorter explanation.</strong> Change &amp; purpose explains what changed and why. Effect highlights the outcome, with assumptions nearby.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/alpha/review-controls.png" alt="Fixed review controls with Group 1 accepted and pinned, and counts showing one accepted and one pending group" width="516" height="376" loading="lazy">
+          <figcaption><strong>Keep control of the review.</strong> Decision and navigation buttons stay at the top. Pin holds the current group open, and separate counts show what was kept and what remains.</figcaption>
+        </figure>
+      </section>
+
+      <section id="prototype-revisions">
+        <h2>Prototype Revisions</h2>
+        <p>Our <a href="index.html#our-solution">project proposal</a> focuses on helping users locate AI code changes, understand their purpose and effects, and choose what to keep. The alpha supports this workflow in the prepared cases. The table below connects each working revision to the problem it addresses.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Issue identified</th><th scope="col">Revision implemented</th><th scope="col">Usability benefit</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Group I reported confusion between preview text and actual code.</td>
+                <td>Highlighted groups, short Replacement labels, and full Original/Replacement blocks in the hover popup and panel.</td>
+                <td>Makes proposed edits easier to distinguish from saved code and compare in place.</td>
+              </tr>
+              <tr>
+                <td>Group I suggested grouping dependent edits. Our filter and counter could become inconsistent when reviewed separately.</td>
+                <td>The filter and counter now share one accept, reject or undo action. Sorting remains independent.</td>
+                <td>Prevents this incomplete repair and lets users decide by purpose rather than individual lines.</td>
+              </tr>
+              <tr>
+                <td>In Group I's test, a participant reported jumping when using controls below the explanation.</td>
+                <td>Fixed review controls at the top, clearer decision buttons, and an explicit Pin this group toggle.</td>
+                <td>Keeps actions within reach and lets users hold an explanation open while inspecting other code.</td>
+              </tr>
+              <tr>
+                <td>Group I asked for a clearer modification type and context.</td>
+                <td>A type label, a combined Change &amp; purpose paragraph, and an emphasized Effect block with nearby assumptions.</td>
+                <td>Puts the reason and expected outcome together, so users have less separate text to search.</td>
+              </tr>
+              <tr>
+                <td>Our review found that the old progress count hid the difference between accepted and rejected changes.</td>
+                <td>Separate accepted, rejected and pending group counts, updated with decisions, Undo and Reset.</td>
+                <td>Makes outcomes and remaining work visible without reopening each group.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>All 22 VS Code integration checks passed, covering saved code, grouped decisions, hover previews, navigation, pinning, reset and manual-edit protection. We also checked the layout and controls in VS Code. These checks confirm that the prepared review workflow works; they do not measure gains in user speed or understanding.</p>
       </section>
 
       <section id="user-manual">
         <h2>User Manual</h2>
+        <p>This illustrated guide covers installation, group review, hover comparisons and pinning in AITrace.</p>
+        <iframe
+          class="document-preview"
+          src="output/pdf/AITrace-Alpha-User-Manual.pdf"
+          title="AITrace Alpha User Manual with screenshots"
+          loading="lazy"
+        ></iframe>
+        <p><a href="output/pdf/AITrace-Alpha-User-Manual.pdf">Open user manual (PDF)</a> · <a href="aitrace-plugin-dev/dist/aitrace-prototype-0.5.0.vsix" download>Download AITrace Prototype (.vsix)</a></p>
         <h3>User Manual Modifications</h3>
-        <p>We updated the guide to match the revised comparison view, button positions and explanation layout. We replaced the old screenshots so users can locate the controls in the alpha prototype.</p>
-        <p>The revised instructions cover showing or hiding inline previews, using the grouped review controls, reading the change type and effect, and checking the accepted, rejected and pending counts.</p>
-        <!-- Embed the updated installation and user guide with new screenshots. -->
+        <p>We revised the previous guide and replaced its screenshots to show group decisions, hover comparisons and the fixed review controls. The instructions explain Pin, the shorter explanation layout and the separate group counts. They also make clear that accepting one group can apply more than one edit.</p>
       </section>
     </main>
 

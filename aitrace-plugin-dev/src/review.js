@@ -79,8 +79,10 @@ class Review {
     return { text: lines.join('\n') + '\n', ranges };
   }
   snapshot() {
+    const counts = { accepted: 0, rejected: 0, pending: 0 };
+    for (const state of Object.values(this.states)) counts[state]++;
     return { caseId: this.sample.id, selected: this.selected, states: { ...this.states },
-      reviewed: Object.values(this.states).filter(state => state !== 'pending').length,
+      counts, reviewed: counts.accepted + counts.rejected,
       total: this.changes.length, canUndo: this.history.length > 0 };
   }
 }

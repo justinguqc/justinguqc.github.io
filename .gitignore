@@ -4,3 +4,4 @@
 /aitrace-plugin-dev/node_modules/
 /aitrace-plugin-dev/dist/*
 !/aitrace-plugin-dev/dist/aitrace-prototype-0.4.2.vsix
+!/aitrace-plugin-dev/dist/aitrace-prototype-0.5.0.vsix

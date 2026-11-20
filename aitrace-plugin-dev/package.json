@@ -2,7 +2,7 @@
   "name": "aitrace-prototype",
   "displayName": "AITrace Prototype",
   "description": "Understand and review AI code changes in your editor.",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "publisher": "aitrace-lab",
   "license": "UNLICENSED",
   "engines": {
@@ -30,6 +30,10 @@
         "command": "aitrace.request",
         "title": "AITrace: Simulate AI Output",
         "icon": "$(sparkle)"
+      },
+      {
+        "command": "aitrace.togglePreviews",
+        "title": "AITrace: Toggle Inline Previews"
       },
       {
         "command": "aitrace.explain",
