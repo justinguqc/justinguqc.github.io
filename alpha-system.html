@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alpha System</title>
+    <style>
+      html {
+        scroll-padding-top: 1rem;
+      }
+      body {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 24px;
+        color: #242424;
+        background: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+      a {
+        color: #0969da;
+        text-underline-offset: 2px;
+      }
+      .topbar .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        font-size: 14px;
+      }
+      .navlinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+      }
+      .brand {
+        color: inherit;
+        font-weight: 600;
+      }
+      h1, h2, h3 {
+        line-height: 1.3;
+      }
+      h1 {
+        margin: 12px 0;
+        font-size: 2em;
+      }
+      h2 {
+        margin: 40px 0 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.5em;
+      }
+      h3 {
+        margin: 28px 0 12px;
+        font-size: 1.15em;
+      }
+      h4 {
+        margin: 22px 0 10px;
+        font-size: 1.05em;
+      }
+      h5 {
+        margin: 18px 0 8px;
+        font-size: 1em;
+      }
+      p, ul, ol {
+        margin: 0 0 16px;
+      }
+      ul, ol {
+        padding-left: 28px;
+      }
+      li + li {
+        margin-top: 6px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 20px 0 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      th, td {
+        border: 1px solid #d8d8d8;
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f6f6f6;
+      }
+      figure {
+        margin: 24px 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      figcaption, .caption {
+        margin-top: 8px;
+        color: #666;
+        font-size: 14px;
+      }
+      .prototype-video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      code {
+        padding: 2px 4px;
+        background: #f4f4f4;
+        font-family: Consolas, monospace;
+        font-size: 0.9em;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+      }
+      .document-preview {
+        display: block;
+        width: 100%;
+        height: 75vh;
+        max-height: 800px;
+        border: 1px solid #ddd;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 600px) {
+        body {
+          margin: 20px auto;
+          padding: 0 16px;
+        }
+        th, td {
+          min-width: 120px;
+        }
+      }
+      @media print {
+        body {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          font-size: 11pt;
+        }
+        .table-wrap {
+          overflow: visible;
+        }
+        h1, h2, h3 {
+          break-after: avoid;
+        }
+        figure, tr {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Project page">
+      <div class="container">
+        <a class="brand" href="index.html">AITrace</a>
+        <div class="navlinks">
+          <a href="index.html#observation-and-proposal">Observation and Proposal</a>
+          <a href="prototype.html">Low Fidelity Prototype</a>
+          <a href="computer-prototype.html">Computer Prototype</a>
+          <a href="formative-feedback.html">Formative Feedback</a>
+          <a href="alpha-system.html" aria-current="page">Alpha System</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <h1>Alpha System</h1>
+
+      <section id="design-evolution">
+        <h2>Design Evolution</h2>
+        <p>We made three changes based on Group I's feedback and added one from our own review of the computer prototype.</p>
+
+        <h3>Clearer code comparisons</h3>
+        <p><strong>Change.</strong> We labelled inline suggestions as replacements and removed the ambiguous plus sign beside the preview. The review panel shows the full Original and Suggested blocks. We also added a switch to hide inline previews while keeping the review entries available above each changed block.</p>
+        <p><strong>Rationale.</strong> The evaluators reported confusion about whether the grey text was an addition, a replacement, or part of the code itself. They also reported different reactions to the editor's clutter. We introduced clear replacement labels to make the comparison easier to read and a switch so users can choose how much detail to show inside the editor. Both changes build on the existing preview and comparison controls.</p>
+
+        <h3>Keep review controls together</h3>
+        <p><strong>Change.</strong> We moved Undo, Previous and Next into the same fixed area as Accept and Reject near the top of the panel. The controls stay in the same order and position when users switch between explanations of different lengths.</p>
+        <p><strong>Rationale.</strong> In the computer prototype, Accept and Reject were near the top, while navigation and Undo were below the explanation. One participant reported that the window jumped too much when using the lower controls. We grouped these actions to reduce scrolling and mouse travel and make it easier to reverse a decision immediately. The new layout reuses the existing commands.</p>
+
+        <h3>Explain the purpose and effect</h3>
+        <p><strong>Change.</strong> We added a short change-type label, such as Bug fix or Refactoring. Each explanation states why the change is needed and what it changes in the program's behaviour. Assumptions that affect that outcome appear beside the explanation.</p>
+        <p><strong>Rationale.</strong> Group I reported that participants could find the explanations but still spent considerable time checking the code themselves. One participant asked for the type of modification and a clearer separation between its context and function. We separated the purpose and effect to help users judge whether a suggestion matches their task. The explanations and assumptions in the prepared cases provided the content for this revision.</p>
+
+        <h3>Show what was kept</h3>
+        <p><strong>Change.</strong> We added separate totals for accepted, rejected and pending changes beside the overall progress count. These totals update after each decision, Undo and Reset.</p>
+        <p><strong>Rationale.</strong> During our own review, we noticed that the previous counter combined accepted and rejected changes as reviewed. For example, three reviewed changes could mean two accepted and one rejected, but the counter alone did not show that outcome. We added separate totals to give users a quick summary of their decisions and remaining work. The summary uses the change states already tracked by the plugin.</p>
+      </section>
+
+      <section id="prototype-implementation">
+        <h2>Prototype Implementation</h2>
+        <!-- Add the implemented changes and functional checks after development. -->
+
+        <h3>Download</h3>
+        <!-- Add the alpha extension package once it is ready. -->
+
+        <h3>Demo</h3>
+        <!-- Add a demonstration of the revised interaction. -->
+      </section>
+
+      <section id="user-manual">
+        <h2>User Manual</h2>
+        <h3>User Manual Modifications</h3>
+        <p>We updated the guide to match the revised comparison view, button positions and explanation layout. We replaced the old screenshots so users can locate the controls in the alpha prototype.</p>
+        <p>The revised instructions cover showing or hiding inline previews, using the grouped review controls, reading the change type and effect, and checking the accepted, rejected and pending counts.</p>
+        <!-- Embed the updated installation and user guide with new screenshots. -->
+      </section>
+    </main>
+
+    <footer class="footer">
+      AITrace — Alpha System
+    </footer>
+  </body>
+</html>
