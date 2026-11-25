@@ -12,6 +12,8 @@ function activate(context) {
   let pinned = false;
   let inlinePreviews = true;
   let feedback = '';
+  let feedbackGroup;
+  function setFeedback(message, groupId) { feedback = message; feedbackGroup = groupId; }
   const details = new Map();
   const documents = new vscode.EventEmitter();
   const lenses = new vscode.EventEmitter();
@@ -43,7 +45,8 @@ function activate(context) {
     const location = layout.ranges.find(item => item.id === id);
     return { ...review.snapshot(), stage: responseReady ? 'review' : 'original',
       session: workingUri.toString(), filename: review.sample.filename, task: review.sample.task,
-      paused: changedOutsideReview, pinned, inlinePreviews, feedback,
+      paused: changedOutsideReview, pinned, inlinePreviews,
+      feedback: !feedbackGroup || feedbackGroup === id ? feedback : '',
       startLine: layout.text.slice(0, location.start).split('\n').length,
       endLine: layout.text.slice(0, Math.max(location.start, location.end - 1)).split('\n').length,
       index: review.changes.findIndex(item => item.id === id),
@@ -69,10 +72,14 @@ function activate(context) {
       }
       const map = { accept: 'aitrace.accept', reject: 'aitrace.reject', previous: 'aitrace.previous', next: 'aitrace.next',
         undo: 'aitrace.undo', reset: 'aitrace.reset', export: 'aitrace.export', compare: 'aitrace.compare',
-        close: 'aitrace.close', new: 'aitrace.start', select: 'aitrace.explain', pin: 'aitrace.pin', locate: 'aitrace.locate',
+        close: 'aitrace.close', new: 'aitrace.fresh', select: 'aitrace.explain', pin: 'aitrace.pin', locate: 'aitrace.locate',
         previews: 'aitrace.togglePreviews' };
       if (message.type === 'request') {
         await vscode.commands.executeCommand('aitrace.request');
+        return;
+      }
+      if (message.type === 'reset') {
+        await vscode.commands.executeCommand('aitrace.reset');
         return;
       }
       if (['accept', 'reject', 'previous', 'next', 'select', 'locate'].includes(message.type) && !id) return;
@@ -153,7 +160,7 @@ function activate(context) {
     const file = vscode.Uri.joinPath(folder, next.sample.filename);
     await vscode.workspace.fs.writeFile(file, Buffer.from(next.code('original')));
     workingUri = file; review = next; responseReady = false; changedOutsideReview = false; details.clear();
-    panelChangeId = review.selected; pinned = false; feedback = '';
+    panelChangeId = review.selected; pinned = false; setFeedback('');
     review.log('working_file_opened', { filename: next.sample.filename });
     await showWorking();
     ensurePanel(true);
@@ -166,7 +173,7 @@ function activate(context) {
     const document = await workingDocument();
     if (document.getText() !== review.code('result')) throw new Error('The sample was edited. Start a fresh case to keep your edits, or reset this sample.');
     responseReady = true;
-    feedback = `${review.changes.length} change groups ready. Review each group as one decision.`;
+    setFeedback(`${review.changes.length} change groups ready. Review each group as one decision.`);
     review.log('ai_output_simulated', { task: review.sample.task });
     review.log('prepared_response_loaded'); refresh();
     const editor = await showWorking(Boolean(panel));
@@ -197,8 +204,12 @@ function activate(context) {
   async function explain(id) {
     if (!review) { await start(); if (!review) return; }
     if (!responseReady) { ensurePanel(); return; }
+    if (id && id !== panelModel().change.id) setFeedback('');
     if (id && !review.select(id)) return;
-    if (changedOutsideReview) throw new Error('The file was edited manually. Start a fresh demo case or reset it before applying prepared suggestions.');
+    if (changedOutsideReview) {
+      panelChangeId = review.selected;
+      ensurePanel(); return;
+    }
     const editor = await showWorking(true);
     const target = ranges(editor.document).find(item => item.id === review.selected);
     const position = new vscode.Position(target.range.start.line, editor.document.lineAt(target.range.start.line).firstNonWhitespaceCharacterIndex);
@@ -246,7 +257,8 @@ function activate(context) {
   async function decide(id, state) {
     const result = await commit(() => review.decide(id || review.selected, state));
     if (result) {
-      feedback = state === 'accepted' ? 'Accepted. This file was updated and saved.' : 'Rejected. The original code is kept.';
+      const groupId = id || review.selected;
+      setFeedback(`${review.change(groupId).title}: ${state === 'accepted' ? 'accepted and saved.' : 'rejected; original code kept.'}`, groupId);
       syncPanel();
       vscode.window.setStatusBarMessage(`AITrace: ${feedback}`, 5000);
     }
@@ -256,7 +268,7 @@ function activate(context) {
   function register(id, fn) {
     disposables.push(vscode.commands.registerCommand(id, async (...args) => {
       try { return await fn(...args); }
-      catch (error) { feedback = error.message; syncPanel(); output.appendLine(error.stack || String(error)); vscode.window.showErrorMessage(`AITrace: ${error.message}`); }
+      catch (error) { setFeedback(error.message); syncPanel(); output.appendLine(error.stack || String(error)); vscode.window.showErrorMessage(`AITrace: ${error.message}`); }
     }));
   }
   const frozen = new Map();
@@ -294,6 +306,7 @@ function activate(context) {
     }
   }));
   register('aitrace.start', start);
+  register('aitrace.fresh', () => start(review?.sample.id));
   register('aitrace.request', request);
   register('aitrace.togglePreviews', () => {
     inlinePreviews = !inlinePreviews;
@@ -349,13 +362,13 @@ function activate(context) {
   });
   register('aitrace.undo', async () => {
     const result = await commit(() => review.undo());
-    if (result) { feedback = 'Last decision undone. The code was restored and saved.'; syncPanel(); }
+    if (result) { setFeedback(`${review.change().title}: decision undone; code restored and saved.`, review.selected); syncPanel(); }
     return result;
   });
   register('aitrace.reset', async (confirmed = false) => {
     if (busy) return;
     if (!review) return start();
-    if (!confirmed && await vscode.window.showWarningMessage('Reset this sample file? Review decisions and any manual edits in this sample will be cleared.', { modal: true }, 'Reset sample') !== 'Reset sample') return;
+    if (confirmed !== true && await vscode.window.showWarningMessage('Reset this sample file? Review decisions and any manual edits in this sample will be cleared.', { modal: true }, 'Reset sample') !== 'Reset sample') return;
     const document = await workingDocument();
     if (busy) return;
     busy = true;
@@ -364,7 +377,7 @@ function activate(context) {
       edit.replace(workingUri, new vscode.Range(document.positionAt(0), document.positionAt(document.getText().length)), review.code('original'));
       if (!await vscode.workspace.applyEdit(edit)) throw new Error('Could not reset the sample file.');
       review.reset(); responseReady = false; details.clear(); changedOutsideReview = false;
-      pinned = false; panelChangeId = review.selected; feedback = 'Sample reset. You can simulate AI output again.';
+      pinned = false; panelChangeId = review.selected; setFeedback('Sample reset. You can simulate AI output again.');
       refresh();
       if (!await document.save()) throw new Error('The sample is reset in the editor, but could not be saved. Save the file before continuing.');
     } finally { busy = false; }
@@ -381,12 +394,14 @@ function activate(context) {
     vscode.window.onDidChangeVisibleTextEditors(decorate),
     vscode.workspace.onDidChangeTextDocument(event => {
       if (!isWorking(event.document) || busy) return;
-      changedOutsideReview = event.document.getText() !== review.code('result'); refresh();
+      const paused = event.document.getText() !== review.code('result');
+      if (paused !== changedOutsideReview) setFeedback('');
+      changedOutsideReview = paused; refresh();
     }),
     vscode.window.onDidChangeTextEditorSelection(event => {
       if (!isWorking(event.textEditor.document) || changedOutsideReview) return;
       const item = ranges(event.textEditor.document).find(item => item.range.contains(event.selections[0].active));
-      if (item && item.id !== review.selected) { review.select(item.id); syncPanel(); decorate(); }
+      if (item && item.id !== review.selected) { if (!pinned) setFeedback(''); review.select(item.id); syncPanel(); decorate(); }
     }));
   context.subscriptions.push(...disposables, ...Object.values(decorations), focusDecoration, documents, lenses, output, status);
   updateStatus();

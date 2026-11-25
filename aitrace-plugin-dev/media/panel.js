@@ -36,13 +36,13 @@ function render(next) {
       ${button('undo', 'Undo decision', model.canUndo && !model.paused ? '' : 'disabled')}
       ${button('next', 'Next', model.index === model.total - 1 ? 'disabled' : '')}</div>
       <div class="preview-switch"><label for="inline-previews"><input id="inline-previews" type="checkbox" ${model.inlinePreviews ? 'checked' : ''}> Show inline previews</label></div>
+      ${model.paused ? `<div class="notice recovery" role="status"><p><strong>Review paused.</strong> Your edits are kept. Browse the saved comparison below, or start again.</p><div class="actions">${button('new', 'Start fresh case')}${button('reset', 'Reset sample')}</div></div>` : ''}
       </div>
       <div id="review-body" class="review-body" tabindex="0" aria-label="Change explanation">
-      <p class="feedback" role="status" aria-live="polite">${escape(model.feedback || 'Choose a change to review.')}</p>
+      <p class="feedback" role="status" aria-live="polite">${escape(model.feedback || (model.paused ? 'Saved comparison · your edited file is unchanged.' : 'Choose a change to review.'))}</p>
       <h1>${escape(change.title)}</h1>
       <p class="pin-context ${model.pinned ? 'is-pinned' : ''}">${model.pinned ? `Pinned to Group ${model.index + 1} · code selection won't switch this review.` : 'Following code selection · pin to keep this group open.'}</p>
-      <div class="location">${button('locate', escape(model.filename) + ' · lines ' + model.startLine + '-' + model.endLine, 'class="text" title="Show the matching code"')}</div>
-      ${model.paused ? '<p class="notice">This file was edited manually. Decisions are paused to keep your edits. Start a fresh case or reset this sample.</p>' : ''}
+      <div class="location">${button('locate', escape(model.filename) + ' · ' + (model.paused ? 'saved comparison lines ' : 'lines ') + model.startLine + '-' + model.endLine, `class="text" title="${model.paused ? 'Saved positions may not match the edited file' : 'Show the matching code'}" ${model.paused ? 'disabled' : ''}`)}</div>
       <p class="group-meta"><span class="change-type">${escape(change.type || 'Code change')}</span> <span>${change.edits || 1} ${(change.edits || 1) === 1 ? 'edit' : 'related edits'} · one decision</span></p>
       <section class="explanation"><h2>Change &amp; purpose</h2><p>${escape(change.what)} ${escape(change.why)}</p>
       <section class="effect"><h2>Effect</h2><p>${escape(change.effect || change.what)}</p></section>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beta System</title>
+    <style>
+      html {
+        scroll-padding-top: 1rem;
+      }
+      body {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 24px;
+        color: #242424;
+        background: #fff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+      a {
+        color: #0969da;
+        text-underline-offset: 2px;
+      }
+      .topbar .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        font-size: 14px;
+      }
+      .navlinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+      }
+      .brand {
+        color: inherit;
+        font-weight: 600;
+      }
+      h1, h2, h3 {
+        line-height: 1.3;
+      }
+      h1 {
+        margin: 12px 0;
+        font-size: 2em;
+      }
+      h2 {
+        margin: 40px 0 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.5em;
+      }
+      h3 {
+        margin: 28px 0 12px;
+        font-size: 1.15em;
+      }
+      h4 {
+        margin: 22px 0 10px;
+        font-size: 1.05em;
+      }
+      h5 {
+        margin: 18px 0 8px;
+        font-size: 1em;
+      }
+      p, ul, ol {
+        margin: 0 0 16px;
+      }
+      ul, ol {
+        padding-left: 28px;
+      }
+      li + li {
+        margin-top: 6px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 20px 0 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      th, td {
+        border: 1px solid #d8d8d8;
+        padding: 8px 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f6f6f6;
+      }
+      figure {
+        margin: 24px 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      figcaption, .caption {
+        margin-top: 8px;
+        color: #666;
+        font-size: 14px;
+      }
+      .prototype-video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      code {
+        padding: 2px 4px;
+        background: #f4f4f4;
+        font-family: Consolas, monospace;
+        font-size: 0.9em;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 16px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+      }
+      .document-preview {
+        display: block;
+        width: 100%;
+        height: 75vh;
+        max-height: 800px;
+        border: 1px solid #ddd;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 600px) {
+        body {
+          margin: 20px auto;
+          padding: 0 16px;
+        }
+        th, td {
+          min-width: 120px;
+        }
+      }
+      @media print {
+        body {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          font-size: 11pt;
+        }
+        .table-wrap {
+          overflow: visible;
+        }
+        h1, h2, h3 {
+          break-after: avoid;
+        }
+        figure, tr {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Project page">
+      <div class="container">
+        <a class="brand" href="index.html">AITrace</a>
+        <div class="navlinks">
+          <a href="index.html#observation-and-proposal">Observation and Proposal</a>
+          <a href="prototype.html">Low Fidelity Prototype</a>
+          <a href="computer-prototype.html">Computer Prototype</a>
+          <a href="formative-feedback.html">Formative Feedback</a>
+          <a href="alpha-system.html">Alpha System</a>
+          <a href="beta-system.html" aria-current="page">Beta System</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <h1>Beta System</h1>
+      <p>We built on the five changes described in our Alpha deliverable, then refined the feedback and recovery steps found during the walkthrough. The comparisons below show what we kept and what changed in Beta.</p>
+
+      <section id="design-evolution">
+        <h2>Design Evolution</h2>
+        <p>We used the <a href="alpha-system.html#design-evolution">Alpha Design Evolution</a> as the starting point. The review identified three remaining problems: Undo could change a different group without showing it, old messages stayed visible, and manual-edit recovery was hard to find.</p>
+
+        <h3>1. Clearer code comparisons</h3>
+        <p><strong>Alpha.</strong> We introduced short Replacement labels, highlighted groups, full hover comparisons and a switch for inline previews.</p>
+        <p><strong>Beta.</strong> We kept those views and allowed the saved comparison to remain browsable after a manual edit. The panel labels its saved line positions and disables the source jump while they may differ from the edited file.</p>
+        <p><strong>Rationale.</strong> Pausing code changes should still leave users able to inspect the comparison. Labelling the saved view keeps it separate from their newer edits.</p>
+
+        <h3>2. Keep review controls together</h3>
+        <p><strong>Alpha.</strong> We put review and navigation buttons at the top and made Pin's state visible.</p>
+        <p><strong>Beta.</strong> Undo now returns to the affected group and highlights its code, including when the panel is pinned. We also added Start fresh case and Reset sample beside the pause message, keeping confirmation before reset.</p>
+        <p><strong>Rationale.</strong> The walkthrough showed that Undo worked but left its result elsewhere, while recovery required finding a command. These changes put the result and the next action within reach.</p>
+
+        <h3>3. Explain the purpose and effect</h3>
+        <p><strong>Alpha.</strong> We combined Change &amp; purpose, highlighted Effect, and kept assumptions nearby with optional examples.</p>
+        <p><strong>Beta.</strong> We retained this explanation layout and corrected the feedback above it. Decision messages name the group, and messages clear when users change groups or resolve a manual edit.</p>
+        <p><strong>Rationale.</strong> An old Accepted message or edit warning could conflict with the explanation being read. Keeping feedback in context made the panel's state clearer without adding more explanation sections.</p>
+
+        <h3>4. Review related edits together</h3>
+        <p><strong>Alpha.</strong> The filter and counter formed one decision, while sorting remained independent.</p>
+        <p><strong>Beta.</strong> We preserved that grouping. Undo now remembers which group the last decision belonged to and restores both its state and the review focus. The filter and counter still reverse together.</p>
+        <p><strong>Rationale.</strong> Users need to see the whole repair when revisiting a decision. We improved recovery around the existing groups without introducing separate choices that could leave the filter and counter inconsistent.</p>
+
+        <h3>5. Show what was kept</h3>
+        <p><strong>Alpha.</strong> We added separate accepted, rejected and pending counts, with labels and symbols alongside colour.</p>
+        <p><strong>Beta.</strong> We kept these counts and made the nearby action messages consistent with them. A fresh case starts with no decisions, while the previous edited file stays open.</p>
+        <p><strong>Rationale.</strong> Counts and messages should tell the same story. The revision helps users track the current review and start again without losing their own work.</p>
+      </section>
+
+      <section id="prototype-implementation">
+        <h2>Prototype Implementation</h2>
+        <p>AITrace runs as a VS Code extension with the source file and review panel beside each other. The Pending case still contains two groups: the filter and counter together, and sorting separately. Accept, Reject and Undo update and save the sample file.</p>
+        <p>In Beta, Undo opens the group it changed and names it in the feedback. During a manual-edit pause, users can browse the saved comparison while file-changing review actions stay disabled. Start fresh case opens a new copy of the same sample; Reset sample keeps its confirmation step.</p>
+        <p><a href="aitrace-plugin-dev/dist/aitrace-prototype-0.6.0.vsix" download>Download AITrace Beta (.vsix)</a></p>
+        <p>The build works offline with prepared samples, groups and explanations.</p>
+        <figure>
+          <img src="images/beta/undo-result.png" alt="Undo feedback names the affected group and the panel returns to its explanation" width="516" height="132" loading="lazy">
+          <figcaption>Undo brings the affected group back into view and identifies the decision it reversed.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/beta/paused-review.png" alt="Paused review shows fresh-case and reset actions with a labelled saved comparison" width="516" height="320" loading="lazy">
+          <figcaption>During a pause, users can inspect the saved comparison and choose how to continue.</figcaption>
+        </figure>
+      </section>
+
+      <section id="prototype-revisions">
+        <h2>Prototype Revisions</h2>
+        <p>Our <a href="index.html#our-solution">project proposal</a> focuses on helping users locate AI code changes, understand their purpose and effects, and choose what to keep. The beta builds on the alpha's group review with clearer feedback and easier recovery. We reviewed group decisions, navigation, Undo, Pin and manual edits. The table below connects the issues we found to the revisions we made.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Issue identified</th><th scope="col">Revision implemented</th><th scope="col">Usability benefit</th></tr></thead>
+            <tbody>
+              <tr id="critique-undo"><td>Undo restored Group 1 while Group 2 remained open.</td><td>Undo selects and highlights the affected group and names it in the message.</td><td>Users can check the result without searching elsewhere.</td></tr>
+              <tr id="critique-feedback"><td>Accepted messages and edit warnings stayed visible after their context changed.</td><td>Feedback names its group and clears when it no longer applies.</td><td>The message matches the current review state.</td></tr>
+              <tr id="critique-recovery"><td>Paused navigation raised an error and recovery required a Command Palette command.</td><td>Read-only comparison browsing stays available, with direct fresh-case and confirmed reset actions.</td><td>Users can inspect the changes and recover while preserving their edits.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>We checked these revisions by repeating the same actions. Undo brought the affected group back into view, browsing saved comparisons left manual edits unchanged, and Start fresh case kept the edited file open. These changes help users check what happened and decide how to continue without losing their work.</p>
+      </section>
+
+      <section id="user-manual">
+        <h2>User Manual</h2>
+        <p>The updated guide covers installation and the full review flow, including the Beta recovery controls.</p>
+        <iframe class="document-preview" src="output/pdf/AITrace-Beta-User-Manual.pdf" title="AITrace Beta User Manual with screenshots" loading="lazy"></iframe>
+        <p><a href="output/pdf/AITrace-Beta-User-Manual.pdf">Open Beta user manual (PDF)</a> · <a href="aitrace-plugin-dev/dist/aitrace-prototype-0.6.0.vsix" download>Download AITrace Beta (.vsix)</a></p>
+        <h3>User Manual Modifications</h3>
+        <p>We kept the installation, group review, hover, Pin and export instructions from the Alpha guide. We updated the Undo explanation and screenshots, then added a page showing paused review, saved line positions, Start fresh case and Reset sample. The guide explains which option preserves edits and which clears them after confirmation.</p>
+      </section>
+
+      <section id="project-reflection">
+        <h2>Project Reflection</h2>
+        <p>Our starting point was students using AI to build a task-list application. They could make progress with generated code while still struggling to find where a change belonged or explain what it did. As the project developed, we narrowed the problem to reviewing a particular edit within a program the student broadly understood. This became the basis of our Structural Reviewer persona and the decision to keep code and explanation together.</p>
+        <p>The paper prototypes let us compare popup and sidebar explanations. Both participants preferred the popup approach. In VS Code, we combined native hover with a persistent panel for longer explanations and controls. The Alpha then brought related edits into one decision, made their effects more visible, and added clearer review counts. Each stage helped us make the review easier to follow within an interface we could actually build.</p>
+        <p>Our usability goals covered visibility, learning, manageability, review efficiency and satisfaction. Feedback showed that finding an explanation and understanding it were different tasks: navigation could be quick while checking the code still took much longer. We kept navigation time separate from reading and reasoning, and paid attention to how users explained a change and whether they found the explanation useful. Clicking Accept alone did not establish understanding.</p>
+        <p>This walkthrough added another part of the problem. Even when the main review worked, an unclear Undo target or an old warning could make the next step harder to judge. We revised Beta around visible consequences and recovery, so users could check what happened, preserve their work and revisit a decision. That connects the design to the course aim of enhancing people: supporting their judgment and control while they work with generated code.</p>
+        <p>The prepared cases gave us a manageable way to explore these interactions. Larger projects and unfamiliar code remained outside this evaluation. We identified larger projects as the next setting for checking both usability and understanding.</p>
+      </section>
+    </main>
+
+    <footer class="footer">AITrace — Beta System</footer>
+  </body>
+</html>

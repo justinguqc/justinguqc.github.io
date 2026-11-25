@@ -11,3 +11,5 @@ Uncheck **Show inline previews** to hide replacement markers without losing high
 This prototype uses prepared examples and works offline.
 
 Long or multiline replacements use a short inline marker; open the review panel to read the full code.
+
+Undo opens the group whose decision it reversed and names it in the feedback. Messages clear when you move to another group or resolve a manual edit. When review pauses, you can browse the saved comparison without changing your edited file. **Start fresh case** opens a new copy of the same sample; **Reset sample** asks for confirmation before clearing sample edits and decisions.

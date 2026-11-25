@@ -22,7 +22,7 @@ class Review {
   decide(id, state) {
     if (!this.change(id) || !['accepted', 'rejected'].includes(state)) return false;
     if (this.states[id] === state) return false;
-    this.history.push({ ...this.states });
+    this.history.push({ states: { ...this.states }, changeId: id });
     this.states[id] = state;
     this.selected = id;
     this.log('decision', { changeId: id, state });
@@ -30,7 +30,9 @@ class Review {
   }
   undo() {
     if (!this.history.length) return false;
-    this.states = this.history.pop(); this.log('undo'); return true;
+    const previous = this.history.pop();
+    this.states = previous.states; this.selected = previous.changeId;
+    this.log('undo'); return true;
   }
   reset() {
     this.states = Object.fromEntries(this.changes.map(change => [change.id, 'pending']));

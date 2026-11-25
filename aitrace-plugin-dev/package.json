@@ -2,7 +2,7 @@
   "name": "aitrace-prototype",
   "displayName": "AITrace Prototype",
   "description": "Understand and review AI code changes in your editor.",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "publisher": "aitrace-lab",
   "license": "UNLICENSED",
   "engines": {
@@ -25,6 +25,10 @@
         "command": "aitrace.start",
         "title": "AITrace: Start Demo",
         "icon": "$(play)"
+      },
+      {
+        "command": "aitrace.fresh",
+        "title": "AITrace: Start Fresh Case"
       },
       {
         "command": "aitrace.request",
